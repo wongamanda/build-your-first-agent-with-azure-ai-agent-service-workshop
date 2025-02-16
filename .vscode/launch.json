@@ -8,7 +8,7 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "src/workshop/main.py",
+            "program": "src/python/workshop/main.py",
             "console": "integratedTerminal"
         }
     ]
