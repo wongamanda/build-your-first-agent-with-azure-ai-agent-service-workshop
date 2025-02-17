@@ -79,7 +79,7 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
                 content: prompt
             );
 
-            AsyncCollectionResult<StreamingUpdate> su = agentClient.CreateRunStreamingAsync(
+            AsyncCollectionResult<StreamingUpdate> streamingUpdate = agentClient.CreateRunStreamingAsync(
                 threadId: thread.Id,
                 assistantId: agent.Id,
                 maxCompletionTokens: maxCompletionTokens,
@@ -88,13 +88,32 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
                 topP: topP
             );
 
-            await foreach (StreamingUpdate update in su)
+            await foreach (StreamingUpdate update in streamingUpdate)
             {
                 switch (update.UpdateKind)
                 {
                     case StreamingUpdateReason.RunRequiresAction:
+                        // The run requires an action from the application, such as a tool output submission.
+                        // This is where the application can handle the action.
                         RequiredActionUpdate requiredActionUpdate = (RequiredActionUpdate)update;
                         await HandleActionAsync(requiredActionUpdate);
+                        break;
+
+                    case StreamingUpdateReason.MessageUpdated:
+                        // The agent has a response to the user, potentially requiring some user input
+                        // or further action. This comes as a stream of message content updates.
+                        MessageContentUpdate messageContentUpdate = (MessageContentUpdate)update;
+                        await Console.Out.WriteAsync(messageContentUpdate.Text);
+                        break;
+
+                    case StreamingUpdateReason.MessageCompleted:
+                        // The message is complete, so we can print a new line.
+                        await Console.Out.WriteLineAsync();
+                        break;
+
+                    case StreamingUpdateReason.RunCompleted:
+                        // The run is complete, so we can print a new line.
+                        await Console.Out.WriteLineAsync();
                         break;
                 }
             }

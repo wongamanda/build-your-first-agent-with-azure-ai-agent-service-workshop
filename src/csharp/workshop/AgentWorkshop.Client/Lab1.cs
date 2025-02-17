@@ -14,7 +14,7 @@ public class Lab1(AIProjectClient client, string modelName)
     {
         return [
             new FunctionToolDefinition(
-                name: "FetchSalesDataAsync",
+                name: nameof(AgentWorkshop.Client.SalesData.FetchSalesDataAsync),
                 description: "This function is used to answer user questions about Contoso sales data by executing SQLite queries against the database.",
                 parameters: BinaryData.FromObjectAsJson(new {
                     Type = "object",
@@ -36,25 +36,30 @@ public class Lab1(AIProjectClient client, string modelName)
         if (agentClient is null)
             return;
 
-        if (requiredActionUpdate.FunctionName == nameof(AgentWorkshop.Client.SalesData.FetchSalesDataAsync))
+        if (requiredActionUpdate.FunctionName != nameof(AgentWorkshop.Client.SalesData.FetchSalesDataAsync))
         {
-            var json = JsonSerializer.Deserialize<JsonObject>(requiredActionUpdate.FunctionArguments) ?? throw new InvalidOperationException("Failed to parse JSON object.");
-            var query = (json["query"]?.ToString()) ?? throw new InvalidOperationException("Failed to parse query.");
-            string result = await SalesData.FetchSalesDataAsync(query);
-            AsyncCollectionResult<StreamingUpdate> toolOutputUpdate = agentClient.SubmitToolOutputsToStreamAsync(
-                requiredActionUpdate.Value,
-                new List<ToolOutput>([new ToolOutput(requiredActionUpdate.ToolCallId, result)])
-            );
-            await foreach (StreamingUpdate toolUpdate in toolOutputUpdate)
+            return;
+        }
+
+        FetchSalesDataArgs salesDataArgs = JsonSerializer.Deserialize<FetchSalesDataArgs>(requiredActionUpdate.FunctionArguments) ?? throw new InvalidOperationException("Failed to parse JSON object.");
+        string result = await SalesData.FetchSalesDataAsync(salesDataArgs.Query);
+        AsyncCollectionResult<StreamingUpdate> toolOutputUpdate = agentClient.SubmitToolOutputsToStreamAsync(
+            requiredActionUpdate.Value,
+            new List<ToolOutput>([new ToolOutput(requiredActionUpdate.ToolCallId, result)])
+        );
+        await foreach (StreamingUpdate toolUpdate in toolOutputUpdate)
+        {
+            if (toolUpdate.UpdateKind == StreamingUpdateReason.MessageUpdated)
             {
-                switch (toolUpdate.UpdateKind)
-                {
-                    case StreamingUpdateReason.MessageUpdated:
-                        MessageContentUpdate messageContentUpdate = (MessageContentUpdate)toolUpdate;
-                        Console.Write(messageContentUpdate.Text);
-                        break;
-                }
+                // The tool has a response, so we can print it to the console.
+                MessageContentUpdate messageContentUpdate = (MessageContentUpdate)toolUpdate;
+                await Console.Out.WriteAsync(messageContentUpdate.Text);
+                continue;
             }
+
+            // Ignore the other update types
         }
     }
+
+    record FetchSalesDataArgs(string Query);
 }
