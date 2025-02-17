@@ -7,7 +7,7 @@ __pycache__
 .coverage
 *.orig
 # .NET stuff
-# bin
+bin
 obj
 appsettings.*.json
 *.csproj.user
