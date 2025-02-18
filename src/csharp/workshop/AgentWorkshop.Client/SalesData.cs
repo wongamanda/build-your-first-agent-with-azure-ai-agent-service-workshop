@@ -7,22 +7,12 @@ namespace AgentWorkshop.Client;
 
 public class SalesData : IDisposable
 {
-    static readonly string databasePath = Path.Join(
-        Environment.CurrentDirectory,
-        "..",
-        "..",
-        "..",
-        "..",
-        "..",
-        "..",
-        "shared",
-        "database",
-        "contoso-sales.db");
-
     private readonly SqliteConnection connection;
 
-    public SalesData()
+    public SalesData(string sharedPath)
     {
+        string databasePath = Path.Join(sharedPath, "database", "contoso-sales.db");
+
         if (!File.Exists(databasePath))
         {
             throw new FileNotFoundException($"Database file not found at {databasePath}");

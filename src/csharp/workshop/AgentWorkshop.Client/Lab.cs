@@ -1,13 +1,14 @@
+using Azure;
+using Azure.AI.Projects;
 using System.ClientModel;
 using System.Text.Json;
-using Azure.AI.Projects;
 
 namespace AgentWorkshop.Client;
 
 public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisposable
 {
-    protected readonly SalesData SalesData = new();
-
+    protected static readonly string SharedPath = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "..", "..", "..", "shared");
+    protected readonly SalesData SalesData = new(SharedPath);
     protected AIProjectClient Client { get; } = client;
     protected string ModelName { get; } = modelName;
     protected AgentsClient? agentClient;
@@ -16,7 +17,6 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
 
     protected abstract string InstructionsFileName { get; }
 
-    private readonly List<ToolDefinition> tools = [];
     private readonly JsonSerializerOptions options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
     const int maxCompletionTokens = 4096;
@@ -26,7 +26,7 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
 
     public virtual IEnumerable<ToolDefinition> IntialiseLabTools() => [];
 
-    private IEnumerable<ToolDefinition> InitialiseFunctions() => [
+    private IEnumerable<ToolDefinition> InitialiseTools() => [
         new FunctionToolDefinition(
             name: nameof(SalesData.FetchSalesDataAsync),
             description: "This function is used to answer user questions about Contoso sales data by executing SQLite queries against the database.",
@@ -47,29 +47,23 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
 
     public async Task RunAsync()
     {
-        tools.AddRange(InitialiseFunctions());
-
-        string instructionsFile = "../../../../../../shared/instructions/" + InstructionsFileName;
-
-        if (!File.Exists(instructionsFile))
-        {
-            throw new FileNotFoundException("Instructions file not found.", instructionsFile);
-        }
-
-        string instructions = File.ReadAllText(instructionsFile);
-
-        string databaseSchema = await SalesData.GetDatabaseInfoAsync();
-
-        instructions = instructions.Replace("{database_schema_string}", databaseSchema);
-
         await Console.Out.WriteLineAsync("Creating agent...");
         agentClient = Client.GetAgentsClient();
+
+        await InitialiseLabAsync(agentClient);
+
+        IEnumerable<ToolDefinition> tools = InitialiseTools();
+        ToolResources? toolResources = InitialiseToolResources();
+
+        string instructions = await CreateInstructionsAsync();
+
         agent = await agentClient.CreateAgentAsync(
             model: ModelName,
             name: "Constoso Sales AI Agent",
             instructions: instructions,
             tools: tools,
-            temperature: temperature
+            temperature: temperature,
+            toolResources: toolResources
         );
 
         await Console.Out.WriteLineAsync($"Agent created with ID: {agent.Id}");
@@ -115,6 +109,27 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
             }
         }
     }
+
+    protected virtual ToolResources? InitialiseToolResources() => null;
+
+    private async Task<string> CreateInstructionsAsync()
+    {
+        string instructionsFile = Path.Combine(SharedPath, "instructions", InstructionsFileName);
+
+        if (!File.Exists(instructionsFile))
+        {
+            throw new FileNotFoundException("Instructions file not found.", instructionsFile);
+        }
+
+        string instructions = File.ReadAllText(instructionsFile);
+
+        string databaseSchema = await SalesData.GetDatabaseInfoAsync();
+
+        instructions = instructions.Replace("{database_schema_string}", databaseSchema);
+        return instructions;
+    }
+
+    protected virtual Task InitialiseLabAsync(AgentsClient agentClient) => Task.CompletedTask;
 
     private async Task HandleStreamingUpdateAsync(StreamingUpdate update)
     {
@@ -166,12 +181,7 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
         Utils.LogGreen($"Getting file with ID: {imageContent.FileId}");
 
         BinaryData fileContent = await agentClient.GetFileContentAsync(imageContent.FileId);
-        string directory = Path.Combine(
-            Environment.CurrentDirectory,
-            "..",
-            "..",
-            "..",
-            "files");
+        string directory = Path.Combine(SharedPath, "files");
         if (!Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);
@@ -183,7 +193,8 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
         Utils.LogGreen($"File save to {Path.GetFullPath(filePath)}");
     }
 
-    protected virtual AsyncCollectionResult<StreamingUpdate> HandleLabAction(RequiredActionUpdate requiredActionUpdate) => Task.CompletedTask;
+    protected virtual AsyncCollectionResult<StreamingUpdate> HandleLabAction(RequiredActionUpdate requiredActionUpdate) =>
+        throw new NotImplementedException();
 
     private async Task HandleActionAsync(RequiredActionUpdate requiredActionUpdate)
     {
