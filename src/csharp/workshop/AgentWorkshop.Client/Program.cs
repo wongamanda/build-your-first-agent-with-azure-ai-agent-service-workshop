@@ -15,6 +15,6 @@ string projectConnectionString = configuration.GetConnectionString("AiAgentServi
 
 AIProjectClient projectClient = new(projectConnectionString, new DefaultAzureCredential());
 
-await using Lab lab = new Lab1(projectClient, apiDeploymentName);
+await using Lab lab = new Lab2(projectClient, apiDeploymentName);
 
 await lab.RunAsync();

@@ -18,3 +18,5 @@ appsettings.*.json
 .azure/
 .files/
 src/workshop/[.][v]env/
+
+src/*/workshop/*/files/
