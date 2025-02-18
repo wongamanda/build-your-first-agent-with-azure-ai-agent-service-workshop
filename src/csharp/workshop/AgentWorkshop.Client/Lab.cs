@@ -183,7 +183,7 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
         Utils.LogGreen($"File save to {Path.GetFullPath(filePath)}");
     }
 
-    protected virtual Task HandleLabActionAsync(RequiredActionUpdate requiredActionUpdate) => Task.CompletedTask;
+    protected virtual AsyncCollectionResult<StreamingUpdate> HandleLabAction(RequiredActionUpdate requiredActionUpdate) => Task.CompletedTask;
 
     private async Task HandleActionAsync(RequiredActionUpdate requiredActionUpdate)
     {
@@ -192,18 +192,21 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
             return;
         }
 
+        AsyncCollectionResult<StreamingUpdate> toolOutputUpdate;
         if (requiredActionUpdate.FunctionName != nameof(SalesData.FetchSalesDataAsync))
         {
-            await HandleLabActionAsync(requiredActionUpdate);
-            return;
+            toolOutputUpdate = HandleLabAction(requiredActionUpdate);
+        }
+        else
+        {
+            FetchSalesDataArgs salesDataArgs = JsonSerializer.Deserialize<FetchSalesDataArgs>(requiredActionUpdate.FunctionArguments, options) ?? throw new InvalidOperationException("Failed to parse JSON object.");
+            string result = await SalesData.FetchSalesDataAsync(salesDataArgs.Query);
+            toolOutputUpdate = agentClient.SubmitToolOutputsToStreamAsync(
+                requiredActionUpdate.Value,
+                new List<ToolOutput>([new ToolOutput(requiredActionUpdate.ToolCallId, result)])
+            );
         }
 
-        FetchSalesDataArgs salesDataArgs = JsonSerializer.Deserialize<FetchSalesDataArgs>(requiredActionUpdate.FunctionArguments, options) ?? throw new InvalidOperationException("Failed to parse JSON object.");
-        string result = await SalesData.FetchSalesDataAsync(salesDataArgs.Query);
-        AsyncCollectionResult<StreamingUpdate> toolOutputUpdate = agentClient.SubmitToolOutputsToStreamAsync(
-            requiredActionUpdate.Value,
-            new List<ToolOutput>([new ToolOutput(requiredActionUpdate.ToolCallId, result)])
-        );
         await foreach (StreamingUpdate toolUpdate in toolOutputUpdate)
         {
             await HandleStreamingUpdateAsync(toolUpdate);
