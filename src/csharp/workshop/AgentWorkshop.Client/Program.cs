@@ -11,7 +11,7 @@ var configuration = builder.Build();
 string apiDeploymentName = configuration["Azure:ModelName"] ?? throw new InvalidOperationException("MODEL_DEPLOYMENT_NAME is not set in the configuration.");
 string projectConnectionString = configuration.GetConnectionString("AiAgentService") ?? throw new InvalidOperationException("ConnectionStrings:AiAgentService is not set in the configuration.");
 
-AIProjectClient projectClient = new(projectConnectionString, new AzureCliCredential());
+AIProjectClient projectClient = new(projectConnectionString, new DefaultAzureCredential());
 
 await using Lab lab = new Lab3(projectClient, apiDeploymentName);
 
