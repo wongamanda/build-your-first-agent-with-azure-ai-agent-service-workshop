@@ -168,6 +168,19 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
                 // The run is complete, so we can print a new line.
                 await Console.Out.WriteLineAsync();
                 break;
+
+            case StreamingUpdateReason.RunFailed:
+                // The run failed, so we can print the error message.
+                RunUpdate runFailedUpdate = (RunUpdate)update;
+
+                if (runFailedUpdate.Value.LastError.Code == "rate_limit_exceeded")
+                {
+                    await Console.Out.WriteLineAsync(runFailedUpdate.Value.LastError.Message);
+                    break;
+                }
+
+                await Console.Out.WriteLineAsync($"Error: {runFailedUpdate.Value.LastError.Message} (code: {runFailedUpdate.Value.LastError.Code})");
+                break;
         }
     }
 
