@@ -1,4 +1,4 @@
-// Execute this main file to depoy Azure AI studio resources in the basic security configuraiton
+// Execute this main file to depoy Azure AI Foundry resources in the basic security configuraiton
 
 // Parameters
 @minLength(2)
@@ -9,7 +9,7 @@ param aiHubName string = 'standard-hub'
 @description('Friendly name for your Azure AI resource')
 param aiHubFriendlyName string = 'Agents standard hub resource'
 
-@description('Description of your Azure AI resource dispayed in AI studio')
+@description('Description of your Azure AI resource dispayed in Azure AI Foundry')
 param aiHubDescription string = 'A standard hub resource required for the agent setup.'
 
 @description('Name for the project')
@@ -18,7 +18,7 @@ param aiProjectName string = 'standard-project'
 @description('Friendly name for your Azure AI resource')
 param aiProjectFriendlyName string = 'Agents standard project resource'
 
-@description('Description of your Azure AI resource dispayed in AI studio')
+@description('Description of your Azure AI resource dispayed in Azure AI Foundry')
 param aiProjectDescription string = 'A standard project resource required for the agent setup.'
 
 @description('Azure region used for the deployment of all resources.')

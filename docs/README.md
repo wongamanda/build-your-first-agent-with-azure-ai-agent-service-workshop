@@ -1,15 +1,29 @@
 # Contoso Sales Assistant
 
-Published at [Contoso Sales Assistant Docs](https://azure-samples.github.io/contoso-sales-azure-openai-assistants-api/)
+The instructions for this workshop are published to GitHub Pages at
+[aka.ms/aitour/wrk552](https://aka.ms/aitour/wrk552). This folder `docs` contains the source code for those instructions.
 
 ## MKDocs
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+These instructions are written using MKdocs, and mkdocs commands are installed in this dev container. For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Commands
+These instructions also make use of the following MKDocs extensions:
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
+* [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+* [glightbox MKDocs plugin](https://blueswen.github.io/mkdocs-glightbox/)
+
+## Deploy to GitHub pages
+
+To deploy the wokshop instuctions to GitHub Pages for this repository:
+
+```
+cd docs
+mkdocs gh-deploy
+```
+
+### Other mkdocs commands
+
+* `mkdocs serve` - Start the live-reloading ocs server.
 * `mkdocs build` - Build the documentation site.
 * `mkdocs -h` - Print help message and exit.
 
@@ -20,6 +34,3 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
 
-## Material docs
-
-[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)

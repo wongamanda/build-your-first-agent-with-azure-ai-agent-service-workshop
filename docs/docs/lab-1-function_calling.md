@@ -66,6 +66,7 @@ In this lab, you'll enable the function logic to execute dynamic SQL queries aga
 
     ```python
     # INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
+
     # toolset.add(functions)
     ```
 
@@ -110,9 +111,24 @@ In this lab, you'll enable the function logic to execute dynamic SQL queries aga
 
 ### Review the Instructions
 
-Open the **instructions/instructions_function_calling.txt** file and review the **Tools** section for details on the function-calling instructions.
+Open the **src/workshop/instructions/instructions_function_calling.txt** file and review the **Tools** section for details on the function-calling instructions.
 
 !!! tip "In VS Code, press Alt + Z (Windows/Linux) or Option + Z (Mac) to enable word wrap mode, making the instructions easier to read."
+
+The Instructions file `instructions_function_calling.txt` is interpreted by the `gpt-4o` model to define the behavior of our agent. So far, it:
+
+- **Defines the role** of our agent: "Your role is to assist Contoso users with sales data inquiries with a polite."
+- **Provides contextual information** of use to the agent: "Contoso is a online outdoors camping and sports gear retailer."
+- **Defines the "Sales data assistance" tool** that the agent will use to respond to user queries. In detail, it:
+    - defines a function the agent can use to form a SQL query and run it on a database
+    - provides information about the database schema to help the agent form its query
+    - asks for aggregated data and at most 30 rows of data
+    - formats the output as Markdown tables
+- **Provides general guidance** for queries, including to make responses "actionable and relevent"
+- **Suggests tips** to provide to user when they ask for help
+- **Sets safety and conduct procedures**, for when users ask questions that are unclear, out of scope, or malicious.
+
+We will enhance these instructions during the lab to add additional tools that expand the capabilities of the agent.
 
 !!! info
     The {database_schema_string} placeholder in the instructions is replaced with the actual database schema when the app initializes.
@@ -193,7 +209,17 @@ Start asking questions about Contoso sales data. For example:
         The LLM will provide a list of starter questions that were defined in the instructions file.
         Try asking help in your language, for example `help in Hindi` or `help in Italian`.
 
-2. **What are the sales by region?**
+2. **Show the 3 most recent transaction details**
+
+    In the response you can see the raw data stored in the SQLite database. Each record is a single
+    sales transaction for Contoso, with information about the product, product category, sale amount and region, date, and much more. 
+
+    !!! warning
+        The agent may refuse to respond to this query with a message like "I'm unable to provide individual transaction details". This is because the instructions direct it to "provide aggregated results by default". If this happens, try again, or reword your query.
+
+        Large Language models have random behavior, and may give different responses even if you repeat the same query.
+
+3. **What are the sales by region?**
 
     Here is an example of the LLM response to the **sales by region** query:
 
@@ -207,32 +233,38 @@ Start asking questions about Contoso sales data. For example:
         | MIDDLE EAST    | $5,312,519     |
         | NORTH AMERICA  | $15,986,462    |
 
-    !!! info
+    So, what’s happening behind the scenes to make it all work?
 
-        So, what’s happening behind the scenes to make it all work?
+    The LLM orchestrates the following steps:
 
-        The LLM orchestrates the following steps:
+    1. The LLM generates an SQL query to answer the user's question. For the question **"What are the sales by region?"**, the following SQL query is generated:
 
-        1. The LLM generates an SQL query to answer the user's question. For the question **"What are the sales by region?"**, the following SQL query is generated:
+        ```
+        SELECT region, SUM(revenue) AS total_revenue FROM sales_data GROUP BY region;
+        ```
 
-            ```
-            SELECT region, SUM(revenue) AS total_revenue FROM sales_data GROUP BY region;
-            ```
+    1. The LLM then asks the agent app to call the **async_fetch_sales_data_using_sqlite_query** function, which retrieves the required data from the SQLite database and returns it to the LLM.
+    2. Using the retrieved data, the LLM generates a table in Markdown format and returns it to the user. If you check the instructions file, you'll notice that the default output format is Markdown.
 
-        1. The LLM then asks the agent app to call the **async_fetch_sales_data_using_sqlite_query** function, which retrieves the required data from the SQLite database and returns it to the LLM.
-        2. Using the retrieved data, the LLM generates a table in Markdown format and returns it to the user. If you check the instructions file, you'll notice that the default output format is Markdown.
 
-3. **Show the 3 most recent transactions**
+4. **Show sales by category in Europe**
 
-    !!! info
-        This query is valuable for learning purposes because it provides insight into the structure of the underlying SQLite Contoso sales database.
 
-4. **Show sales by category for europe**
+    In this case, an even more complex SQL query is being run by the agent.
+
 5. **Breakout sales by footwear**
 
-### Debug the App (Optional)
+    Note how much interpetation the agent does here: determining what product types fit should be included in "footwear", and understanding the unclear term "breakout".
+
+6. **Show sales by region as a pie chart**
+
+    Our agent can't create charts ... yet. We'll fix that in the next lab.
+
+## (optional) Debug the App
 
 Set a [breakpoint](https://code.visualstudio.com/Docs/editor/debugging){:target="_blank"} in the `async_fetch_sales_data_using_sqlite_query` function located in `sales_data.py` to observe how the LLM requests data.
+
+!!! info "Note: To use the debug feature, exit the previous run. Then set the breakpoint. Then run the application using the debugger icon in the sidebar. This will open up the debug sidebar, allowing you to watch stack traces and step through execution."
 
 ![Breakpoint](./media/breakpoint.png){:width="600"}
 
@@ -245,10 +277,11 @@ Try these questions:
 1. **What regions have the highest sales?**
 2. **What were the sales of tents in the United States in April 2022?**
 
+### Disable the Breakpoint
+
+Remember to disable the breakpoint before running the app again.
+
 ### Stop the Agent App
 
 When you're done, type **exit**, or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the agent app.
 
-### Disable the Breakpoint
-
-Remember to disable any breakpoints before running the app again.

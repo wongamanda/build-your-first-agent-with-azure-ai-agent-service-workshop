@@ -1,10 +1,10 @@
 site_name: Build your first Agent
 
 nav:
-  - Agent Service Introduction: index.md
-  - Solution Overview: architecture.md
-  - Security considerations: security.md
-  - Workshop Introduction:
+  - Introduction: index.md
+  - Solution Architecture: architecture.md
+  - Security Considerations: security.md
+  - Workshop Setup:
     - AI Tour Attendees: introduction-ai-tour.md
     - Self-Guided Learners: introduction-self-guided.md
   - Lab 1 Function Calling Power: lab-1-function_calling.md
@@ -12,6 +12,7 @@ nav:
   - Lab 3 Grounding with Documents: lab-3-file_search.md
   - Lab 4 Grounding with Bing Search: lab-4-bing_search.md
   - Lab 5 Instrumentation: lab-5-instrumentation.md
+  - Wrapping Up: wrapup.md
   - Summary: summary.md
   - Resources: resources.md
   # - Deployment: deployment.md

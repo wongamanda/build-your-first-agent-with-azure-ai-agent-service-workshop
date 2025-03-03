@@ -24,6 +24,7 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
+AGENT_NAME = "Contoso Sales Agent"
 TENTS_DATA_SHEET_FILE = "datasheet/contoso-tents-datasheet.pdf"
 API_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME")
 PROJECT_CONNECTION_STRING = os.environ["PROJECT_CONNECTION_STRING"]
@@ -101,7 +102,7 @@ async def initialize() -> tuple[Agent, AgentThread]:
         print("Creating agent...")
         agent = await project_client.agents.create_agent(
             model=API_DEPLOYMENT_NAME,
-            name="Contoso Sales AI Agent",
+            name=AGENT_NAME,
             instructions=instructions,
             toolset=toolset,
             temperature=TEMPERATURE,

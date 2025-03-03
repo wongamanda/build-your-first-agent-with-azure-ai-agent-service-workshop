@@ -58,13 +58,13 @@ From your Azure subscription, create an [Azure OpenAI resource](https://learn.mi
 2. Follow the documentation to [create an Azure OpenAI resource](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal){:target="_blank"}
    1. You need to create an Azure OpenAI resource with the GPT-4o deployment version 2024-08-06 or better.
    2. You'll need to copy the `Endpoint` and `Key` values to the `.env` file you created in the previous step.
-   3. When you create the gpt-4o model you'll be linked off to the Azure AI Studio portal to create the model deployment.
+   3. When you create the gpt-4o model you'll be linked off to the Azure AI Foundry portal to create the model deployment.
    4. Create the model, then you'll need to **Edit** the model deployment to set the version to 2024-08-06 or better, and select approximately 60K tokens per minute.
-   5. Keep the Azure AI Studio portal open as you'll need to create an assistant in the next step.
+   5. Keep the Azure AI Foundry portal open as you'll need to create an assistant in the next step.
 
 ### Create an Azure OpenAI assistant
 
-1. From the Azure AI Studio portal, select **Assistants** from the left-hand menu.
+1. From the Azure AI Foundry portal, select **Assistants** from the left-hand menu.
 2. Select **Create assistant**.
 3. Copy the `Assistant ID` to the `.env` file you created in the previous step. The assistant ID is used to interact with the Azure OpenAI assistant and will look something like this: `id:asst_3hOfhqSLjbbKwqPvNtmJ3gYz`.
 

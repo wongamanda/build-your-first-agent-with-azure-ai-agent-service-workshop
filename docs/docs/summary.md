@@ -1,6 +1,6 @@
 # Summary
 
-This workshop demonstrates how to leverage the Azure AI Agent Service to create a robust conversational agent capable of answering sales-related questions, performing data analysis, generating visualizations, and integrating external data sources for enhanced insights. Here are the key takeaways:
+This workshop demonstrated how to leverage the Azure AI Agent Service to create a robust conversational agent capable of answering sales-related questions, performing data analysis, generating visualizations, and integrating external data sources for enhanced insights. Here are the key takeaways:
 
 ## 1. Function Calling and Dynamic SQL Queries
 
