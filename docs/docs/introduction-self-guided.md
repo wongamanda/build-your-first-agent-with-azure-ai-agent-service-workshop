@@ -28,7 +28,7 @@ The preferred way to run this workshop is using GitHub Codespaces. This option p
     Alternatively, you can open the project locally using a Visual Studio Code Dev Container, which will open the project in your local VS Code development environment using the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers){:target="_blank"}.
 
     1. Start Docker Desktop (install it if not already installed)
-    2. Open the project:
+    2. Select **Dev Containers Open** to open the project in a VS Code Dev Container.
 
         [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop)
 
