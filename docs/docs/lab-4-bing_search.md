@@ -14,7 +14,7 @@ Follow these steps to create a Grounding with Bing Search Resource:
 
 1. [Click to create a Grounding with Bing Search Resource](https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/Microsoft.BingGroundingSearch){:target="_blank"}.
 
-    !!! Note
+    !!! Warning
         You may need to sign in to your Azure account and or clear the welcome screen to access the Azure portal.
 
 1. Select **Create**.
@@ -105,13 +105,17 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
 
 ### Review the Instructions
 
-The **instructions/instructions_bing_grounding.txt** adds a new tool, "Competitive Insights for Products and Categories" that instructs the agent to use Bing Search to:
+1. Open the **src/workshop/instructions/instructions_bing_grounding.txt** file. This file replaces the instructions used in the previous lab.
 
-- Gather competitive product names, company names, and prices
-- Never answer questions that are not related to outdoors camping and sports gear
-- Make sure the search results are concise and directly relevant to the query
+2. Review the updated instructions.
 
-This ensures that queries remain relevant to Contoso and maintain a focus on contextually appropriate searches.
+    In the **Tools** section, there is a new "Competitive Insights for Products and Categories" definition that instructs the agent to use Bing Search to:
+
+    - Gather competitive product names, company names, and prices
+    - Never answer questions that are not related to outdoors camping and sports gear
+    - Make sure the search results are concise and directly relevant to the query
+
+    This ensures that queries remain relevant to Contoso and maintain a focus on contextually appropriate searches.
 
 ### Run the Agent App
 

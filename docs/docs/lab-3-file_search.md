@@ -4,7 +4,9 @@ Grounding a conversation with documents is highly effective, especially for retr
 
 In this lab, you'll learn how to enable the document search and upload the Tents Data Sheet to a vector store for the agent. Once activated, the tool allows the agent to search the file and deliver relevant responses. Documents can be uploaded to the agent for all users or linked to a specific user thread, or linked to the Code Interpreter.
 
-When the app starts, a vector store is created, the Contoso tents datasheet is added, and it is made available to the agent. Normally, you wouldn’t create a new vector store and upload documents each time the app starts. Instead, you’d create the vector store once, upload potentially thousands of documents, and connect the store to the agent. For this lab, we recreate the vector store on each startup to demonstrate the process.
+When the app starts, a vector store is created, the Contoso tents datasheet PDF file is uploaded to the vector store, and it is made available to the agent.
+
+Normally, you wouldn’t create a new vector store and upload documents each time the app starts. Instead, you’d create the vector store once, upload potentially thousands of documents, and connect the store to the agent.
 
 A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"} is a database optimized for storing and searching vectors (numeric representations of text data). The File Search tool uses the vector store for [semantic search](https://en.wikipedia.org/wiki/Semantic_search){:target="_blank"} to search for relevant information in the uploaded document.
 
@@ -23,7 +25,7 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
 
     ```python
     # INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
-    
+
     # vector_store = await utilities.create_vector_store(
     #     project_client,
     #     files=[TENTS_DATA_SHEET_FILE],
@@ -74,13 +76,18 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
 
 ### Review the Instructions
 
-The **instructions/instructions_file_search.txt** file provides guidance on how the LLM should use File Search for grounding purposes.
+1. Open the **src/workshop/instructions/instructions_file_search.txt** file. This file replaces the instructions used in the previous lab.
 
-We have added a new tool to the instructions for the agent. This tool directs the agent to search the "Contoso Product Information Vector Store" for additional Contoso product information. This vector store is specified in a call to the `FileSearchTool` SDK function in `main.py`.
+2. Review the updated instructions.
+
+    In the **Tools** section, there is a new "Contoso Product Information Vector Store" definition. This tool instructs the agent to search the "Contoso Product Information Vector Store" for additional Contoso product information. This vector store is specified in a call to the `FileSearchTool` SDK function in `main.py`.
 
 ### Run the Agent App
 
-1. Review the **create_vector_store** function in the **utilities.py** file. The create_vector_store function uploads the Tents Data Sheet and saves it in a vector store. To observe the vector store creation process, set a [breakpoint](https://code.visualstudio.com/Docs/editor/debugging){:target="_blank"} in the function.
+1. Review the **create_vector_store** function in the **utilities.py** file. The create_vector_store function uploads the Tents Data Sheet and saves it in a vector store.
+
+    If you are comfortable using the VS Code debugger, then set a [breakpoint](https://code.visualstudio.com/Docs/editor/debugging){:target="_blank"} in the **create_vector_store** function to observe how the vector store is created.
+
 2. Press <kbd>F5</kbd> to run the app.
 3. In the terminal, the app starts, and the agent app will prompt you to **Enter your query**.
 
@@ -92,34 +99,34 @@ The following conversation uses data from both the Contoso sales database and th
 
     !!! info
         We haven't provided the agent with any files containing information about hiking shoes.
-        
-        In the first lab you may have noticed that the transaction history from the underlying database did not include any product brands or descriptions, either. 
+
+        In the first lab you may have noticed that the transaction history from the underlying database did not include any product brands or descriptions, either.
 
 1. **What brands of tents do we sell?**
 
     The agent responds with a list of distinct tent brands mentioned in the Tents Data Sheet.
 
-    !!! note
+    !!! info
         The agent can now reference the provided data sheet to access details such as brand, description, product type, and category, and relate this data back to the Contoso sales database.
 
-3. **What product type and categories are these brands associated with?**
+1. **What product type and categories are these brands associated with?**
 
     The agent provides a list of product types and categories associated with the tent brands.
 
-4. **What were the sales of tents in 2024 by product type? Include the brands associated with each.**
+1. **What were the sales of tents in 2024 by product type? Include the brands associated with each.**
 
-It's possible the agent might get this wrong, and suggest incorrectly that AlpineGear has a Family Camping tent. To address this, you could provide further context in the instructions or the datasheet, or provide context to the agent directly as in next prompt.
+    !!! info
+        It's possible the agent might get this wrong, and suggest incorrectly that AlpineGear has a Family Camping tent. To address this, you could provide further context in the instructions or the datasheet, or provide context to the agent directly as in next prompt.
 
-
-4. **What were the sales of AlpineGear in 2024 by region?**
+1. **What were the sales of AlpineGear in 2024 by region?**
 
     The agent responds with sales data from the Contoso sales database.
 
-    !!! note
+    !!! info
         The agent interprets this as a request to find all sales of tents in the "CAMPING & HIKING' category, since it
-        now has access to information that Alpine Gear is a brand of backpacking tent. 
+        now has access to information that Alpine Gear is a brand of backpacking tent.
 
-5. **Contoso does not sell Family Camping tents from AlpineGear. Try again.**
+1. **Contoso does not sell Family Camping tents from AlpineGear. Try again.**
 
     That's better!
 

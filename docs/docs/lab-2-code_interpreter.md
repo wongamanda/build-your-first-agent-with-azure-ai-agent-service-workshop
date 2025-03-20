@@ -1,6 +1,6 @@
 ## Introduction
 
-The Azure AI Agent Service Code Interpreter enables the LLM to generate Python code for tasks such as creating charts or performing complex data analyses based on user queries. It makes use of natural language processing (NLP), sales data from an SQLite database, and user prompts to automate code generation. The LLM-generated Python code executes within a secure sandbox environment, running on a restricted subset of Python to ensure safe and controlled execution.
+The Azure AI Agent Service Code Interpreter enables the LLM to safely execute Python code for tasks such as creating charts or performing complex data analyses based on user queries. It makes use of natural language processing (NLP), sales data from an SQLite database, and user prompts to automate code generation. The LLM-generated Python code executes within a secure sandbox environment, running on a restricted subset of Python to ensure safe and controlled execution.
 
 ## Lab Exercise
 
@@ -33,7 +33,7 @@ In this lab, you'll enable the Code Interpreter to execute Python code generated
 
     async def add_agent_tools():
         """Add tools for the agent."""
-    
+
         # Add the functions tool
         toolset.add(functions)
 
@@ -58,13 +58,15 @@ In this lab, you'll enable the Code Interpreter to execute Python code generated
 
 ### Review the Instructions
 
-Review the **src/workshop/instructions/instructions_code_interpreter.txt** file. This replaces and adds to the instructions we used in the previous lab.
+1. Open the **src/workshop/instructions/instructions_code_interpreter.txt** file. This file replaces the instructions used in the previous lab.
 
-In the **Tools** section we have added a new "Visualization and Code Interpretation" tool that instructs the agent to:
+2. Review the updated instructions.
 
-- Use the code interpreter to write programs, e.g. to download or visualize data 
-- Visualize data using chats and graphs, and follow the user's language for labels, titles and other text in charts
-- Save visualizations as PNG files, and data as CSV files
+    In the **Tools** section, there is a new "Visualization and Code Interpretation" definition that instructs the agent to:
+
+    - Use the code interpreter to write programs, e.g. to download or visualize data.
+    - Visualize data using chats and graphs, and follow the user's language for labels. titles and other text in charts.
+    - Save visualizations as PNG files, and data as CSV files.
 
 ### Run the Agent App
 
@@ -77,8 +79,8 @@ Try these questions:
 
 1. **Show sales by region as a pie chart**
 
-    Once the task is complete, the pie chart image will be saved in the **files/** subfolder under `src/workshop`. Note that this subfolder is created the first time this task is run, and is never checked into source control.
-    
+    Once the task is complete, the pie chart image will be saved in the **files** subfolder. Note that this subfolder is created the first time this task is run, and is never checked into source control.
+
     Open the folder in VS Code and click on the image file to view it. (Tip: in Codespaces, you can Control-Click the link that the agent outputs in its response to view the file.)
 
     !!! info
@@ -88,9 +90,7 @@ Try these questions:
 
         1. The LLM generates a SQL query to answer the user's question. In this example, the query is:
 
-            ```
-            SELECT region, SUM(revenue) AS total_revenue FROM sales_data GROUP BY region;
-            ```
+            **SELECT region, SUM(revenue) AS total_revenue FROM sales_data GROUP BY region;**
 
         2. The LLM asks the agent app to call the **async_fetch_sales_data_using_sqlite_query** function. The SQL command is executed, and the resulting data is returned to the LLM.
         3. Using the returned data, the LLM writes Python code to create a Pie Chart.
@@ -109,7 +109,7 @@ Try these questions:
 
     !!! info
         The agent inferred from the conversation which file you wanted to create, even though you
-        didn't explicitly specify it. 
+        didn't explicitly specify it.
 
 4. Continue asking questions about Contoso sales data to see the Code Interpreter in action.
 

@@ -1,12 +1,12 @@
 # Setup: AI Tour Attendees
 
-The instructions on this page assume you are participating in the [Microsoft AI Tour](https://aitour.microsoft.com) and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop. 
+The instructions on this page assume you are participating in the [Microsoft AI Tour](https://aitour.microsoft.com){:target="_blank"} and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop.
 
 If you are **not** part of the AI Tour, you can run this workshop using your own Azure subscription. In that case, refer to the [Self-guided Learners Introduction](./introduction-self-guided.md) to set up your environment and begin the workshop.
 
 ## Introduction
 
-This workshop is designed to teach you about the Azure AI Agents Service and the Python SDK. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
+This workshop is designed to teach you about the Azure AI Agents Service and the associated [Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
 
 ## Lab Structure
 
@@ -17,13 +17,13 @@ Each lab in this workshop includes:
 
 ## Project Structure
 
-When you open the workshop in Visual Studio Code, you'll see the following folder structure. Take note of the key folders and files you'll be working with during the workshop:
+When you open the workshop in Visual Studio Code, you'll see the following project structure. Take note of the key **subfolders** and **files** you'll be working with during the workshop:
 
-1. The **files folder**: Contains the files created by the agent app.
-1. The **instructions folder**: Contains the instructions passed to the LLM.
-1. The **main.py**: The entry point for the app, containing its main logic.
-1. The **sales_data.py**: Contains the function logic to execute dynamic SQL queries against the SQLite database.
-1. The **stream_event_handler.py**: Contains the event handler logic for token streaming.
+1. The **files** folder: Contains the files created by the agent app. The `files` folder is created during agent execution and is not checked into source control. As a result, you will NOT see this folder in your forked repository - but you will see it during runtime.
+2. The **instructions** folder: Contains the instructions passed to the LLM.
+3. The **main.py** file: The entry point for the app, containing its main logic.
+4. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
+5. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
 
 ![Lab folder structure](./media/project_structure.png)
 
@@ -46,12 +46,12 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
 
         1. A browser window will open automatically, select **Work or school account** and click **Next**.
 
-        1. Use the **Username** and **Password** found in the top section of the **Resources** tab in the lab environment.
+        1. Use the **Username** and **Password** found in the **top section** of the **Resources** tab in the lab environment.
 
         2. Select **OK**, then **Done**.
 
 3. Then select the **Default** subscription from the command line.
-   
+
 4. Once you've logged in, run the following command to assign the **user** role to the resource group:
 
     ```powershell
@@ -65,10 +65,6 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
 ## Open the Workshop
 
 Follow these steps to open the workshop in Visual Studio Code:
-
-<!-- 1. Open a terminal window. The terminal app is **pinned** to the Windows 11 taskbar.
-
-    ![Open the terminal window](./media/windows-taskbar.png){ width="300" } -->
 
 1. From the terminal window, execute the following commands to clone the workshop repository, navigate to the relevant folder, set up a virtual environment, activate it, and install the required packages:
 
@@ -94,7 +90,7 @@ Follow these steps to open the workshop in Visual Studio Code:
 Next, we log in to Azure AI Foundry to retrieve the project connection string, which the agent app uses to connect to the Azure AI Agents Service.
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com){:target="_blank"} website.
-2. Select **Sign in** and use the **Username** and **Password** found in the top section of the **Resources** tab in the lab environment. Click on the **Username** and **Password** fields to automatically fill in the login details.
+2. Select **Sign in** and use the **Username** and **Password** found in the **top section** of the **Resources** tab in the lab environment. Click on the **Username** and **Password** fields to automatically fill in the login details.
     ![Azure credentials](./media/azure-credentials.png){:width="500"}
 3. Read the introduction to the Azure AI Foundry and click **Got it**.
 4. Ensure you are on the AI Foundry home page. Click the **AI Foundry** tab in the top left corner.

@@ -12,14 +12,4 @@ In enterprise scenarios, data is typically extracted and transformed from operat
 
 ## Sandboxing
 
-This app will use [Azure AI Agents Service Code Interpreter](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter?view=azure-python-preview&tabs=python&pivots=overview) to create and run code on demand. The code is run in a sandboxed execution environment to prevent the code taking actions that are beyond the scope of the agent. 
-
-## Other Best Practices Demonstrated in the App
-
-The app also demonstrates some best practices for efficiency and user experience.
-
-- **Asynchronous APIs**:
-  In the workshop sample, both the Azure AI Agent Service and SQLite use asynchronous APIs, optimizing resource efficiency and scalability. This design choice becomes especially advantageous when deploying the application with asynchronous web frameworks like FastAPI, Chainlit, or Streamlit.
-
-- **Token Streaming**:
-  Token streaming is implemented to improve user experience by reducing perceived response times for the LLM-powered agent app.
+This uses the [Azure AI Agents Service Code Interpreter](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter?view=azure-python-preview&tabs=python&pivots=overview){:target="_blank"} to create and run code on demand. The code runs in a sandboxed execution environment to prevent the code taking actions that are beyond the scope of the agent.
