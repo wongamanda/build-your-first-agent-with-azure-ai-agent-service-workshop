@@ -4,7 +4,7 @@ Grounding conversations with Bing is one of several tools provided by the Azure 
 
 ### Access to Grounding with Bing Search
 
-This lab requires the Grounding with Bing Search service, which may not be available in your Azure subscription. You can check if you have access by attempting to create the resource in the Azure portal, if you don’t have access, an error message will be displayed. Even if you can’t access the service, be sure to read the lab to understand how Grounding with Bing Search works.
+This lab requires the Grounding with Bing Search service, which may not be available in your Azure subscription. To check if you have access, follow the lab instructions to create the resource, if you don’t have access, an error message will appear. Even if you’re unable to use the service, be sure to read through the lab to understand how Grounding with Bing Search works.
 
 ## Lab Exercise
 
