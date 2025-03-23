@@ -171,7 +171,7 @@ async def main() -> None:
 
     if cmd == "save":
         print("The agent hasn’t been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
-        print(f"You can reference the agent in the Azure AI Foundry using Agent ID: {agent.id}.")
+        print(f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}")
     else:
         await cleanup(agent, thread)
         print("The agent resources have been cleaned up.")
