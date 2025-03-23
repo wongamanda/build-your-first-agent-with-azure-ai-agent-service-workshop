@@ -184,3 +184,5 @@ You'll recognize the instructions from the `instructions_bing_grounding.txt` fil
 ### Start a Conversation with the Agent in the Playground
 
 Use the playground to test different queries and observe how the agent responds. You can reuse the same queries from the terminal or try new ones. Keep in mind that the agent pulls information from the Tents Data Sheet and Bing Search, but unlike the local app version, it does not have access to the Contoso sales database.
+
+![Azure AI Foundry Playground](media/agents-playground.png)
