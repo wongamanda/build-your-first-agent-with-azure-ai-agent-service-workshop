@@ -115,5 +115,4 @@ Try these questions:
 
 ## Stop the Agent App
 
-1. When you're done, type **exit** to clean up the agent resources.
-2. Press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop debugging the agent app.
+When you're done, type **exit** to clean up the agent resources and stop the app.
