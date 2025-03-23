@@ -61,7 +61,7 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
 1. In the Codespace, open a new terminal window by selecting **Terminal** > **New Terminal** from the **VS Code menu**.
 1. Run the following command to authenticate with Azure:
 
-    ```powershell
+    ```shell
     az login --use-device-code
     ```
 
@@ -72,6 +72,13 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
         2. Sign in with your Azure subscription **Username** and **Password**.
         3. **Paste** the authentication code.
         4. Select **OK**, then **Done**.
+
+    !!! warning
+        If you have multiple Azure tenants, then you will need to select the appropriate tenant when authenticating.
+
+        ```shell
+        az login --use-device-code --tenant <tenant_id>
+        ```
 
 1. Next, select the appropriate subscription from the command line.
 1. Leave the terminal window open for the next steps.
