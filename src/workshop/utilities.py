@@ -8,6 +8,16 @@ from terminal_colors import TerminalColors as tc
 
 
 class Utilities:
+
+    def load_instructions(self, instructions_file: str) -> str:
+        instructions = ""
+        env = os.getenv("ENVIRONMENT", "local")
+        path_prefix = "src/workshop/" if env == "container" else ""
+        INSTRUCTIONS_FILE_PATH = f"{path_prefix}{instructions_file}"
+        with open(INSTRUCTIONS_FILE_PATH, "r", encoding="utf-8", errors="ignore") as file:
+            instructions = file.read()
+        return instructions
+
     def log_msg_green(self, msg: str) -> None:
         """Print a message in green."""
         print(f"{tc.GREEN}{msg}{tc.RESET}")
@@ -29,7 +39,8 @@ class Utilities:
         file_name = f"{file_name}.{file_id}{file_extension}"
 
         env = os.getenv("ENVIRONMENT", "local")
-        folder_path = Path(f"{'src/workshop/' if env == 'container' else ''}files")
+        folder_path = Path(
+            f"{'src/workshop/' if env == 'container' else ''}files")
 
         folder_path.mkdir(parents=True, exist_ok=True)
 
@@ -72,7 +83,7 @@ class Utilities:
         for file in files:
             file_path = Path(f"{prefix}{file}")
             self.log_msg_purple(f"Uploading file: {file_path}")
-            
+
             file_info = await project_client.agents.upload_file(file_path=file_path, purpose="assistants")
             file_ids.append(file_info.id)
 
