@@ -89,20 +89,21 @@ In this lab, you'll enable the function logic to execute dynamic SQL queries aga
 
     !!! tip "In VS Code, press Alt + Z (Windows/Linux) or Option + Z (Mac) to enable word wrap mode, making the instructions easier to read."
 
-2. Take a moment to understand how the instructions define the behavior of the agent app.
+2. Review how the instructions define the agent app’s behavior:
 
-      - **Defines the role** of the agent: "Your role is to assist Contoso users with sales data inquiries with a polite, professional, and friendly tone".
-      - **Provides contextual information** of use to the agent: "Contoso is a online outdoors camping and sports gear retailer".
-      - **Defines the "Sales Data Assistance" tool** that the agent will use to respond to user queries. In detail, it:
-          - defines a function the agent can use to form a SQL query and run it on a database
-          - provides information about the database schema to help the agent form its query
-          - asks for aggregated data and at most 30 rows of data
-          - formats the output as Markdown tables
-      - **Provides general guidance** for queries, including to make responses "actionable and relevant".
-      - **Suggests tips** to provide to the user when they ask for help.
-      - **Sets safety and conduct procedures**, for when users ask questions that are unclear, out of scope, or malicious.
+     - **Role definition**: The agent assists Contoso users with sales data inquiries in a polite, professional, and friendly manner.
+     - **Context**: Contoso is an online retailer specializing in camping and sports gear.
+     - **Tool description – “Sales Data Assistance”**:
+         - Enables the agent to generate and run SQL queries.
+         - Includes database schema details for query building.
+         - Limits results to aggregated data with a maximum of 30 rows.
+         - Formats output as Markdown tables.
+     - **Response guidance**: Emphasizes actionable, relevant replies.
+     - **User support tips**: Provides suggestions for assisting users.
+     - **Safety and conduct**: Covers how to handle unclear, out-of-scope, or malicious queries.
 
-    During the workshop, we will expand these instructions by adding new tools to enhance the agent's capabilities.
+    During the workshop, we’ll extend these instructions by introducing new tools to enhance the agent’s capabilities.
+
 
     !!! info
         The {database_schema_string} placeholder in the instructions is replaced with the database schema when the app initializes.
