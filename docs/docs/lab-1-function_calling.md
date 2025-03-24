@@ -91,8 +91,6 @@ In this lab, you'll enable the function logic to execute dynamic SQL queries aga
 
 2. Review how the instructions define the agent app’s behavior:
 
-    Instead of hardcoding application logic, we define the agent’s behavior through instructions. This makes it easy to update the behavior without changing the code.
-
      - **Role definition**: The agent assists Contoso users with sales data inquiries in a polite, professional, and friendly manner.
      - **Context**: Contoso is an online retailer specializing in camping and sports gear.
      - **Tool description – “Sales Data Assistance”**:
