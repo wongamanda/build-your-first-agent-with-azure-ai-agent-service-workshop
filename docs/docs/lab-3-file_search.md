@@ -78,9 +78,10 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
 
 1. Open the **src/workshop/instructions/instructions_file_search.txt** file. This file replaces the instructions used in the previous lab.
 
-2. Review the updated instructions.
+2. The **Tools** section now includes a “Contoso Product Information Vector Store” capability, enabling the agent to:
 
-    In the **Tools** section, there is a new "Contoso Product Information Vector Store" definition. This tool instructs the agent to search the "Contoso Product Information Vector Store" for additional Contoso product information. This vector store is specified in a call to the `FileSearchTool` SDK function in `main.py`.
+      - Search the vector store for additional Contoso product information.
+      - Access this resource via the **FileSearchTool** SDK function defined in **main.py**.
 
 ### Run the Agent App
 
