@@ -110,16 +110,11 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
 ### Review the Instructions
 
 1. Open the **src/workshop/instructions/instructions_bing_grounding.txt** file. This file replaces the instructions used in the previous lab.
+2. The **Tools** section now includes a “Competitive Insights for Products and Categories” capability, enabling the agent to:
 
-2. Review the updated instructions.
-
-    In the **Tools** section, there is a new "Competitive Insights for Products and Categories" definition that instructs the agent to use Bing Search to:
-
-    - Gather competitive product names, company names, and prices
-    - Never answer questions that are not related to outdoors camping and sports gear
-    - Make sure the search results are concise and directly relevant to the query
-
-    This ensures that queries remain relevant to Contoso and maintain a focus on contextually appropriate searches.
+    - Use Bing Search to gather competitor product names, company names, and prices.
+    - Restrict responses to topics related to outdoor camping and sports gear.
+    - Ensure search results are concise and directly relevant to the query.
 
 ### Run the Agent App
 
