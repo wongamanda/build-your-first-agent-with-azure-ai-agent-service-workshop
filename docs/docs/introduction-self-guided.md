@@ -25,6 +25,9 @@ The preferred way to run this workshop is using GitHub Codespaces. This option p
 
 === "VS Code Dev Container"
 
+    !!! warning "Apple Silicon Users"
+        The automated deployment script you’ll be running soon isn’t supported on Apple Silicon. Please run the deployment script from Codespaces or from macOS instead of the Dev Container.
+
     Alternatively, you can open the project locally using a Visual Studio Code Dev Container, which will open the project in your local VS Code development environment using the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers){:target="_blank"}.
 
     1. Start Docker Desktop (install it if not already installed)
