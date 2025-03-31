@@ -64,6 +64,13 @@ if ($discoveryUrl) {
     # Write the updated content back to the .env file
     $newLines | Set-Content $envFilePath
 
+    CSHARP_PROJECT_PATH="../src/csharp/workshop/AgentWorkshop.Client/AgentWorkshop.Client.csproj"
+
+    # Set the user secrets for the C# project
+    dotnet user-secrets set "ConnectionStrings:AiAgentService" "$projectConnectionString" --project "$CSHARP_PROJECT_PATH"
+    dotnet user-secrets set "ConnectionStrings:BingGrounding" "$bingGroundingName" --project "$CSHARP_PROJECT_PATH"
+    dotnet user-secrets set "Azure:ModelName" "$MODEL_NAME" --project "$CSHARP_PROJECT_PATH"
+
     # Delete the output.json file
     # Remove-Item -Path output.json -Force
 }
