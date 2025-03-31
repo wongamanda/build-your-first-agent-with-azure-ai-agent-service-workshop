@@ -4,22 +4,38 @@ These instructions are for self-guided learners who are not part of the AI Tour 
 
 ## Introduction
 
-This workshop is designed to teach you about the Azure AI Agents Service and the [associated Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview). It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
+This workshop is designed to teach you about the Azure AI Agents Service and the associated [Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
 
 ## Prerequisites
 
 1. Access to an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/){:target="_blank"} before you begin.
 1. You need a GitHub account. If you don’t have one, create it at [GitHub](https://github.com/join){:target="_blank"}.
 
-## GitHub Codespaces
+## Open the Workshop
 
-The preferred way to run this workshop is using GitHub Codespaces. This option provides a pre-configured environment with all the tools and resources needed to complete the workshop.
+The preferred way to run this workshop is using GitHub Codespaces. This option provides a pre-configured environment with all the tools and resources needed to complete the workshop. Alternatively, you can open the workshop locally using a Visual Studio Code Dev Container.
 
-Select **Open in GitHub Codespaces** to open the project in GitHub Codespaces.
+=== "GitHub Codespaces"
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop){:target="_blank"}
+    Select **Open in GitHub Codespaces** to open the project in GitHub Codespaces.
 
-!!! Warning "It will take several minutes to build the Codespace so carry on reading the instructions while it builds."
+    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop){:target="_blank"}
+
+    !!! Warning "Building the Codespace will take several minutes. You can continue reading the instructions while it builds."
+
+=== "VS Code Dev Container"
+
+    !!! warning "Apple Silicon Users"
+        The automated deployment script you’ll be running soon isn’t supported on Apple Silicon. Please run the deployment script from Codespaces or from macOS instead of the Dev Container.
+
+    Alternatively, you can open the project locally using a Visual Studio Code Dev Container, which will open the project in your local VS Code development environment using the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers){:target="_blank"}.
+
+    1. Start Docker Desktop (install it if not already installed)
+    2. Select **Dev Containers Open** to open the project in a VS Code Dev Container.
+
+        [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop)
+
+    !!! Warning "The process of building the Dev Container, which involves downloading and setting it up on your local system, will take several minutes. During this time, you can continue reading the instructions."
 
 ## Lab Structure
 
@@ -30,15 +46,13 @@ Each lab in this workshop includes:
 
 ## Project Structure
 
-The workshop’s source code is located in the **src/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the session.
+The workshop’s source code is located in the **src/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
 
-1. The **files folder**: Contains the files created by the agent app. 
-1. The **instructions folder**: Contains the instructions passed to the LLM.
-1. The **main.py** Python script: The entry point for the app, containing its main logic.
-1. The **sales_data.py** Python script: Contains the function logic to execute dynamic SQL queries against the SQLite database.
-1. The **stream_event_handler.py** Python script: Contains the event handler logic for token streaming.
-
-!!! info "The `files/` folder is created during agent execution and is not checked into source control. As a result, you will NOT see this folder in your forked repository by default - but you will see it during runtime"
+1. The **files** folder: Contains the files created by the agent app. The `files` folder is created during agent execution and is not checked into source control. As a result, you will NOT see this folder in your forked repository - but you will see it during runtime.
+2. The **instructions** folder: Contains the instructions passed to the LLM.
+3. The **main.py** file: The entry point for the app, containing its main logic.
+4. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
+5. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
 
 ![Lab folder structure](./media/project-structure-self-guided.png)
 
@@ -48,102 +62,109 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
 
 1. Ensure the Codespace has been created.
 1. In the Codespace, open a new terminal window by selecting **Terminal** > **New Terminal** from the **VS Code menu**.
-2. Run the following command to authenticate with Azure:
+1. Run the following command to authenticate with Azure:
 
-    ```powershell
+    ```shell
     az login --use-device-code
     ```
 
     !!! note
-        You'll be prompted to open a browser link and log in to your Azure account.
+        You'll be prompted to open a browser link and log in to your Azure account. Be sure to copy the authentication code first.
 
         1. A browser window will open automatically, select your account type and click **Next**.
         2. Sign in with your Azure subscription **Username** and **Password**.
-        3. Select **OK**, then **Done**.
+        3. **Paste** the authentication code.
+        4. Select **OK**, then **Done**.
 
-3. Then select the appropriate subscription from the command line.
-4. Leave the terminal window open for the next steps.
+    !!! warning
+        If you have multiple Azure tenants, then you will need to select the appropriate tenant when authenticating.
+
+        ```shell
+        az login --use-device-code --tenant <tenant_id>
+        ```
+
+1. Next, select the appropriate subscription from the command line.
+1. Leave the terminal window open for the next steps.
 
 ## Deploy the Azure Resources
 
-The following resources will be created in the `rg-contoso-agent-workshop` resource group in your Azure subscription. You may deploy in any region where the services are available.
+The following resources will be created in the `rg-contoso-agent-workshop` resource group in your Azure subscription.
 
 - An **Azure AI Foundry hub** named **agent-wksp**
-- An **Azure AI Foundry project** named **Agent Service Workshop** 
+- An **Azure AI Foundry project** named **Agent Service Workshop**
 - A **Serverless (pay-as-you-go) GPT-4o model deployment** named **gpt-4o (Global 2024-08-06)**. See pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/){:target="_blank"}.
-- A **Grounding with Bing Search** resource. See the [documentation](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/bing-grounding) and [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) for details.
+- A **Grounding with Bing Search** resource. See the [documentation](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/bing-grounding) and [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing){:target="_blank"} for details.
 
-!!! warning "You will need 140K TPM quota availability in for the gpt-4o Global Standard SKU, not because the agent uses a lot of tokens, but because of the rate calls are made by the agent to the model. Review your quota availability in the [AI Foundry Management Center](https://ai.azure.com/managementCenter/quota)."
+!!! warning "You will need 140K TPM quota availability for the gpt-4o Global Standard SKU, not because the agent uses lots of tokens, but due to the frequency of calls made by the agent to the model. Review your quota availability in the [AI Foundry Management Center](https://ai.azure.com/managementCenter/quota){:target="_blank"}."
 
-We have provided a bash script to deploy the required resources. Alternatively, you may deploy resources manually using Azure AI Foundry studio -- see below for details.
+We have provided a bash script to automate the deployment of the resources required for the workshop. Alternatively, you may deploy resources manually using Azure AI Foundry studio. Select the desired tab.
 
-The script `deploy.sh` deploys to the `eastus2` region by default; edit the file to change the region or resource names. To run the script, open the VS Code terminal and run the following command:
+=== "Automated deployment"
 
-```bash
-cd infra && ./deploy.sh
-```
+    The script `deploy.sh` deploys to the `eastus2` region by default; edit the file to change the region or resource names. To run the script, open the VS Code terminal and run the following command:
 
-### Workshop Configuration File
+    ```bash
+    cd infra && ./deploy.sh
+    ```
 
-The deploy script generates the **src/workshop/.env** file, which contains the project connection string, model deployment name, and Bing connection name.
+    ### Workshop Configuration File
 
-Your **.env** file should look similar to this but with your project connection string.
+    The deploy script generates the **src/workshop/.env** file, which contains the project connection string, model deployment name, and Bing connection name.
 
-```python
-MODEL_DEPLOYMENT_NAME="gpt-4o"
-BING_CONNECTION_NAME="groundingwithbingsearch"
-PROJECT_CONNECTION_STRING="<your_project_connection_string>"
-```
+    Your **.env** file should look similar to this but with your project connection string.
 
-## (optional) Manual Deployment in AI Foundry studio
+    ```python
+    MODEL_DEPLOYMENT_NAME="gpt-4o"
+    BING_CONNECTION_NAME="groundingwithbingsearch"
+    PROJECT_CONNECTION_STRING="<your_project_connection_string>"
+    ```
 
-If you have already completed the prior step and the `deploy.sh` script completed successfully, you can skip to the next section.
+=== "Manual deployment"
 
-Alternatively, if you prefer not to use the `deploy.sh` script you can deploy the resources manually using the Azure AI Foundry portal as follows:
+    Alternatively, if you prefer not to use the `deploy.sh` script you can deploy the resources manually using the Azure AI Foundry portal as follows:
 
-1. Visit `ai.azure.com` and sign into your account
-2. Click "+ Create project"
-    - Project name: agent-workshop
-    - Hub: Create new hub, name: agent-workshop-hub
-    - Click Create and wait for the project to be created
-3. In "My assets", click "Models + endpoints"
-4. Click Deploy Model / Deploy Base Model
-    - select gpt-4o, click Confirm
-    - Deployment name: gpt-4o
-    - Deployment type: Global Standard
-    - Click Customize
-    - Model version: 2024-08-06
-    - Tokens Per Minute Rate Limit: 140k
-    - Click deploy
+    1. Navigate to the [Azure AI Foundry](https://ai.azure.com){:target="_blank"} web portal using your browser and sign in with your account.
+    2. Select **+ Create project**.
 
-!!! note 
-    A specific version of GPT-4o may be required depending on your the region where you deployed your project.
-    See [Models: Assistants (Preview)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#assistants-preview) for details.
+        - Name the project
 
-<!-- ## Project Connection String
+            ```text
+            agent-workshop
+            ```
 
-Next, we log in to Azure AI Foundry to retrieve the project connection string, which the agent app uses to connect to the Azure AI Agents Service.
+        - Create a new hub named
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com){:target="_blank"} website.
-2. Sign in with your Azure subscription **Username** and **Password**.
-3. Read the introduction to the Azure AI Foundry and click **Got it**.
-4. Ensure you are on the AI Foundry home page. Click the **AI Foundry** tab in the top left corner.
+            ```text
+            agent-workshop-hub
+            ```
 
-    ![AI Foundry home page](./media/ai-foundry-home.png){:width="200"}
+        - Select **Create** and wait for the project to be created.
+    3. From **My assets**, select **Models + endpoints**.
+    4. Select **Deploy Model / Deploy Base Model**.
+        - Select **gpt-4o**, then **Confirm**.
+        - Name the deployment
 
-5. Select the **agent-workshop** project.
-6. Review the introduction guide and click **Close**.
-7. Locate the **Project details** section, click the **Copy** icon to copy the **Project connection string**.
+            ```text
+            gpt-4o
+            ```
 
-    ![Copy connection string](./media/project-connection-string.png){:width="500"} -->
+        - Deployment type: Select **Global Standard**.
+        - Select **Customize**.
+        - Model version: Select **2024-08-06**.
+        - Tokens Per Minute Rate Limit: Select **140k**.
+        - Select **Deploy**.
 
-### Workshop Configuration File
+    !!! note
+        A specific version of GPT-4o may be required depending on your the region where you deployed your project.
+        See [Models: Assistants (Preview)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#assistants-preview){:target="_blank"} for details.
 
-Create the workshop configuration file with the following command:
 
-```
-cp src/workshop/.env.sample src/workshop/.env
-```
+    ### Workshop Configuration File
 
-Then edit the file `src/workshop/.env` to provide the Project Connection String. You can find this string in the AI Foundry portal in the Overview page for your Project `agent-project` (look in the Project details section).
+    Create the workshop configuration file with the following command:
 
+    ```
+    cp src/workshop/.env.sample src/workshop/.env
+    ```
+
+    Then edit the file `src/workshop/.env` to provide the Project Connection String. You can find this string in the AI Foundry portal in the Overview page for your Project `agent-project` (look in the Project details section).

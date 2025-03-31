@@ -8,6 +8,16 @@ from terminal_colors import TerminalColors as tc
 
 
 class Utilities:
+
+    def load_instructions(self, instructions_file: str) -> str:
+        instructions = ""
+        env = os.getenv("ENVIRONMENT", "local")
+        path_prefix = "src/shared/" if env == "container" else ""
+        INSTRUCTIONS_FILE_PATH = f"{path_prefix}{instructions_file}"
+        with open(INSTRUCTIONS_FILE_PATH, "r", encoding="utf-8", errors="ignore") as file:
+            instructions = file.read()
+        return instructions
+
     def log_msg_green(self, msg: str) -> None:
         """Print a message in green."""
         print(f"{tc.GREEN}{msg}{tc.RESET}")
@@ -30,7 +40,7 @@ class Utilities:
 
         env = os.getenv("ENVIRONMENT", "local")
         folder_path = Path(
-            f"{'src/workshop/python/' if env == 'container' else ''}files")
+            f"{'src/python/workshop/' if env == 'container' else ''}files")
 
         folder_path.mkdir(parents=True, exist_ok=True)
 

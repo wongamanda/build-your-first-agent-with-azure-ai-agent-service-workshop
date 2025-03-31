@@ -2,6 +2,10 @@
 
 Grounding conversations with Bing is one of several tools provided by the Azure AI Agent Service. Grounding with Bing allows your app to search for information relevant to the conversation. For example, you might want to search for competitive product information.
 
+### Access to Grounding with Bing Search
+
+This lab requires the Grounding with Bing Search service, which may not be available in your Azure subscription. To check if you have access, follow the lab instructions to create the resource, if you don’t have access, an error message will appear. Even if you’re unable to use the service, be sure to read through the lab to understand how Grounding with Bing Search works.
+
 ## Lab Exercise
 
 In this lab, you'll enable Bing Grounding to provide competitive sales analysis of Contoso products and categories.
@@ -14,7 +18,7 @@ Follow these steps to create a Grounding with Bing Search Resource:
 
 1. [Click to create a Grounding with Bing Search Resource](https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/Microsoft.BingGroundingSearch){:target="_blank"}.
 
-    !!! Note
+    !!! Warning
         You may need to sign in to your Azure account and or clear the welcome screen to access the Azure portal.
 
 1. Select **Create**.
@@ -40,11 +44,11 @@ Next, we will create a Bing Search connection in the Azure AI Foundry portal. Th
 
 To create a Bing Search connection in the Azure AI Foundry portal, follow these steps:
 
-1. Verify that your project "Agent-Service-Workshop" is selected.
+1. Verify that your project **Agent-Service-Workshop** is selected.
 1. From the sidebar menu, click the **Management Center** button. The button is pinned at the **bottom** of the sidebar.
 1. From the side-bar menu, select **Connected resources**.
-1. Click **+ New Connection**.
-1. Scroll to the Knowledge section and select "Grounding with Bing Search"
+1. Click **+ New connection**.
+1. Scroll to the Knowledge section and select **Grounding with Bing Search**.
 1. Click the **Add connection** button to the right of your `groundingwithbingsearch` resource.
 1. Click **Close**
 
@@ -58,7 +62,7 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
 
     ```python
     # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
-    
+
     # bing_connection = project_client.connections.get(connection_name=BING_CONNECTION_NAME)
     # bing_grounding = BingGroundingTool(bing_connection)
     # toolset.add(bing_grounding)
@@ -105,31 +109,18 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
 
 ### Review the Instructions
 
-The **instructions/instructions_bing_grounding.txt** adds a new tool, "Competitive Insights for Products and Categories" that instructs the agent to use Bing Search to:
+1. Open the **src/workshop/instructions/instructions_bing_grounding.txt** file. This file replaces the instructions used in the previous lab.
+2. The **Tools** section now includes a “Competitive Insights for Products and Categories” capability, enabling the agent to:
 
-- Gather competitive product names, company names, and prices
-- Never answer questions that are not related to outdoors camping and sports gear
-- Make sure the search results are concise and directly relevant to the query
-
-This ensures that queries remain relevant to Contoso and maintain a focus on contextually appropriate searches.
+    - Use Bing Search to gather competitor product names, company names, and prices.
+    - Restrict responses to topics related to outdoor camping and sports gear.
+    - Ensure search results are concise and directly relevant to the query.
 
 ### Run the Agent App
 
 First, launch the app from the terminal as before:
 
 1. Press <kbd>F5</kbd> to run the app.
-
-This time, let's run our completed app in the Agents Playground within Azure AI Foundry:
-
-1. In Azure AI Foundry, click "Agents" in the left hand nav
-1. Select your AI Foundtry project
-2. Select your agent: "Contoso Sales Agent"
-3. In the right pane, click "Try in Playground".
-
-    !!! tip
-        You may need to click the "Refresh" button on the "Create and debug your agents" page if you already had it open.
-
-You will see a chat window with a field at the bottom where you can enter your queries.
 
 ### Start a Conversation with the Agent
 
@@ -138,7 +129,7 @@ The agent combines data from the Contoso sales database, the Tents Data Sheet, a
 1. **What beginner tents do we sell?**
 
     !!! info
-        This information mainly comes from the file we provided in the vector information store. 
+        This information mainly comes from the file we provided in the vector information store.
 
 2. **What beginner tents do our competitors sell? Include prices.**
 
@@ -154,12 +145,39 @@ The agent combines data from the Contoso sales database, the Tents Data Sheet, a
 4. **Show the tents we sell by region that are a similar price to our competitors beginner tents.**
 
     !!! info
-        This query relies on the reasoning capabilities of the underlying large language model, along with the data returned by function calling. 
+        This query relies on the reasoning capabilities of the underlying large language model, along with the data returned by function calling.
 
 5. **Download the data as a human-readable JSON file**
 
     !!! info
-        This query again relies on Code Interpreter to create the file from the context in the 
+        This query again relies on Code Interpreter to create the file from the context in the
         previous queries.
-    
 
+### Stop the Agent App
+
+1. Type **save** to save the agent app state. This stops the agent app without deleting its state, allowing you to explore the agent in the Azure AI Foundry’s Agents playground.
+2. Press <kbd>Shift</kbd>+<kbd>F5</kbd> to **stop debugging** the agent app.
+3. **Copy** the Agent ID from the terminal output. The Agent ID is required to explore the agent in the Azure AI Foundry portal. The Agent ID will look similar to this example:
+
+    ```text
+    Agent ID: asst_pskNeFYuoCPogDnmfaqIUwoU
+    ```
+
+## Explore the Agent in Azure AI Foundry
+
+The Azure AI Foundry includes a playground that lets you interact with the agent app and test how it responds to various queries. Keep in mind that this playground is not a full chatbot experience—it’s a testing tool. Also, you won’t have real-time access to the Contoso sales database, as that resource is available only locally.
+
+1. From your browser, navigate to the [Azure AI Foundry portal](https://ai.azure.com/){:target="_blank"}.
+2. Select **Playgrounds** from the left-hand navigation.
+3. Select **Try the Agents playground**.
+4. Paste the **Agent ID** you copied earlier into the **Agent id** field.
+
+### Review the Agent's Instructions
+
+You'll recognize the instructions from the `instructions_bing_grounding.txt` file. These instructions are used to guide the agent in responding to queries.
+
+### Start a Conversation with the Agent in the Playground
+
+Use the playground to test different queries and observe how the agent responds. You can reuse the same queries from the terminal or try new ones. Keep in mind that the agent pulls information from the Tents Data Sheet and Bing Search, but unlike the local app version, it does not have access to the Contoso sales database.
+
+![Azure AI Foundry Playground](media/agents-playground.png)

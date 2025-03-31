@@ -14,6 +14,7 @@ from azure.ai.projects.models import (
 )
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
+
 from sales_data import SalesData
 from stream_event_handler import StreamEventHandler
 from terminal_colors import TerminalColors as tc
@@ -89,12 +90,7 @@ async def initialize() -> tuple[Agent, AgentThread]:
     database_schema_string = await sales_data.get_database_info()
 
     try:
-        env = os.getenv("ENVIRONMENT", "local")
-        INSTRUCTIONS_FILE_PATH = f"{'src/shared/' if env == 'container' else ''}{INSTRUCTIONS_FILE}"
-
-        with open(INSTRUCTIONS_FILE_PATH, "r", encoding="utf-8", errors="ignore") as file:
-            instructions = file.read()
-
+        instructions = utilities.load_instructions(INSTRUCTIONS_FILE)
         # Replace the placeholder with the database schema string
         instructions = instructions.replace(
             "{database_schema_string}", database_schema_string)
@@ -152,29 +148,33 @@ async def post_message(thread_id: str, content: str, agent: Agent, thread: Agent
         async with stream as s:
             await s.until_done()
     except Exception as e:
-        utilities.log_msg_purple(
-            f"An error occurred posting the message: {str(e)}")
+        utilities.log_msg_purple(f"An error occurred posting the message: {e!s}")
 
 
 async def main() -> None:
     """
-    Main function to run the agent.
     Example questions: Sales by region, top-selling products, total shipping costs by region, show as a pie chart.
     """
     agent, thread = await initialize()
+    cmd = None
 
     while True:
-        # Get user input prompt in the terminal using a pretty shade of green
-        print("\n")
-        prompt = input(
-            f"{tc.GREEN}Enter your query (type exit to finish): {tc.RESET}")
-        if prompt.lower() == "exit":
-            break
+        prompt = input(f"\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
         if not prompt:
             continue
+
+        cmd = prompt.lower()
+        if cmd in {"exit", "save"}:
+            break
+
         await post_message(agent=agent, thread_id=thread.id, content=prompt, thread=thread)
 
-    await cleanup(agent, thread)
+    if cmd == "save":
+        print("The agent hasn’t been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
+        print(f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}")
+    else:
+        await cleanup(agent, thread)
+        print("The agent resources have been cleaned up.")
 
 
 if __name__ == "__main__":
