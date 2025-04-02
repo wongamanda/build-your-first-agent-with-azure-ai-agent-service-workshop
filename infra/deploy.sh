@@ -34,7 +34,6 @@ if [ -f output.json ]; then
   AI_PROJECT_NAME=$(jq -r '.properties.outputs.aiProjectName.value' output.json)
   RESOURCE_GROUP_NAME=$(jq -r '.properties.outputs.resourceGroupName.value' output.json)
   SUBSCRIPTION_ID=$(jq -r '.properties.outputs.subscriptionId.value' output.json)
-  # BING_GROUNDING_NAME=$(jq -r '.properties.outputs.bingGroundingName.value' output.json)
 
   # Run the Azure CLI command to get discovery_url
   DISCOVERY_URL=$(az ml workspace show -n "$AI_PROJECT_NAME" --resource-group "$RESOURCE_GROUP_NAME" --query discovery_url -o tsv)
@@ -62,7 +61,6 @@ if [ -f output.json ]; then
 
     # Set the user secrets for the C# project
     dotnet user-secrets set "ConnectionStrings:AiAgentService" "$PROJECT_CONNECTION_STRING" --project "$CSHARP_PROJECT_PATH"
-    dotnet user-secrets set "ConnectionStrings:BingGrounding" "$BING_GROUNDING_NAME" --project "$CSHARP_PROJECT_PATH"
     dotnet user-secrets set "Azure:ModelName" "$MODEL_NAME" --project "$CSHARP_PROJECT_PATH"
 
     # Delete the output.json file

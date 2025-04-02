@@ -17,15 +17,15 @@ Each lab in this workshop includes:
 
 ## Project Structure
 
-When you open the workshop in Visual Studio Code, you'll see the following project structure. Take note of the key **subfolders** and **files** you'll be working with during the workshop:
+The workshop’s source code is located in the **src/python/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
 
-1. The **files** folder: Contains the files created by the agent app. The `files` folder is created during agent execution and is not checked into source control. As a result, you will NOT see this folder in your forked repository - but you will see it during runtime.
-2. The **instructions** folder: Contains the instructions passed to the LLM.
-3. The **main.py** file: The entry point for the app, containing its main logic.
-4. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
-5. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
+1. The **main.py** file: The entry point for the app, containing its main logic.
+2. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
+3. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
+4. The **shared/files** folder: Contains the files created by the agent app.
+5. The **shared/instructions** folder: Contains the instructions passed to the LLM.
 
-![Lab folder structure](./media/project_structure.png)
+![Lab folder structure](./media/project-structure-self-guided-python.png)
 
 ## Authenticate with Azure
 

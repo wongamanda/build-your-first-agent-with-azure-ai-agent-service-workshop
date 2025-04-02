@@ -14,7 +14,7 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "src/python/workshop/main.py",
+            "program": "${workspaceFolder}/src/python/workshop/main.py",
             "console": "integratedTerminal"
         }
     ]

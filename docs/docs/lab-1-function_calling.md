@@ -10,112 +10,125 @@ It's up to the developer to implement the function logic within the agent app. I
 
 If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling){:target="_blank"}, it requires defining a function schema for the LLM. Azure AI Agent Service supports this approach and also offers a more flexible option.
 
-#### Function Calling in Python
+=== "Python"
 
-With the Azure AI Agent Service and its Python SDK, you can define the function schema directly within the Python function’s docstring. This approach keeps the definition and implementation together, simplifying maintenance and enhancing readability.
+    With the Azure AI Agent Service and its Python SDK, you can define the function schema directly within the Python function’s docstring. This approach keeps the definition and implementation together, simplifying maintenance and enhancing readability.
 
-For example, in the **sales_data.py** file, the **async_fetch_sales_data_using_sqlite_query** function uses a docstring to specify its signature, inputs, and outputs. The SDK parses this docstring to generate the callable function for the LLM:
+    For example, in the **sales_data.py** file, the **async_fetch_sales_data_using_sqlite_query** function uses a docstring to specify its signature, inputs, and outputs. The SDK parses this docstring to generate the callable function for the LLM:
 
-``` python
+    ``` python
 
-async def async_fetch_sales_data_using_sqlite_query(self: "SalesData", sqlite_query: str) -> str:
-    """
-    This function is used to answer user questions about Contoso sales data by executing SQLite queries against the database.
+    async def async_fetch_sales_data_using_sqlite_query(self: "SalesData", sqlite_query: str) -> str:
+        """
+        This function is used to answer user questions about Contoso sales data by executing SQLite queries against the database.
 
-    :param sqlite_query: The input should be a well-formed SQLite query to extract information based on the user's question. The query result will be returned as a JSON object.
-    :return: Return data in JSON serializable format.
-    :rtype: str
-    """
-```
+        :param sqlite_query: The input should be a well-formed SQLite query to extract information based on the user's question. The query result will be returned as a JSON object.
+        :return: Return data in JSON serializable format.
+        :rtype: str
+        """
+    ```
 
-#### Function Calling in .NET
+=== ".NET"
 
-With the Azure AI Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent. This approach is more verbose but allows for greater flexibility in defining the function schema.
+    With the Azure AI Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent. This approach is more verbose but allows for greater flexibility in defining the function schema.
 
-For example, in the **Lab.cs** file, the `InitialiseTools` method defines the function schema for the `FetchSalesDataAsync` function:
+    For example, in the **Lab.cs** file, the `InitialiseTools` method defines the function schema for the `FetchSalesDataAsync` function:
 
-```csharp
-new FunctionToolDefinition(
-    name: nameof(SalesData.FetchSalesDataAsync),
-    description: "This function is used to answer user questions about Contoso sales data by executing SQLite queries against the database.",
-    parameters: BinaryData.FromObjectAsJson(new {
-        Type = "object",
-        Properties = new {
-            Query = new {
-                Type = "string",
-                Description = "The input should be a well-formed SQLite query to extract information based on the user's question. The query result will be returned as a JSON object."
-            }
+    ```csharp
+    new FunctionToolDefinition(
+        name: nameof(SalesData.FetchSalesDataAsync),
+        description: "This function is used to answer user questions about Contoso sales data by executing SQLite queries against the database.",
+        parameters: BinaryData.FromObjectAsJson(new {
+            Type = "object",
+            Properties = new {
+                Query = new {
+                    Type = "string",
+                    Description = "The input should be a well-formed SQLite query to extract information based on the user's question. The query result will be returned as a JSON object."
+                }
+            },
+            Required = new [] { "query" }
         },
-        Required = new [] { "query" }
-    },
-    new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-)
-```
+        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
+    )
+    ```
 
 ### Dynamic SQL Generation
 
 When the app starts, it incorporates the database schema and key data into the instructions for the Azure AI Agent Service. Using this input, the LLM generates SQLite-compatible SQL queries to respond to user requests expressed in natural language.
 
-## Lab Exercise - Python
+## Lab Exercise
 
-In this lab, you'll enable the function logic to execute dynamic SQL queries against the SQLite database. The function is called by the LLM to answer user questions about Contoso sales data.
+In this lab, you will enable the function logic to execute dynamic SQL queries against the SQLite database. The function is called by the LLM to answer user questions about Contoso sales data.
 
-1. Open the `main.py`.
+=== "Python"
 
-1. **Uncomment** the following lines by removing the **"# "** characters
+    1. Open the `main.py`.
 
-    ```python
-    # INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
+    2. **Uncomment** the following lines by removing the **"# "** characters
 
-    # toolset.add(functions)
-    ```
+        ```python
+        # INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
 
-    !!! warning
-        The lines to be uncommented are not adjacent. When removing the # character, ensure you also delete the space that follows it.
+        # toolset.add(functions)
+        ```
 
-1. Review the Code in main.py.
+        !!! warning
+            The lines to be uncommented are not adjacent. When removing the # character, ensure you also delete the space that follows it.
 
-    After uncommenting, your code should look like this:
+    3. Review the Code in main.py.
 
-    ``` python
-    INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
-    # INSTRUCTIONS_FILE = "instructions/instructions_code_interpreter.txt"
-    # INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
-    # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
+        After uncommenting, your code should look like this:
+
+        ``` python
+        INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
+        # INSTRUCTIONS_FILE = "instructions/instructions_code_interpreter.txt"
+        # INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
+        # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
 
 
-    async def add_agent_tools():
-        """Add tools for the agent."""
+        async def add_agent_tools():
+            """Add tools for the agent."""
 
-        # Add the functions tool
-        toolset.add(functions)
+            # Add the functions tool
+            toolset.add(functions)
 
-        # Add the code interpreter tool
-        # code_interpreter = CodeInterpreterTool()
-        # toolset.add(code_interpreter)
+            # Add the code interpreter tool
+            # code_interpreter = CodeInterpreterTool()
+            # toolset.add(code_interpreter)
 
-        # Add the tents data sheet to a new vector data store
-        # vector_store = await utilities.create_vector_store(
-        #     project_client,
-        #     files=[TENTS_DATA_SHEET_FILE],
-        #     vector_name_name="Contoso Product Information Vector Store",
-        # )
-        # file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
-        # toolset.add(file_search_tool)
+            # Add the tents data sheet to a new vector data store
+            # vector_store = await utilities.create_vector_store(
+            #     project_client,
+            #     files=[TENTS_DATA_SHEET_FILE],
+            #     vector_name_name="Contoso Product Information Vector Store",
+            # )
+            # file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
+            # toolset.add(file_search_tool)
 
-        # Add the Bing grounding tool
-        # bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
-        # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
-        # toolset.add(bing_grounding)
-    ```
+            # Add the Bing grounding tool
+            # bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
+            # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
+            # toolset.add(bing_grounding)
+        ```
+
+=== ".NET"
+
+    1. Open the `Program.cs` file.
+
+    2. **Uncomment** and update the following code:
+
+        ```csharp
+        await using Lab lab = new Lab1(projectClient, apiDeploymentName);
+        await lab.RunAsync();
+        ```
 
 ### Review the Instructions
 
-1. Open the **src/workshop/instructions/instructions_function_calling.txt** file.
+ 1. Open the **src/workshop/instructions/instructions_function_calling.txt** file.
 
     !!! tip "In VS Code, press Alt + Z (Windows/Linux) or Option + Z (Mac) to enable word wrap mode, making the instructions easier to read."
 
-2. Review how the instructions define the agent app’s behavior:
+ 2. Review how the instructions define the agent app’s behavior:
 
      - **Role definition**: The agent assists Contoso users with sales data inquiries in a polite, professional, and friendly manner.
      - **Context**: Contoso is an online retailer specializing in camping and sports gear.
@@ -128,41 +141,24 @@ In this lab, you'll enable the function logic to execute dynamic SQL queries aga
      - **User support tips**: Provides suggestions for assisting users.
      - **Safety and conduct**: Covers how to handle unclear, out-of-scope, or malicious queries.
 
-    During the workshop, we’ll extend these instructions by introducing new tools to enhance the agent’s capabilities.
+     During the workshop, we’ll extend these instructions by introducing new tools to enhance the agent’s capabilities.
 
     !!! info
         The {database_schema_string} placeholder in the instructions is replaced with the database schema when the app initializes.
 
-        ```python
-        # Replace the placeholder with the database schema string
-        instructions = instructions.replace("{database_schema_string}", database_schema_string)
-        ```
+        === "Python"
 
-## Lab Exercise - .NET
+            ```python
+            # Replace the placeholder with the database schema string
+            instructions = instructions.replace("{database_schema_string}", database_schema_string)
+            ```
 
-In this lab, you'll enable the function logic to execute dynamic SQL queries against the SQLite database. The function will be called by the LLM to answer user questions about Contoso sales data.
+        === ".NET"
 
-1. Open the `Program.cs` file.
-
-1. **Uncomment** and update the following code:
-
-    ```csharp
-    await using Lab lab = new Lab1(projectClient, apiDeploymentName);
-    await lab.RunAsync();
-    ```
-
-### Review the Instructions
-
-Open the **instructions/instructions_function_calling.txt** file and review the **Tools** section for details on the function-calling instructions.
-
-!!! tip "In VS Code, press Alt + Z (Windows/Linux) or Option + Z (Mac) to enable word wrap mode, making the instructions easier to read."
-
-!!! info
-    The {database_schema_string} placeholder in the instructions is replaced with the actual database schema when the app initializes as part of the `InitialiseToolResources` method.
-
-    ```csharp
-    instructions = instructions.Replace("{database_schema_string}", databaseSchema);
-    ```
+            ```csharp
+            // Replace the placeholder with the database schema string
+            instructions = instructions.Replace("{database_schema_string}", databaseSchemaString);
+            ```
 
 ## Run the Agent App
 

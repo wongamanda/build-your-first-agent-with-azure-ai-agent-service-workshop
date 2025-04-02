@@ -46,15 +46,29 @@ Each lab in this workshop includes:
 
 ## Project Structure
 
-The workshop’s source code is located in the **src/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+=== "Python"
 
-1. The **files** folder: Contains the files created by the agent app. The `files` folder is created during agent execution and is not checked into source control. As a result, you will NOT see this folder in your forked repository - but you will see it during runtime.
-2. The **instructions** folder: Contains the instructions passed to the LLM.
-3. The **main.py** file: The entry point for the app, containing its main logic.
-4. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
-5. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
+    The workshop’s source code is located in the **src/python/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
 
-![Lab folder structure](./media/project-structure-self-guided.png)
+    1. The **main.py** file: The entry point for the app, containing its main logic.
+    2. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
+    3. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
+    4. The **shared/files** folder: Contains the files created by the agent app.
+    5. The **shared/instructions** folder: Contains the instructions passed to the LLM.
+
+    ![Lab folder structure](./media/project-structure-self-guided-python.png)
+
+=== "C#"
+
+    The workshop’s source code is located in the **src/csharp/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+
+    1. The **Lab1.cs, Lab2.cs, Lab3.cs** files: The entry point for each lab, containing its agent logic.
+    2. The **Program.cs** file: The entry point for the app, containing its main logic.
+    3. The **SalesData.cs** file: The function logic to execute dynamic SQL queries against the SQLite database.
+    4. The **shared/files** folder: Contains the files created by the agent app.
+    5. The **shared/instructions** folder: Contains the instructions passed to the LLM.
+
+    ![Lab folder structure](./media/project-structure-self-guided-csharp.png)
 
 ## Authenticate with Azure
 
@@ -109,15 +123,20 @@ We have provided a bash script to automate the deployment of the resources requi
 
     ### Workshop Configuration File
 
-    The deploy script generates the **src/workshop/.env** file, which contains the project connection string, model deployment name, and Bing connection name.
+    === "Python"
 
-    Your **.env** file should look similar to this but with your project connection string.
+        The deploy script generates the **src/workshop/.env** file, which contains the project connection string, model deployment name, and Bing connection name.
 
-    ```python
-    MODEL_DEPLOYMENT_NAME="gpt-4o"
-    BING_CONNECTION_NAME="groundingwithbingsearch"
-    PROJECT_CONNECTION_STRING="<your_project_connection_string>"
-    ```
+        Your **.env** file should look similar to this but with your project connection string.
+
+        ```python
+        MODEL_DEPLOYMENT_NAME="gpt-4o"
+        BING_CONNECTION_NAME="groundingwithbingsearch"
+        PROJECT_CONNECTION_STRING="<your_project_connection_string>"
+        ```
+    === "C#"
+
+        The automated deployment script stores project variables securely by using the Secret Manager feature for [safe storage of app secrets in development in ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/app-secrets){:target="_blank"}.
 
 === "Manual deployment"
 
@@ -141,12 +160,13 @@ We have provided a bash script to automate the deployment of the resources requi
         - Select **Create** and wait for the project to be created.
     3. From **My assets**, select **Models + endpoints**.
     4. Select **Deploy Model / Deploy Base Model**.
-        - Select **gpt-4o**, then **Confirm**.
-        - Name the deployment
 
-            ```text
-            gpt-4o
-            ```
+           - Select **gpt-4o** from the model list, then select **Confirm**.
+           - Name the deployment
+
+               ```text
+               gpt-4o
+               ```
 
         - Deployment type: Select **Global Standard**.
         - Select **Customize**.
@@ -161,10 +181,36 @@ We have provided a bash script to automate the deployment of the resources requi
 
     ### Workshop Configuration File
 
-    Create the workshop configuration file with the following command:
+    You'll need the project connection string to connect the agent app to the Azure AI Foundry project. You can find this string in the Azure AI Foundry portal in the Overview page for your Project `agent-workshop` (look in the Project details section).
 
-    ```
-    cp src/workshop/.env.sample src/workshop/.env
-    ```
+    === "Python"
 
-    Then edit the file `src/workshop/.env` to provide the Project Connection String. You can find this string in the AI Foundry portal in the Overview page for your Project `agent-project` (look in the Project details section).
+        Create the workshop configuration file with the following command:
+
+        ```bash
+        cp src/workshop/.env.sample src/workshop/.env
+        ```
+
+        Then edit the file `src/workshop/.env` to provide the Project Connection String.
+
+    === "C#"
+
+        1. Open a new terminal window in VS Code.
+        2. Run the following command to set the C# project path $CSHARP_PROJECT_PATH variable:
+
+            ```bash
+            CSHARP_PROJECT_PATH="src/csharp/workshop/AgentWorkshop.Client/AgentWorkshop.Client.csproj"
+            ```
+        3. Run the following command to set the [ASP.NET Core safe secret](https://learn.microsoft.com/aspnet/core/security/app-secrets){:target="_blank"} for the project connection string:
+
+            !!! warning "Replace `<your_project_connection_string>` with the actual connection string"
+
+            ```bash
+            dotnet user-secrets set "ProjectConnectionString" "<your_project_connection_string>" --project "$CSHARP_PROJECT_PATH"
+            ```
+            
+        4. Run the following command to set the [ASP.NET Core safe secret](https://learn.microsoft.com/aspnet/core/security/app-secrets){:target="_blank"} for the model deployment name:
+
+            ```bash
+            dotnet user-secrets set "Azure:ModelName" "gpt-4o" --project "$CSHARP_PROJECT_PATH"
+            ```

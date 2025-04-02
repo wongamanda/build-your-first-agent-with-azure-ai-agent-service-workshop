@@ -10,82 +10,79 @@ Normally, you wouldn’t create a new vector store and upload documents each tim
 
 A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"} is a database optimized for storing and searching vectors (numeric representations of text data). The File Search tool uses the vector store for [semantic search](https://en.wikipedia.org/wiki/Semantic_search){:target="_blank"} to search for relevant information in the uploaded document.
 
-## Lab Exercise - Python
+## Lab Exercise
 
-1. Open the **src/workshop/datasheet/contoso-tents-datasheet.pdf** file from VS Code.
+1. Open the **src/workshop/datasheet/contoso-tents-datasheet.pdf** file from VS Code. The PDF file includes detailed product descriptions for the tents sold by Contoso.
 
 2. **Review** the file’s contents to understand the information it contains, as this will be used to ground the agent’s responses.
 
-    !!! info
-        The PDF file includes detailed product descriptions for the tents sold by Contoso.
+=== "Python"
 
-3. Open the file `main.py`.
+      1. Open the file `main.py`.
 
-4. **Uncomment** the following lines by removing the **"# "** characters
+      2. **Uncomment** the following lines by removing the **"# "** characters
 
-    ```python
-    # INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
+        ```python
+        # INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
 
-    # vector_store = await utilities.create_vector_store(
-    #     project_client,
-    #     files=[TENTS_DATA_SHEET_FILE],
-    #     vector_name_name="Contoso Product Information Vector Store",
-    # )
-    # file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
-    # toolset.add(file_search_tool)
-    ```
+        # vector_store = await utilities.create_vector_store(
+        #     project_client,
+        #     files=[TENTS_DATA_SHEET_FILE],
+        #     vector_name_name="Contoso Product Information Vector Store",
+        # )
+        # file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
+        # toolset.add(file_search_tool)
+        ```
 
-    !!! warning
-        The lines to be uncommented are not adjacent. When removing the # character, ensure you also delete the space that follows it.
+        !!! warning
+            The lines to be uncommented are not adjacent. When removing the # character, ensure you also delete the space that follows it.
 
-5. Review the code in the `main.py` file.
+      3. Review the code in the `main.py` file.
 
-    After uncommenting, your code should look like this:
+        After uncommenting, your code should look like this:
 
-    ``` python
-    INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
-    INSTRUCTIONS_FILE = "instructions/instructions_code_interpreter.txt"
-    INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
-    # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
+        ``` python
+        INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
+        INSTRUCTIONS_FILE = "instructions/instructions_code_interpreter.txt"
+        INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
+        # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
 
 
-    async def add_agent_tools():
-        """Add tools for the agent."""
+        async def add_agent_tools():
+            """Add tools for the agent."""
 
-        # Add the functions tool
-        toolset.add(functions)
+            # Add the functions tool
+            toolset.add(functions)
 
-        # Add the code interpreter tool
-        code_interpreter = CodeInterpreterTool()
-        toolset.add(code_interpreter)
+            # Add the code interpreter tool
+            code_interpreter = CodeInterpreterTool()
+            toolset.add(code_interpreter)
 
-        # Add the tents data sheet to a new vector data store
-        vector_store = await utilities.create_vector_store(
-            project_client,
-            files=[TENTS_DATA_SHEET_FILE],
-            vector_name_name="Contoso Product Information Vector Store",
-        )
-        file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
-        toolset.add(file_search_tool)
+            # Add the tents data sheet to a new vector data store
+            vector_store = await utilities.create_vector_store(
+                project_client,
+                files=[TENTS_DATA_SHEET_FILE],
+                vector_name_name="Contoso Product Information Vector Store",
+            )
+            file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
+            toolset.add(file_search_tool)
 
-        # Add the Bing grounding tool
-        # bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
-        # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
-        # toolset.add(bing_grounding)
-    ```
+            # Add the Bing grounding tool
+            # bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
+            # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
+            # toolset.add(bing_grounding)
+        ```
 
-## Lab Exercise - .NET
+=== ".NET"
 
-1. Open the **datasheet/contoso-tents-datasheet.pdf** file from VS Code.
-1. **Review** the file’s contents to understand the information it contains, as this will be used to ground the agent’s responses.
-1. Open the `Program.cs` file.
-1. **Update** the creation of the lab to use the `Lab3` class.
+      1. Open the `Program.cs` file.
+      2. **Update** the creation of the lab to use the `Lab3` class.
 
-    ```csharp
-    await using Lab lab = new Lab3(projectClient, apiDeploymentName);
-    ```
+          ```csharp
+          await using Lab lab = new Lab3(projectClient, apiDeploymentName);
+          ```
 
-1. Review the `Lab3.cs` class to see how `InitialiseLabAsync` is used to add the PDF to a vector store and add the File Search tool to the agent, and `InitialiseToolResources` is used to add the File Search tool to the agent. These methods would be good places to add breakpoints to observe the process.
+      3. Review the `Lab3.cs` class to see how `InitialiseLabAsync` is used to add the PDF to a vector store and add the File Search tool to the agent, and `InitialiseToolResources` is used to add the File Search tool to the agent. These methods would be good places to add breakpoints to observe the process.
 
 ## Review the Instructions
 
