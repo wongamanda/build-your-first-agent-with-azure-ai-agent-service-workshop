@@ -36,38 +36,38 @@ class SalesData:
             await self.conn.close()
             logger.debug("Database connection closed.")
 
-    async def __get_table_names(self: "SalesData") -> list:
+    async def _get_table_names(self: "SalesData") -> list:
         """Return a list of table names."""
         table_names = []
         async with self.conn.execute("SELECT name FROM sqlite_master WHERE type='table';") as tables:
             return [table[0] async for table in tables if table[0] != "sqlite_sequence"]
 
-    async def __get_column_info(self: "SalesData", table_name: str) -> list:
+    async def _get_column_info(self: "SalesData", table_name: str) -> list:
         """Return a list of tuples containing column names and their types."""
         column_info = []
         async with self.conn.execute(f"PRAGMA table_info('{table_name}');") as columns:
             # col[1] is the column name, col[2] is the column type
             return [f"{col[1]}: {col[2]}" async for col in columns]
 
-    async def __get_regions(self: "SalesData") -> list:
+    async def _get_regions(self: "SalesData") -> list:
         """Return a list of unique regions in the database."""
         async with self.conn.execute("SELECT DISTINCT region FROM sales_data;") as regions:
             result = await regions.fetchall()
         return [region[0] for region in result]
 
-    async def __get_product_types(self: "SalesData") -> list:
+    async def _get_product_types(self: "SalesData") -> list:
         """Return a list of unique product types in the database."""
         async with self.conn.execute("SELECT DISTINCT product_type FROM sales_data;") as product_types:
             result = await product_types.fetchall()
         return [product_type[0] for product_type in result]
 
-    async def __get_product_categories(self: "SalesData") -> list:
+    async def _get_product_categories(self: "SalesData") -> list:
         """Return a list of unique product categories in the database."""
         async with self.conn.execute("SELECT DISTINCT main_category FROM sales_data;") as product_categories:
             result = await product_categories.fetchall()
         return [product_category[0] for product_category in result]
 
-    async def __get_reporting_years(self: "SalesData") -> list:
+    async def _get_reporting_years(self: "SalesData") -> list:
         """Return a list of unique reporting years in the database."""
         async with self.conn.execute("SELECT DISTINCT year FROM sales_data ORDER BY year;") as reporting_years:
             result = await reporting_years.fetchall()
@@ -76,8 +76,8 @@ class SalesData:
     async def get_database_info(self: "SalesData") -> str:
         """Return a string containing the database schema information and common query fields."""
         table_dicts = []
-        for table_name in await self.__get_table_names():
-            columns_names = await self.__get_column_info(table_name)
+        for table_name in await self._get_table_names():
+            columns_names = await self._get_column_info(table_name)
             table_dicts.append(
                 {"table_name": table_name, "column_names": columns_names})
 
@@ -87,10 +87,10 @@ class SalesData:
                 for table in table_dicts
             ]
         )
-        regions = await self.__get_regions()
-        product_types = await self.__get_product_types()
-        product_categories = await self.__get_product_categories()
-        reporting_years = await self.__get_reporting_years()
+        regions = await self._get_regions()
+        product_types = await self._get_product_types()
+        product_categories = await self._get_product_categories()
+        reporting_years = await self._get_reporting_years()
 
         database_info += f"\nRegions: {', '.join(regions)}"
         database_info += f"\nProduct Types: {', '.join(product_types)}"

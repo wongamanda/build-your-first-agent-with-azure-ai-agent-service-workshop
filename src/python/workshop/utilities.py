@@ -8,18 +8,17 @@ from terminal_colors import TerminalColors as tc
 
 
 class Utilities:
-
     # propert to get the relative path of shared files
     @property
     def shared_files_path(self) -> Path:
+        """Get the path to the shared files directory."""
         env = os.getenv("ENVIRONMENT", "local")
         base_path = Path(__file__).resolve().parent
-        shared_path = (base_path.parent.parent /
-                       "shared") if env == "container" else (base_path / "shared")
+        shared_path = (base_path.parent.parent / "shared") if env == "container" else (base_path / "shared")
         return shared_path.resolve()
 
     def load_instructions(self, instructions_file: str) -> str:
-        instructions = ""
+        """Load instructions from a file."""
         file_path = self.shared_files_path / instructions_file
         with file_path.open("r", encoding="utf-8", errors="ignore") as file:
             return file.read()
@@ -63,19 +62,19 @@ class Utilities:
         if message.image_contents:
             for index, image in enumerate(message.image_contents, start=0):
                 attachment_name = (
-                    "unknown" if not message.file_path_annotations else message.file_path_annotations[
-                        index].text
+                    "unknown" if not message.file_path_annotations else message.file_path_annotations[index].text
                 )
                 await self.get_file(project_client, image.image_file.file_id, attachment_name)
         elif message.attachments:
             for index, attachment in enumerate(message.attachments, start=0):
                 attachment_name = (
-                    "unknown" if not message.file_path_annotations else message.file_path_annotations[
-                        index].text
+                    "unknown" if not message.file_path_annotations else message.file_path_annotations[index].text
                 )
                 await self.get_file(project_client, attachment.file_id, attachment_name)
 
-    async def create_vector_store(self, project_client: AIProjectClient, files: list[str], vector_name_name: str) -> None:
+    async def create_vector_store(
+        self, project_client: AIProjectClient, files: list[str], vector_store_name: str
+    ) -> None:
         """Upload a file to the project."""
 
         file_ids = []
@@ -93,9 +92,8 @@ class Utilities:
 
         # Create a vector store
         vector_store = await project_client.agents.create_vector_store_and_poll(
-            file_ids=file_ids, name=vector_name_name
+            file_ids=file_ids, name=vector_store_name
         )
 
-        self.log_msg_purple(
-            f"Vector store created and files added.")
+        self.log_msg_purple(f"Vector store created and files added.")
         return vector_store
