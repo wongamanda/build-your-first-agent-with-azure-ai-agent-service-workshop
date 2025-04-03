@@ -140,7 +140,7 @@ async def post_message(thread_id: str, content: str, agent: Agent, thread: Agent
 
         stream = await project_client.agents.create_stream(
             thread_id=thread.id,
-            assistant_id=agent.id,
+            agent_id=agent.id,
             event_handler=StreamEventHandler(
                 functions=functions, project_client=project_client, utilities=utilities),
             max_completion_tokens=MAX_COMPLETION_TOKENS,
