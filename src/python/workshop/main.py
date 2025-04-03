@@ -34,10 +34,12 @@ MAX_COMPLETION_TOKENS = 4096
 MAX_PROMPT_TOKENS = 10240
 TEMPERATURE = 0.1
 TOP_P = 0.1
+INSTRUCTIONS_FILE = None
 
 toolset = AsyncToolSet()
-sales_data = SalesData()
 utilities = Utilities()
+sales_data = SalesData(utilities)
+
 
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
@@ -56,7 +58,7 @@ functions = AsyncFunctionTool(
 # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
 
 
-async def add_agent_tools():
+async def add_agent_tools() -> None:
     """Add tools for the agent."""
 
     # Add the functions tool
@@ -83,6 +85,9 @@ async def add_agent_tools():
 
 async def initialize() -> tuple[Agent, AgentThread]:
     """Initialize the agent with the sales data schema and instructions."""
+
+    if not INSTRUCTIONS_FILE:
+        return None, None
 
     await add_agent_tools()
 
@@ -156,6 +161,11 @@ async def main() -> None:
     Example questions: Sales by region, top-selling products, total shipping costs by region, show as a pie chart.
     """
     agent, thread = await initialize()
+    if not agent or not thread:
+        print("Initialization failed. Ensure you have uncommented the instructions file for the lab.")
+        print("Exiting...")
+        return
+
     cmd = None
 
     while True:
@@ -170,8 +180,9 @@ async def main() -> None:
         await post_message(agent=agent, thread_id=thread.id, content=prompt, thread=thread)
 
     if cmd == "save":
-        print("The agent hasn’t been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
-        print(f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}")
+        print("The agent has not been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
+        print(
+            f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}")
     else:
         await cleanup(agent, thread)
         print("The agent resources have been cleaned up.")

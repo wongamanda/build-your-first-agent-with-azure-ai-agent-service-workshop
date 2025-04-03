@@ -9,14 +9,20 @@ from terminal_colors import TerminalColors as tc
 
 class Utilities:
 
+    # propert to get the relative path of shared files
+    @property
+    def shared_files_path(self) -> Path:
+        env = os.getenv("ENVIRONMENT", "local")
+        base_path = Path(__file__).resolve().parent
+        shared_path = (base_path.parent.parent /
+                       "shared") if env == "container" else (base_path / "shared")
+        return shared_path.resolve()
+
     def load_instructions(self, instructions_file: str) -> str:
         instructions = ""
-        env = os.getenv("ENVIRONMENT", "local")
-        path_prefix = "src/shared/" if env == "container" else ""
-        INSTRUCTIONS_FILE_PATH = f"{path_prefix}{instructions_file}"
-        with open(INSTRUCTIONS_FILE_PATH, "r", encoding="utf-8", errors="ignore") as file:
-            instructions = file.read()
-        return instructions
+        file_path = self.shared_files_path / instructions_file
+        with file_path.open("r", encoding="utf-8", errors="ignore") as file:
+            return file.read()
 
     def log_msg_green(self, msg: str) -> None:
         """Print a message in green."""
@@ -34,16 +40,13 @@ class Utilities:
         """Retrieve the file and save it to the local disk."""
         self.log_msg_green(f"Getting file with ID: {file_id}")
 
-        file_name, file_extension = os.path.splitext(
-            os.path.basename(attachment_name.split(":")[-1]))
+        attachment_part = attachment_name.split(":")[-1]
+        file_name = Path(attachment_part).stem
+        file_extension = Path(attachment_part).suffix
         file_name = f"{file_name}.{file_id}{file_extension}"
 
-        env = os.getenv("ENVIRONMENT", "local")
-        folder_path = Path(
-            f"{'src/python/workshop/' if env == 'container' else ''}files")
-
+        folder_path = Path(self.shared_files_path) / "files"
         folder_path.mkdir(parents=True, exist_ok=True)
-
         file_path = folder_path / file_name
 
         # Save the file using a synchronous context manager
@@ -76,12 +79,11 @@ class Utilities:
         """Upload a file to the project."""
 
         file_ids = []
-        env = os.getenv("ENVIRONMENT", "local")
-        prefix = "src/shared/" if env == "container" else ""
+        prefix = self.shared_files_path
 
         # Upload the files
         for file in files:
-            file_path = Path(f"{prefix}{file}")
+            file_path = prefix / file
             self.log_msg_purple(f"Uploading file: {file_path}")
 
             file_info = await project_client.agents.upload_file(file_path=file_path, purpose="assistants")

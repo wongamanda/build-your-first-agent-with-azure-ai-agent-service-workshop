@@ -1,12 +1,12 @@
 import json
 import logging
-import os
-from typing import Optional, Coroutine
+from typing import Optional
 
 import aiosqlite
 import pandas as pd
 
 from terminal_colors import TerminalColors as tc
+from utilities import Utilities
 
 DATA_BASE = "database/contoso-sales.db"
 
@@ -17,12 +17,12 @@ logger = logging.getLogger(__name__)
 class SalesData:
     conn: Optional[aiosqlite.Connection]
 
-    def __init__(self: "SalesData") -> None:
+    def __init__(self: "SalesData", utilities: Utilities) -> None:
         self.conn = None
+        self.utilities = utilities
 
     async def connect(self: "SalesData") -> None:
-        env = os.getenv("ENVIRONMENT", "local")
-        db_uri = f"file:{'src/shared/' if env == 'container' else ''}{DATA_BASE}?mode=ro"
+        db_uri = f"file:{self.utilities.shared_files_path}/{DATA_BASE}?mode=ro"
 
         try:
             self.conn = await aiosqlite.connect(db_uri, uri=True)
@@ -40,16 +40,14 @@ class SalesData:
         """Return a list of table names."""
         table_names = []
         async with self.conn.execute("SELECT name FROM sqlite_master WHERE type='table';") as tables:
-            table_names = [table[0] async for table in tables if table[0] != "sqlite_sequence"]
-        return table_names
+            return [table[0] async for table in tables if table[0] != "sqlite_sequence"]
 
     async def __get_column_info(self: "SalesData", table_name: str) -> list:
         """Return a list of tuples containing column names and their types."""
         column_info = []
         async with self.conn.execute(f"PRAGMA table_info('{table_name}');") as columns:
             # col[1] is the column name, col[2] is the column type
-            column_info = [f"{col[1]}: {col[2]}" async for col in columns]
-        return column_info
+            return [f"{col[1]}: {col[2]}" async for col in columns]
 
     async def __get_regions(self: "SalesData") -> list:
         """Return a list of unique regions in the database."""
