@@ -73,7 +73,7 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
             # toolset.add(bing_grounding)
         ```
 
-=== ".NET"
+=== "C#"
 
       1. Open the `Program.cs` file.
       2. **Update** the creation of the lab to use the `Lab3` class.

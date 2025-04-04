@@ -8,7 +8,7 @@ It's up to the developer to implement the function logic within the agent app. I
 
 ### Enabling Function Calling
 
-If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling){:target="_blank"}, it requires defining a function schema for the LLM. Azure AI Agent Service supports this approach and also offers a more flexible option.
+If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling){:target="_blank"}, you know it requires you to define a function schema for the LLM.
 
 === "Python"
 
@@ -28,7 +28,7 @@ If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsof
         """
     ```
 
-=== ".NET"
+=== "C#"
 
     With the Azure AI Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent. This approach is more verbose but allows for greater flexibility in defining the function schema.
 
@@ -111,7 +111,7 @@ In this lab, you will enable the function logic to execute dynamic SQL queries a
             # toolset.add(bing_grounding)
         ```
 
-=== ".NET"
+=== "C#"
 
     1. Open the `Program.cs` file.
 
@@ -153,7 +153,7 @@ In this lab, you will enable the function logic to execute dynamic SQL queries a
             instructions = instructions.replace("{database_schema_string}", database_schema_string)
             ```
 
-        === ".NET"
+        === "C#"
 
             ```csharp
             // Replace the placeholder with the database schema string

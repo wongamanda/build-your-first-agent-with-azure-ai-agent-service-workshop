@@ -58,7 +58,7 @@ In this lab, you'll enable the Code Interpreter to execute Python code generated
             # toolset.add(bing_grounding)
         ```
 
-=== ".NET"
+=== "C#"
 
     1. Open the `Program.cs` file.
 
