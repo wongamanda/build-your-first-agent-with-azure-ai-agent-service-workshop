@@ -4,7 +4,7 @@ namespace AgentWorkshop.Client;
 
 public class Lab3(AIProjectClient client, string modelName) : Lab(client, modelName)
 {
-    protected override string InstructionsFileName => "instructions_file_search.txt";
+    protected override string InstructionsFileName => "file_search.txt";
 
     private VectorStore? vectorStore;
 

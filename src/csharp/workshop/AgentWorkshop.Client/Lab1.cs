@@ -5,5 +5,5 @@ namespace AgentWorkshop.Client;
 public class Lab1(AIProjectClient client, string modelName)
     : Lab(client, modelName)
 {
-    protected override string InstructionsFileName => "instructions_function_calling.txt";
+    protected override string InstructionsFileName => "function_calling.txt";
 }

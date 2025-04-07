@@ -27,14 +27,16 @@ load_dotenv()
 
 AGENT_NAME = "Contoso Sales Agent"
 TENTS_DATA_SHEET_FILE = "datasheet/contoso-tents-datasheet.pdf"
+FONTS_ZIP = "fonts/fonts.zip"
 API_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME")
 PROJECT_CONNECTION_STRING = os.environ["PROJECT_CONNECTION_STRING"]
 BING_CONNECTION_NAME = os.getenv("BING_CONNECTION_NAME")
-MAX_COMPLETION_TOKENS = 4096
+MAX_COMPLETION_TOKENS = 10240
 MAX_PROMPT_TOKENS = 10240
 TEMPERATURE = 0.1
 TOP_P = 0.1
 INSTRUCTIONS_FILE = None
+
 
 toolset = AsyncToolSet()
 utilities = Utilities()
@@ -52,27 +54,29 @@ functions = AsyncFunctionTool(
     }
 )
 
-# INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
-# INSTRUCTIONS_FILE = "instructions/instructions_code_interpreter.txt"
-# INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
-# INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
+# INSTRUCTIONS_FILE = "instructions/function_calling.txt"
+# INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
+# INSTRUCTIONS_FILE = "instructions/file_search.txt"
+INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
+# INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
 
 
 async def add_agent_tools() -> None:
     """Add tools for the agent."""
+    font_file_info = None
 
     # Add the functions tool
-    # toolset.add(functions)
+    toolset.add(functions)
 
     # Add the code interpreter tool
-    # code_interpreter = CodeInterpreterTool()
-    # toolset.add(code_interpreter)
+    code_interpreter = CodeInterpreterTool()
+    toolset.add(code_interpreter)
 
     # Add the tents data sheet to a new vector data store
     # vector_store = await utilities.create_vector_store(
     #     project_client,
     #     files=[TENTS_DATA_SHEET_FILE],
-    #     vector_name_name="Contoso Product Information Vector Store",
+    #     vector_store_name="Contoso Product Information Vector Store",
     # )
     # file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
     # toolset.add(file_search_tool)
@@ -82,6 +86,12 @@ async def add_agent_tools() -> None:
     # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
     # toolset.add(bing_grounding)
 
+    # Add multilingual support to the code interpreter
+    font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
+    code_interpreter.add_file(file_id=font_file_info.id)
+
+    return font_file_info
+
 
 async def initialize() -> tuple[Agent, AgentThread]:
     """Initialize the agent with the sales data schema and instructions."""
@@ -89,7 +99,7 @@ async def initialize() -> tuple[Agent, AgentThread]:
     if not INSTRUCTIONS_FILE:
         return None, None
 
-    await add_agent_tools()
+    font_file_info = await add_agent_tools()
 
     await sales_data.connect()
     database_schema_string = await sales_data.get_database_info()
@@ -97,8 +107,11 @@ async def initialize() -> tuple[Agent, AgentThread]:
     try:
         instructions = utilities.load_instructions(INSTRUCTIONS_FILE)
         # Replace the placeholder with the database schema string
-        instructions = instructions.replace(
-            "{database_schema_string}", database_schema_string)
+        instructions = instructions.replace("{database_schema_string}", database_schema_string)
+
+        if font_file_info:
+            # Replace the placeholder with the font file ID
+            instructions = instructions.replace("{font_file_id}", font_file_info.id)
 
         print("Creating agent...")
         agent = await project_client.agents.create_agent(
@@ -141,8 +154,7 @@ async def post_message(thread_id: str, content: str, agent: Agent, thread: Agent
         stream = await project_client.agents.create_stream(
             thread_id=thread.id,
             agent_id=agent.id,
-            event_handler=StreamEventHandler(
-                functions=functions, project_client=project_client, utilities=utilities),
+            event_handler=StreamEventHandler(functions=functions, project_client=project_client, utilities=utilities),
             max_completion_tokens=MAX_COMPLETION_TOKENS,
             max_prompt_tokens=MAX_PROMPT_TOKENS,
             temperature=TEMPERATURE,
@@ -162,7 +174,7 @@ async def main() -> None:
     """
     agent, thread = await initialize()
     if not agent or not thread:
-        print("Initialization failed. Ensure you have uncommented the instructions file for the lab.")
+        print(f"{tc.BG_BRIGHT_RED}Initialization failed. Ensure you have uncommented the instructions file for the lab.{tc.RESET}")
         print("Exiting...")
         return
 
@@ -182,7 +194,8 @@ async def main() -> None:
     if cmd == "save":
         print("The agent has not been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
         print(
-            f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}")
+            f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}"
+        )
     else:
         await cleanup(agent, thread)
         print("The agent resources have been cleaned up.")

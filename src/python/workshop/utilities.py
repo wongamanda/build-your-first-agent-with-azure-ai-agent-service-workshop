@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from azure.ai.projects.aio import AIProjectClient
@@ -12,10 +11,7 @@ class Utilities:
     @property
     def shared_files_path(self) -> Path:
         """Get the path to the shared files directory."""
-        env = os.getenv("ENVIRONMENT", "local")
-        base_path = Path(__file__).resolve().parent
-        shared_path = (base_path.parent.parent / "shared") if env == "container" else (base_path / "shared")
-        return shared_path.resolve()
+        return Path(__file__).parent.parent.parent.resolve() / "shared"
 
     def load_instructions(self, instructions_file: str) -> str:
         """Load instructions from a file."""
@@ -72,6 +68,13 @@ class Utilities:
                 )
                 await self.get_file(project_client, attachment.file_id, attachment_name)
 
+    async def upload_file(self, project_client: AIProjectClient, file_path: Path, purpose: str = "assistants") -> None:
+        """Upload a file to the project."""
+        self.log_msg_purple(f"Uploading file: {file_path}")
+        file_info = await project_client.agents.upload_file(file_path=file_path, purpose=purpose)
+        self.log_msg_purple(f"File uploaded with ID: {file_info.id}")
+        return file_info
+
     async def create_vector_store(
         self, project_client: AIProjectClient, files: list[str], vector_store_name: str
     ) -> None:
@@ -83,9 +86,7 @@ class Utilities:
         # Upload the files
         for file in files:
             file_path = prefix / file
-            self.log_msg_purple(f"Uploading file: {file_path}")
-
-            file_info = await project_client.agents.upload_file(file_path=file_path, purpose="assistants")
+            file_info = await self.upload_file(project_client, file_path=file_path, purpose="assistants")
             file_ids.append(file_info.id)
 
         self.log_msg_purple("Creating the vector store")
