@@ -66,7 +66,7 @@ async def add_agent_tools() -> None:
     font_file_info = None
 
     # Add the functions tool
-    toolset.add(functions)
+    # toolset.add(functions)
 
     # Add the code interpreter tool
     # code_interpreter = CodeInterpreterTool()
