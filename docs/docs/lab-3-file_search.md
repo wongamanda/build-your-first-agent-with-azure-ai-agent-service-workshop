@@ -23,7 +23,7 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
       2. **Uncomment** the following lines by removing the **"# "** characters
 
         ```python
-        # INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
+        # INSTRUCTIONS_FILE = "instructions/file_search.txt"
 
         # vector_store = await utilities.create_vector_store(
         #     project_client,
@@ -41,11 +41,11 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
 
         After uncommenting, your code should look like this:
 
-        ``` python
-        INSTRUCTIONS_FILE = "instructions/instructions_function_calling.txt"
-        INSTRUCTIONS_FILE = "instructions/instructions_code_interpreter.txt"
-        INSTRUCTIONS_FILE = "instructions/instructions_file_search.txt"
-        # INSTRUCTIONS_FILE = "instructions/instructions_bing_grounding.txt"
+        ```python
+        INSTRUCTIONS_FILE = "instructions/function_calling.txt"
+        INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
+        INSTRUCTIONS_FILE = "instructions/file_search.txt"
+        # INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
 
 
         async def add_agent_tools():

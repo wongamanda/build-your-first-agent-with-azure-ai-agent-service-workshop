@@ -16,7 +16,7 @@ If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsof
 
     For example, in the **sales_data.py** file, the **async_fetch_sales_data_using_sqlite_query** function uses a docstring to specify its signature, inputs, and outputs. The SDK parses this docstring to generate the callable function for the LLM:
 
-    ``` python
+    ```python
 
     async def async_fetch_sales_data_using_sqlite_query(self: "SalesData", sqlite_query: str) -> str:
         """
@@ -30,7 +30,7 @@ If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsof
 
 === "C#"
 
-    With the Azure AI Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent. This approach is more verbose but allows for greater flexibility in defining the function schema.
+    With the Azure AI Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent.
 
     For example, in the **Lab.cs** file, the `InitialiseTools` method defines the function schema for the `FetchSalesDataAsync` function:
 
@@ -124,7 +124,7 @@ In this lab, you will enable the function logic to execute dynamic SQL queries a
 
 ### Review the Instructions
 
- 1. Open the **src/workshop/instructions/instructions_function_calling.txt** file.
+ 1. Open the **src/workshop/instructions/function_calling.txt** file.
 
     !!! tip "In VS Code, press Alt + Z (Windows/Linux) or Option + Z (Mac) to enable word wrap mode, making the instructions easier to read."
 

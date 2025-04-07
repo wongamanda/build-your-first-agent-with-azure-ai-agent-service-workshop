@@ -4,7 +4,7 @@ These instructions are for self-guided learners who are not part of the AI Tour 
 
 ## Introduction
 
-This workshop is designed to teach you about the Azure AI Agents Service and the associated [Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
+This workshop is designed to teach you about the Azure AI Agents Service and the associated SDK. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
 
 ## Prerequisites
 
@@ -36,39 +36,6 @@ The preferred way to run this workshop is using GitHub Codespaces. This option p
         [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop)
 
     !!! Warning "The process of building the Dev Container, which involves downloading and setting it up on your local system, will take several minutes. During this time, you can continue reading the instructions."
-
-## Lab Structure
-
-Each lab in this workshop includes:
-
-- An **Introduction**: Explains the relevant concepts.
-- An **Exercise**: Guides you through the process of implementing the feature.
-
-## Project Structure
-
-=== "Python"
-
-    The workshop’s source code is located in the **src/python/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
-
-    1. The **main.py** file: The entry point for the app, containing its main logic.
-    2. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
-    3. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
-    4. The **shared/files** folder: Contains the files created by the agent app.
-    5. The **shared/instructions** folder: Contains the instructions passed to the LLM.
-
-    ![Lab folder structure](./media/project-structure-self-guided-python.png)
-
-=== "C#"
-
-    The workshop’s source code is located in the **src/csharp/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
-
-    1. The **Lab1.cs, Lab2.cs, Lab3.cs** files: The entry point for each lab, containing its agent logic.
-    2. The **Program.cs** file: The entry point for the app, containing its main logic.
-    3. The **SalesData.cs** file: The function logic to execute dynamic SQL queries against the SQLite database.
-    4. The **shared/files** folder: Contains the files created by the agent app.
-    5. The **shared/instructions** folder: Contains the instructions passed to the LLM.
-
-    ![Lab folder structure](./media/project-structure-self-guided-csharp.png)
 
 ## Authenticate with Azure
 
@@ -121,11 +88,11 @@ We have provided a bash script to automate the deployment of the resources requi
     cd infra && ./deploy.sh
     ```
 
-    ### Workshop Configuration File
+    ### Workshop Configuration
 
     === "Python"
 
-        The deploy script generates the **src/workshop/.env** file, which contains the project connection string, model deployment name, and Bing connection name.
+        The deploy script generates the **src/workshop/python/.env** file, which contains the project connection string, model deployment name, and Bing connection name.
 
         Your **.env** file should look similar to this but with your project connection string.
 
@@ -178,8 +145,7 @@ We have provided a bash script to automate the deployment of the resources requi
         A specific version of GPT-4o may be required depending on your the region where you deployed your project.
         See [Models: Assistants (Preview)](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#assistants-preview){:target="_blank"} for details.
 
-
-    ### Workshop Configuration File
+    ### Workshop Configuration
 
     You'll need the project connection string to connect the agent app to the Azure AI Foundry project. You can find this string in the Azure AI Foundry portal in the Overview page for your Project `agent-workshop` (look in the Project details section).
 
@@ -208,9 +174,66 @@ We have provided a bash script to automate the deployment of the resources requi
             ```bash
             dotnet user-secrets set "ProjectConnectionString" "<your_project_connection_string>" --project "$CSHARP_PROJECT_PATH"
             ```
-            
+
         4. Run the following command to set the [ASP.NET Core safe secret](https://learn.microsoft.com/aspnet/core/security/app-secrets){:target="_blank"} for the model deployment name:
 
             ```bash
             dotnet user-secrets set "Azure:ModelName" "gpt-4o" --project "$CSHARP_PROJECT_PATH"
             ```
+
+## Accessing the Workspace
+
+There are two workspaces in the workshop, one for Python and one for C#. The workspace contains the source code and all the files needed to complete the labs for each language. Choose the workspace that matches the language you want to work with.
+
+=== "Python"
+
+    1. From the **VS Code menu**, select **File** > **Open Workspace from File**.
+    2. Select the **.vscode/python-workspace.code-workspace** file.
+
+    ## Project Structure
+
+    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+
+    ### The workshop folder
+
+    - The **main.py** file: The entry point for the app, containing its main logic.
+    - The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
+    - The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
+
+    ### The shared folder
+
+    - The **files** folder: Contains the files created by the agent app.
+    - The **fonts** folder: Contains the multilingual fonts used by Code Interpreter.
+    - The **instructions** folder: Contains the instructions passed to the LLM.
+
+    ![Lab folder structure](./media/project-structure-self-guided-python.png)
+
+=== "C#"
+
+    1. From the **VS Code menu**, select **File** > **Open Workspace from File**.
+    2. Select the **.vscode/csharp-workspace.code-workspace** file.
+
+    ## Project Structure
+
+    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+
+    ### The workshop folder
+
+    - The **Lab1.cs, Lab2.cs, Lab3.cs** files: The entry point for each lab, containing its agent logic.
+    - The **Program.cs** file: The entry point for the app, containing its main logic.
+    - The **SalesData.cs** file: The function logic to execute dynamic SQL queries against the SQLite database.
+
+    ### The shared folder
+
+    - The **files** folder: Contains the files created by the agent app.
+    - The **fonts** folder: Contains the multilingual fonts used by Code Interpreter.
+    - The **instructions** folder: Contains the instructions passed to the LLM.
+
+    ![Lab folder structure](./media/project-structure-self-guided-csharp.png)
+
+## Lab Structure
+
+Each lab in this workshop includes:
+
+- An **Introduction**: Explains the relevant concepts.
+- An **Exercise**: Guides you through the process of implementing the feature.
