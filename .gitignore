@@ -20,4 +20,4 @@ appsettings.*.json
 .files/
 src/workshop/[.][v]env/
 
-src/*/workshop/*/files/
+/src/shared/files
