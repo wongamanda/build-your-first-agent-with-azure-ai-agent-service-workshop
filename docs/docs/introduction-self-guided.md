@@ -11,6 +11,19 @@ This workshop is designed to teach you about the Azure AI Agents Service and the
 1. Access to an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/){:target="_blank"} before you begin.
 1. You need a GitHub account. If you don’t have one, create it at [GitHub](https://github.com/join){:target="_blank"}.
 
+## Lab Structure
+
+Each lab in this workshop includes:
+
+- An **Introduction**: Explains the relevant concepts.
+- An **Exercise**: Guides you through the process of implementing the feature.
+
+### Programming Language Choice
+
+The workshop is available for both Python and C#. Use the language selector tabs to choose your preferred language wherever applicable. Note, don't switch languages mid-lab.
+
+![The image shows the language selector](./media/language-selector.png)
+
 ## Open the Workshop
 
 The preferred way to run this workshop is using GitHub Codespaces. This option provides a pre-configured environment with all the tools and resources needed to complete the workshop. Alternatively, you can open the workshop locally using a Visual Studio Code Dev Container.
@@ -230,10 +243,3 @@ There are two workspaces in the workshop, one for Python and one for C#. The wor
     - The **instructions** folder: Contains the instructions passed to the LLM.
 
     ![Lab folder structure](./media/project-structure-self-guided-csharp.png)
-
-## Lab Structure
-
-Each lab in this workshop includes:
-
-- An **Introduction**: Explains the relevant concepts.
-- An **Exercise**: Guides you through the process of implementing the feature.

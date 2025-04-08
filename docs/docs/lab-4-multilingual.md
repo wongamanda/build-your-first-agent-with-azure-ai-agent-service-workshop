@@ -23,7 +23,7 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
 
 4. Review the visualization and you'll see that the text is not rendered correctly. This is because the Code Interpreter doesn't have the necessary fonts to render non-Latin characters.
 
-    ![](media/sales_by_region_2022_pie_chart_korean.png){width=75%}
+    ![The image shows korean pie chart without Korean text](media/sales_by_region_2022_pie_chart_korean.png){width=75%}
 
     The pie chart displays 2022 sales by region, but none of the text is rendered correctly because the Code Interpreter doesn’t have the necessary fonts to display non-Latin characters.
 
@@ -143,7 +143,7 @@ Try these questions:
 2. `In Korean`
 3. `Show as a pie chart`
 
-    ![](media/sales_by_region_pie_chart_korean_font.png){width=75%}
+    ![The image shows korean pie chart with Korean text](media/sales_by_region_pie_chart_korean_font.png){width=75%}
 
 ## Debugging the Code Interpreter
 
