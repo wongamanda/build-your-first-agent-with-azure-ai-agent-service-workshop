@@ -25,9 +25,7 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
 
     ![The image shows korean pie chart without Korean text](media/sales_by_region_2022_pie_chart_korean.png){width=75%}
 
-    The pie chart displays 2022 sales by region, but none of the text is rendered correctly because the Code Interpreter doesn’t have the necessary fonts to display non-Latin characters.
-
-1. When you're done, type **exit** to clean up the agent resources and stop the app.
+5. When you're done, type **exit** to clean up the agent resources and stop the app.
 
 ## Add Multilingual Font Support
 
