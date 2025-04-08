@@ -156,9 +156,15 @@ From the terminal, type:
 
 ## Locking down the Code Interpreter
 
-You probably don't want end users being able to see the LLM generated code executed by the Code Interpreter or the files created or uploaded.
+You probably don't want end users being able to see the LLM generated code executed by the Code Interpreter or the files created or uploaded. To mitigate this, you can lock down the Code Interpreter with instructions to not show the code or list files.
 
-```python
+For example, you can add the following instructions to the start of the `2. Visualization and Code Interpretation` section in the `code_interpreter_multilingual.txt` file.
+
+```text
+- Never show the code you generate to the user.
+- Never list the files mounted at /mnt/data.
+```
+
 
 ## Stop the Agent App
 
