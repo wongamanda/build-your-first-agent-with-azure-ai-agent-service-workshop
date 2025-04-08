@@ -1,6 +1,6 @@
-# Build your first agent with Azure AI Agent Service
+# Build your code-first agent with Azure AI Foundry
 
-This repository contains the content and sample code for the 75-minute workshop, "Build your first agent with Azure AI Agent Service". You can try out this workshop using this repository. For information on how to deliver this workshop in a laboratory setting like [Microsoft AI Tour](https://aitour.microsoft.com/), please visit [this repository](https://github.com/microsoft/aitour-build-your-first-agent-with-azure-ai-agent-service).
+This repository contains the content and sample code for the 75-minute workshop, "Build your code-first agent with Azure AI Foundry". You can try out this workshop using this repository. For information on how to deliver this workshop in a laboratory setting like [Microsoft AI Tour](https://aitour.microsoft.com/), please visit [this repository](https://github.com/microsoft/aitour-build-your-first-agent-with-azure-ai-agent-service).
 
 ## Workshop Oveview
 
