@@ -11,4 +11,7 @@ public class Lab4(AIProjectClient client, string modelName) : Lab(client, modelN
             filePath: Path.Combine(SharedPath, "fonts", "fonts.zip"),
             purpose: AgentFilePurpose.Agents
         );
+
+    public override IEnumerable<ToolDefinition> IntialiseLabTools() =>
+        [new CodeInterpreterToolDefinition()];
 }
