@@ -8,8 +8,8 @@ nav:
     - AI Tour Attendees: introduction-ai-tour.md
     - Self-Guided Learners: introduction-self-guided.md
   - Lab 1 Function Calling Power: lab-1-function_calling.md
-  - Lab 2 Intro to the Code Interpreter: lab-2-code_interpreter.md
-  - Lab 3 Grounding with Documents: lab-3-file_search.md
+  - Lab 2 Grounding with Documents: lab-2-file_search.md
+  - Lab 3 Intro to the Code Interpreter: lab-3-code_interpreter.md
   - Lab 4 Multilingual Visualizations: lab-4-multilingual.md
   - Optional Labs:
     - Lab 5 Instrumentation: lab-5-instrumentation.md

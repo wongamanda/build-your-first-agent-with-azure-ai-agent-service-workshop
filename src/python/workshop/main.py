@@ -55,8 +55,8 @@ functions = AsyncFunctionTool(
 )
 
 # INSTRUCTIONS_FILE = "instructions/function_calling.txt"
-# INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
 # INSTRUCTIONS_FILE = "instructions/file_search.txt"
+# INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
 # INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
 # INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
 
@@ -68,10 +68,6 @@ async def add_agent_tools() -> None:
     # Add the functions tool
     # toolset.add(functions)
 
-    # Add the code interpreter tool
-    # code_interpreter = CodeInterpreterTool()
-    # toolset.add(code_interpreter)
-
     # Add the tents data sheet to a new vector data store
     # vector_store = await utilities.create_vector_store(
     #     project_client,
@@ -80,6 +76,10 @@ async def add_agent_tools() -> None:
     # )
     # file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
     # toolset.add(file_search_tool)
+
+    # Add the code interpreter tool
+    # code_interpreter = CodeInterpreterTool()
+    # toolset.add(code_interpreter)
 
     # Add multilingual support to the code interpreter
     # font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
@@ -107,11 +107,13 @@ async def initialize() -> tuple[Agent, AgentThread]:
     try:
         instructions = utilities.load_instructions(INSTRUCTIONS_FILE)
         # Replace the placeholder with the database schema string
-        instructions = instructions.replace("{database_schema_string}", database_schema_string)
+        instructions = instructions.replace(
+            "{database_schema_string}", database_schema_string)
 
         if font_file_info:
             # Replace the placeholder with the font file ID
-            instructions = instructions.replace("{font_file_id}", font_file_info.id)
+            instructions = instructions.replace(
+                "{font_file_id}", font_file_info.id)
 
         print("Creating agent...")
         agent = await project_client.agents.create_agent(
@@ -154,7 +156,8 @@ async def post_message(thread_id: str, content: str, agent: Agent, thread: Agent
         stream = await project_client.agents.create_stream(
             thread_id=thread.id,
             agent_id=agent.id,
-            event_handler=StreamEventHandler(functions=functions, project_client=project_client, utilities=utilities),
+            event_handler=StreamEventHandler(
+                functions=functions, project_client=project_client, utilities=utilities),
             max_completion_tokens=MAX_COMPLETION_TOKENS,
             max_prompt_tokens=MAX_PROMPT_TOKENS,
             temperature=TEMPERATURE,
@@ -165,7 +168,8 @@ async def post_message(thread_id: str, content: str, agent: Agent, thread: Agent
         async with stream as s:
             await s.until_done()
     except Exception as e:
-        utilities.log_msg_purple(f"An error occurred posting the message: {e!s}")
+        utilities.log_msg_purple(
+            f"An error occurred posting the message: {e!s}")
 
 
 async def main() -> None:
@@ -181,7 +185,8 @@ async def main() -> None:
     cmd = None
 
     while True:
-        prompt = input(f"\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
+        prompt = input(
+            f"\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
         if not prompt:
             continue
 
