@@ -92,7 +92,7 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
 
 ## Run the Agent App
 
-1. Press <kbd>F5</kbd> and select whether you want to run the C# or Python app.
+1. Press <kbd>F5</kbd> to run the app.
 1. In the terminal, the app starts, and the agent app will prompt you to **Enter your query**.
 
 ### Start a Conversation with the Agent

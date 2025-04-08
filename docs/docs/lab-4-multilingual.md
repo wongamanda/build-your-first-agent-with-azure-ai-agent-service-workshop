@@ -1,12 +1,13 @@
 ## Introduction
 
-The Code Interpreter includes a limited set of Latin-based fonts for visualizations. In this lab, we’ll add support for Arabic, Chinese, Hindi, Korean, and Japanese. While you can add other languages, these are the ones selected for the workshop.
+In the Grounding with Documents lab, we uploaded a PDF to provide context during conversations. Now, we’ll enhance the Code Interpreter by uploading a ZIP file with fonts for multilingual visualizations—just one example of how [file uploads](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter){:target="_blank"} can extend its functionality.
 
-Just a reminder: the Code Interpreter runs in a sandboxed Python environment, which means it can’t download fonts from the internet. To work around this, we’ll upload a ZIP file containing the necessary fonts. The Code Interpreter will then extract the fonts to a predefined location and use them to render visualizations.
+!!! note
+    The Code Interpreter includes a default set of Latin-based fonts. Since the Code Interpreter runs in a sandboxed Python environment, it can’t download fonts directly from the internet.
 
 ## Lab Exercise
 
-Multilingual support isn’t enabled in the earlier labs because it requires uploading a large ZIP file with the necessary fonts and attaching it to the Code Interpreter—something that takes too much time for each lab. Instead, we enable this support in this lab.
+Earlier labs didn’t include multilingual support because uploading the required font ZIP file and linking it to the Code Interpreter is time-consuming. In this lab, we’ll enable multilingual support by uploading the necessary fonts. You’ll also learn some tips on how to guide the Code Interpreter using extended instructions.
 
 ## Rerun the previous lab
 
@@ -21,9 +22,14 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
       3. `Show as a pie chart`
 
 4. Review the visualization and you'll see that the text is not rendered correctly. This is because the Code Interpreter doesn't have the necessary fonts to render non-Latin characters.
-5. When you're done, type **exit** to clean up the agent resources and stop the app.
 
-## Add Multilingual Support
+    ![](media/sales_by_region_2022_pie_chart_korean.png){width=75%}
+
+    The pie chart displays 2022 sales by region, but none of the text is rendered correctly because the Code Interpreter doesn’t have the necessary fonts to display non-Latin characters.
+
+1. When you're done, type **exit** to clean up the agent resources and stop the app.
+
+## Add Multilingual Font Support
 
 === "Python"
 
@@ -102,31 +108,31 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
 1. Open the **src/workshop/instructions/code_interpreter_multilingual.txt** file. This file replaces the instructions used in the previous lab.
 2. The **Tools** section now includes an extended “Visualization and Code Interpretation” section describing how to create visualizations and handle non-Latin languages.
 
-The following is a summary of the instructions given to the Code Interpreter:
+    The following is a summary of the instructions given to the Code Interpreter:
 
-- **Font Setup for Non-Latin Scripts (e.g., Chinese, Korean, Hindi):**
-  - On first run, verify if the `/mnt/data/fonts` folder exists. If missing, unzip the font file into this folder.
-  - **Available Fonts:**
-    - Arabic: `CairoRegular.ttf`
-    - Chinese: `NotoSansSCRegular.ttf`
-    - Hindi: `NotoSansDevanagariRegular.ttf`
-    - Korean: `NanumGothicRegular.ttf`
-    - Japanese: `NotoSansJPRegular.ttf`
+    - **Font Setup for Non-Latin Scripts (e.g., Chinese, Korean, Hindi):**
+      - On first run, verify if the `/mnt/data/fonts` folder exists. If missing, unzip the font file into this folder.
+      - **Available Fonts:**
+        - Arabic: `CairoRegular.ttf`
+        - Chinese: `NotoSansSCRegular.ttf`
+        - Hindi: `NotoSansDevanagariRegular.ttf`
+        - Korean: `NanumGothicRegular.ttf`
+        - Japanese: `NotoSansJPRegular.ttf`
 
-- **Font Usage:**
-  - Load the font with `matplotlib.font_manager.FontProperties` using the correct path.
-  - Apply the font to:
-    - `plt.title()` using the `fontproperties` parameter.
-    - All labels and text using `textprops={'fontproperties': font_prop}` in functions like `plt.pie()` or `plt.bar_label()`.
-  - Ensure all text (labels, titles, legends) is properly encoded, without boxes or question marks.
+    - **Font Usage:**
+      - Load the font with `matplotlib.font_manager.FontProperties` using the correct path.
+      - Apply the font to:
+        - `plt.title()` using the `fontproperties` parameter.
+        - All labels and text using `textprops={'fontproperties': font_prop}` in functions like `plt.pie()` or `plt.bar_label()`.
+      - Ensure all text (labels, titles, legends) is properly encoded, without boxes or question marks.
 
-- **Visualization Text:**
-  - Always translate the data to the requested or inferred language (e.g., Chinese, French, English).
-  - Use the appropriate font from `/mnt/data/fonts/fonts` for all chart text (e.g., titles, labels).
+    - **Visualization Text:**
+      - Always translate the data to the requested or inferred language (e.g., Chinese, French, English).
+      - Use the appropriate font from `/mnt/data/fonts/fonts` for all chart text (e.g., titles, labels).
 
 ## Run the Agent App
 
-1. Press <kbd>F5</kbd> and select whether you want to run the C# or Python app.
+1. Press <kbd>F5</kbd> to run the app.
 2. In the terminal, the app will start, and the agent app will prompt you to  **Enter your query**.
 
 ### Start a Conversation with the Agent
@@ -136,7 +142,8 @@ Try these questions:
 1. `What were the sales by region for 2022`
 2. `In Korean`
 3. `Show as a pie chart`
-4. `Show in Chinese`
+
+    ![](media/sales_by_region_pie_chart_korean_font.png){width=75%}
 
 ## Stop the Agent App
 

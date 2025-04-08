@@ -162,7 +162,7 @@ In this lab, you will enable the function logic to execute dynamic SQL queries a
 
 ## Run the Agent App
 
-1. Press <kbd>F5</kbd> and select whether you want to run the C# or Python app.
+1. Press <kbd>F5</kbd> to run the app.
 2. In the terminal, you'll see the app start, and the agent app will prompt you to **Enter your query**.
 
     ![Agent App](./media/run-the-agent.png){:width="600"}

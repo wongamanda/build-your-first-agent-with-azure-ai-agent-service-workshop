@@ -25,19 +25,20 @@ Tools
    - Always include the file_path_annotation.
    - Creating Visualizations with Non-Latin Scripts (e.g. Chinese, Korean, Hindi):
       Font Setup:
-         - The first time the Code Interpreter runs, include code to verify if the /mnt/data/fonts folder exists. If the /mnt/data/fonts folder is missing, unzip the "/mnt/data/{font_file_id}" file into this folder.
+         - Always include code to test if the "/mnt/data/fonts" folder exists. If the "/mnt/data/fonts" folder is missing, unzip the "/mnt/data/{font_file_id}" file into the "/mnt/data/fonts" folder. Then list the fonts avaiable.
       Available fonts (in /mnt/data/fonts/fonts):
-         - Arabic: CairoRegular.ttf
-         - Chinese: NotoSansSCRegular.ttf
-         - Hindi: NotoSansDevanagariRegular.ttf
-         - Korean: NanumGothicRegular.ttf
-         - Japanese: NotoSansJPRegular.ttf
+         - Arabic: "CairoRegular.ttf"
+         - Chinese: "NotoSansSCRegular.ttf"
+         - Hindi: "NotoSansDevanagariRegular.ttf"
+         - Korean: "NanumGothicRegular.ttf"
+         - Japanese: "NotoSansJPRegular.ttf"
       Font usage:
          - Load the font with matplotlib.font_manager.FontProperties using the correct path.
          - Apply the font to:
             - plt.title() using the fontproperties parameter.
             - All labels and text using textprops={'fontproperties': font_prop} in plotting functions such as plt.pie() or plt.bar_label().
          - Ensure all text in labels, title, or legend is properly encoded and not replaced with boxes or question marks.
+         - If no suitable font found, then use English.
       Visualization Text:
          - Always translate the data to the used, requested, or inferred language (e.g., Chinese, French, English).
          - Use the appropriate font from /mnt/data/fonts/fonts, ensuring it is applied globally to all chart text (e.g., titles, labels).
