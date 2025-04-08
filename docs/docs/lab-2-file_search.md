@@ -87,7 +87,7 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
       2. **Update** the creation of the lab to use the `Lab3` class.
 
           ```csharp
-          await using Lab lab = new Lab3(projectClient, apiDeploymentName);
+          await using Lab lab = new Lab2(projectClient, apiDeploymentName);
           ```
 
       3. Review the `Lab3.cs` class to see how `InitialiseLabAsync` is used to add the PDF to a vector store and add the File Search tool to the agent, and `InitialiseToolResources` is used to add the File Search tool to the agent. These methods would be good places to add breakpoints to observe the process.
