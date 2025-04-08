@@ -118,6 +118,12 @@ We have provided a bash script to automate the deployment of the resources requi
 
         The automated deployment script stores project variables securely by using the Secret Manager feature for [safe storage of app secrets in development in ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/app-secrets){:target="_blank"}.
 
+        You can view the secrets by running the following command:
+
+        ```bash
+        dotnet user-secrets list
+        ```
+
 === "Manual deployment"
 
     Alternatively, if you prefer not to use the `deploy.sh` script you can deploy the resources manually using the Azure AI Foundry portal as follows:
