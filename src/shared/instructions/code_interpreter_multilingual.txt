@@ -25,7 +25,7 @@ Tools
    - Always include the file_path_annotation.
    - Creating Visualizations with Non-Latin Scripts (e.g. Chinese, Korean, Hindi):
       Font Setup:
-         - Always include code to test if the "/mnt/data/fonts" folder exists. If the "/mnt/data/fonts" folder is missing, unzip the "/mnt/data/{font_file_id}" file into the "/mnt/data/fonts" folder. Then list the fonts avaiable.
+         - Always include code to test if the "/mnt/data/fonts" folder exists. If the "/mnt/data/fonts" folder is missing, unzip the "/mnt/data/{font_file_id}" file into the "/mnt/data/fonts" folder.
       Available fonts (in /mnt/data/fonts/fonts):
          - Arabic: "CairoRegular.ttf"
          - Chinese: "NotoSansSCRegular.ttf"
