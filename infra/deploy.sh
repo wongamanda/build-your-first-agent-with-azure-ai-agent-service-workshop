@@ -34,7 +34,6 @@ if [ -f output.json ]; then
   AI_PROJECT_NAME=$(jq -r '.properties.outputs.aiProjectName.value' output.json)
   RESOURCE_GROUP_NAME=$(jq -r '.properties.outputs.resourceGroupName.value' output.json)
   SUBSCRIPTION_ID=$(jq -r '.properties.outputs.subscriptionId.value' output.json)
-  # BING_GROUNDING_NAME=$(jq -r '.properties.outputs.bingGroundingName.value' output.json)
 
   # Run the Azure CLI command to get discovery_url
   DISCOVERY_URL=$(az ml workspace show -n "$AI_PROJECT_NAME" --resource-group "$RESOURCE_GROUP_NAME" --query discovery_url -o tsv)
@@ -46,7 +45,7 @@ if [ -f output.json ]; then
     # Generate the PROJECT_CONNECTION_STRING
     PROJECT_CONNECTION_STRING="\"$HOST_NAME;$SUBSCRIPTION_ID;$RESOURCE_GROUP_NAME;$AI_PROJECT_NAME\""
 
-    ENV_FILE_PATH="../src/workshop/.env"
+    ENV_FILE_PATH="../src/python/workshop/.env"
 
     # Delete the file if it exists
     [ -f "$ENV_FILE_PATH" ] && rm "$ENV_FILE_PATH"
@@ -57,6 +56,12 @@ if [ -f output.json ]; then
       echo "BING_CONNECTION_NAME=\"groundingwithbingsearch\""
       echo "MODEL_DEPLOYMENT_NAME=\"$MODEL_NAME\""
     } > "$ENV_FILE_PATH"
+
+    CSHARP_PROJECT_PATH="../src/csharp/workshop/AgentWorkshop.Client/AgentWorkshop.Client.csproj"
+
+    # Set the user secrets for the C# project
+    dotnet user-secrets set "ConnectionStrings:AiAgentService" "$PROJECT_CONNECTION_STRING" --project "$CSHARP_PROJECT_PATH"
+    dotnet user-secrets set "Azure:ModelName" "$MODEL_NAME" --project "$CSHARP_PROJECT_PATH"
 
     # Delete the output.json file
     rm -f output.json
