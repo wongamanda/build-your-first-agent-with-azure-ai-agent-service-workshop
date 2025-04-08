@@ -1,4 +1,4 @@
-site_name: Build your first Agent
+site_name: Build your code-first agent with Azure AI Foundry
 
 nav:
   - Introduction: index.md

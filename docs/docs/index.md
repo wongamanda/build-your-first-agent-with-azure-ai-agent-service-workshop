@@ -1,4 +1,4 @@
-# Build your first agent with Azure AI Agent Service
+# Build your code-first agent with Azure AI Foundry
 
 ## A 75-minute interactive workshop
 
