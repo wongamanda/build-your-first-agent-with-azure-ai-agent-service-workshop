@@ -1,6 +1,6 @@
 ## Introduction
 
-In the Grounding with Documents lab, we uploaded a PDF to provide context during conversations. Now, we’ll enhance the Code Interpreter by uploading a ZIP file with fonts for multilingual visualizations—just one example of how [file uploads](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter){:target="_blank"} can extend its functionality.
+In the Grounding with Documents lab, we uploaded a PDF file to provide context for conversations. Now, we’ll enhance the Code Interpreter by uploading a ZIP file with fonts for multilingual visualizations—just one example of how [file uploads](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter){:target="_blank"} can extend its functionality.
 
 !!! note
     The Code Interpreter includes a default set of Latin-based fonts. Since the Code Interpreter runs in a sandboxed Python environment, it can’t download fonts directly from the internet.
@@ -21,7 +21,7 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
       2. `In Korean`
       3. `Show as a pie chart`
 
-4. Review the visualization and you'll see that the text is not rendered correctly. This is because the Code Interpreter doesn't have the necessary fonts to render non-Latin characters.
+4. Review the visualization, and you'll see that the text is not rendered correctly. This is because the Code Interpreter doesn't have the necessary fonts to render non-Latin characters.
 
     ![The image shows korean pie chart without Korean text](media/sales_by_region_2022_pie_chart_korean.png){width=75%}
 
