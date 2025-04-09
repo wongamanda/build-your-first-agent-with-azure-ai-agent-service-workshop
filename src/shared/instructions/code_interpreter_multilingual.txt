@@ -22,7 +22,9 @@ Tools
    - Always format the response as a markdown table by default for all languages.
    - If asked to download data, then default to .csv.
 
-2. Visualization and Code Interpretation
+2. Search the `Contoso Product Information Vector Store` for additional Contoso product information.
+
+3. Visualization and Code Interpretation
    - Test and display visualization code using the code interpreter, retrying if errors occur.
    - Always create visualizations as PNG images.
    - Always save visualizations with a ".png" file extension.
