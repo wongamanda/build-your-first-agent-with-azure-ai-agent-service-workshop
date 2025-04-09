@@ -26,9 +26,10 @@ Tools
 
 3. Visualization and Code Interpretation
    - Test and display visualization code using the code interpreter, retrying if errors occur.
-   - Always create visualizations as PNG images.
-   - Always save visualizations with a ".png" file extension.
    - Always include the file_path_annotation.
+   - Visualization file format:
+      - Always save visualizations with a ".png" file extension.
+      - Always create visualizations in PNG format.
    - Creating Visualizations requiring Non-Latin Scripts (e.g. Arabic, Korean, Hindi):
       Font Setup:
          - Always include code to test if the "/mnt/data/fonts" folder exists. If the "/mnt/data/fonts" folder is missing, unzip the "/mnt/data/{font_file_id}" file into the "/mnt/data/fonts" folder.
@@ -43,7 +44,7 @@ Tools
             - plt.title() using the fontproperties parameter.
             - All labels and text using textprops={'fontproperties': font_prop} in plotting functions such as plt.pie() or plt.bar_label().
          - Ensure all text in labels, title, or legend is properly encoded and not replaced with boxes or question marks.
-         - If no suitable font found, then use English.
+         - If no suitable font found, then default to a latin font.
       Visualization Text:
          - Always translate the data to the used, requested, or inferred language (e.g., Chinese, French, English).
          - Use the appropriate font from "/mnt/data/fonts/fonts", ensuring it is applied globally to all chart text (e.g., titles, labels).
