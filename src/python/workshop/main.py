@@ -32,7 +32,9 @@ API_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME")
 PROJECT_CONNECTION_STRING = os.environ["PROJECT_CONNECTION_STRING"]
 BING_CONNECTION_NAME = os.getenv("BING_CONNECTION_NAME")
 MAX_COMPLETION_TOKENS = 10240
-MAX_PROMPT_TOKENS = 10240
+MAX_PROMPT_TOKENS = 20480
+# The LLM is used to generate the SQL queries.
+# Set the temperature and top_p low to get more deterministic results.
 TEMPERATURE = 0.1
 TOP_P = 0.1
 INSTRUCTIONS_FILE = None
@@ -186,7 +188,7 @@ async def main() -> None:
 
     while True:
         prompt = input(
-            f"\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
+            f"\n\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
         if not prompt:
             continue
 
