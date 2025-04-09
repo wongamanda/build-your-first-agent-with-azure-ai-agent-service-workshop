@@ -14,9 +14,9 @@ In this workshop, you will create the Contoso Sales Agent: a conversational agen
 
       - **Control Plane**: The app and its architectural components are managed and monitored using the [Azure AI Foundry](https://ai.azure.com){:target="_blank"} portal, accessible via the browser.
 
-2. **Azure AI Projects Software Development Kit (SDK)**
+2. **Azure AI Foundry (SDK)**
 
-    The workshop is offered in both [Python](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext){:target="_blank"} and [C#](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview&viewFallbackFrom=azure-python-preview){:target="_blank"} using the Azure AI Projects SDK. The SDK supports key features of the Azure AI Agents service, including [Code Interpreter](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter?view=azure-python-preview&tabs=python&pivots=overview){:target="_blank"} and [Function Calling](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/function-calling?view=azure-python-preview&tabs=python&pivots=overview){:target="_blank"}.
+    The workshop is offered in both [Python](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext){:target="_blank"} and [C#](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview&viewFallbackFrom=azure-python-preview){:target="_blank"} using the Azure AI Foundry SDK. The SDK supports key features of the Azure AI Agents service, including [Code Interpreter](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/code-interpreter?view=azure-python-preview&tabs=python&pivots=overview){:target="_blank"} and [Function Calling](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/function-calling?view=azure-python-preview&tabs=python&pivots=overview){:target="_blank"}.
 
 3. **Database**
 
