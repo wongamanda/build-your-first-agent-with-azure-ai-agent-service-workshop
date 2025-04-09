@@ -98,7 +98,7 @@ Try these questions:
 
 1. **Show sales by region as a pie chart**
 
-    Once the task is complete, the pie chart image will be saved in the **files** subfolder. Note that this subfolder is created the first time this task is run, and is never checked into source control.
+    Once the task is complete, the pie chart image will be saved in the **shared/files** subfolder. Note that this subfolder is created the first time this task is run, and is never checked into source control.
 
     Open the folder in VS Code and click on the image file to view it. (Tip: in Codespaces, you can Control-Click the link that the agent outputs in its response to view the file.)
 
@@ -117,14 +117,14 @@ Try these questions:
 
 2. **Download the sales by region data**
 
-    Once the task is complete, check the **files** folder to see the downloaded file.
+    Once the task is complete, check the **shared/files** folder to see the downloaded file.
 
     !!! info
         By default, the instructions specify that data downloads in CSV format. You can request other formats, such as JSON or Excel, by including the desired format in your query (e.g., ‘Download as JSON’).
 
 3. **Download as JSON**
 
-    Once the task is complete, check the **files** folder to see the downloaded file.
+    Once the task is complete, check the **shared/files** folder to see the downloaded file.
 
     !!! info
         The agent inferred from the conversation which file you wanted to create, even though you
