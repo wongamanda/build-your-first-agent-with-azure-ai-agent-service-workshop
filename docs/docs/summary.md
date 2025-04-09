@@ -12,7 +12,7 @@ This workshop demonstrated how to leverage the Azure AI Agent Service to create 
 
 ## 3. Data Visualization
 
-- With the Code Interpreter, the agent can generate visualizations such as pie charts and tables based on user queries, making data more accessible and actionable.
+- With the Code Interpreter, the agent can generate visualizations such as pie charts and tables based on user queries, making data more accessible and actionable. You can attach additional fonts to the Code Interpreter to create visualizations that support multiple languages.
 
 ## 4. File Generation
 
