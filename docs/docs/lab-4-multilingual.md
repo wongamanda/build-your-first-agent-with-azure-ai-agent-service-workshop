@@ -103,7 +103,7 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
 
 ## Review the Instructions
 
-1. Open the **src/workshop/instructions/code_interpreter_multilingual.txt** file. This file replaces the instructions used in the previous lab.
+1. Open the **shared/instructions/code_interpreter_multilingual.txt** file. This file replaces the instructions used in the previous lab.
 2. The **Tools** section now includes an extended “Visualization and Code Interpretation” section describing how to create visualizations and handle non-Latin languages.
 
     The following is a summary of the instructions given to the Code Interpreter:

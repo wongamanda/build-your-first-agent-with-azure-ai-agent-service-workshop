@@ -117,7 +117,7 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
 
 ### Review the Instructions
 
-1. Open the **src/workshop/instructions/bing_grounding.txt** file. This file replaces the instructions used in the previous lab.
+1. Open the **shared/instructions/bing_grounding.txt** file. This file replaces the instructions used in the previous lab.
 2. The **Tools** section now includes a “Competitive Insights for Products and Categories” capability, enabling the agent to:
 
     - Use Bing Search to gather competitor product names, company names, and prices.

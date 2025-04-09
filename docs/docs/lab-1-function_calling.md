@@ -132,7 +132,7 @@ In this lab, you will enable the function logic to execute dynamic SQL queries a
 
 ### Review the Instructions
 
- 1. Open the **src/workshop/instructions/function_calling.txt** file.
+ 1. Open the **shared/instructions/function_calling.txt** file.
 
     !!! tip "In VS Code, press Alt + Z (Windows/Linux) or Option + Z (Mac) to enable word wrap mode, making the instructions easier to read."
 
