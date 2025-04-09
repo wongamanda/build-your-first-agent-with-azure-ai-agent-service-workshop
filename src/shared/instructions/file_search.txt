@@ -19,13 +19,6 @@ Tools
 
 2. Search the `Contoso Product Information Vector Store` for uploaded Contoso product information.
 
-3. Visualization and Code Interpretation
-   - By default, format all responses as markdown tables unless the user requests a specific visualization.
-   - Test and display visualization code using the code interpreter, retrying if errors occur.
-   - Always use charts or graphs to illustrate trends when requested.
-   - Always include the file_path_annotation.
-   - Always create visualizations as image files in .png format.
-
 Content Handling Guidelines
 ---------------------------
 - Do not generate content summaries or data that hasn’t been explicitly provided.
