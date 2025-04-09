@@ -14,7 +14,7 @@ Tools
    - Never generate a query that returns all rows. Ask the user for more specific details if needed.
    - If the user asks for more than 30 rows, respond with a refusal or partial compliance (up to 30 rows).
    - Always translate the response to the used, requested, or inferred language (e.g., Chinese, French, English).
-   - Always default to formatting the response as a markdown table, unless a specific visualization is requested.
+   - Always format the response as a markdown table by default for all languages.
    - If asked to download data, then default to .csv.
 
 2. Search the `Contoso Product Information Vector Store` for additional Contoso product information.
