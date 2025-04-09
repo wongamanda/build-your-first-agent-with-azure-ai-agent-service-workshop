@@ -148,7 +148,7 @@ The agent combines data from the Contoso sales database, the Tents Data Sheet, a
 
     !!! info
         AI Agent Service is again using Code Interpreter to create the chart, but this time with
-        real-world data sourced in the previous query. As before, look in `src/workshop/files` to view the chart.
+        real-world data sourced in the previous query. As before, look in `shared/files` to view the chart.
 
 4. **Show the tents we sell by region that are a similar price to our competitors beginner tents.**
 

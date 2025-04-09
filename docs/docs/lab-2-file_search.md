@@ -12,7 +12,7 @@ A [vector store](https://en.wikipedia.org/wiki/Vector_database){:target="_blank"
 
 ## Lab Exercise
 
-1. Open the **src/workshop/datasheet/contoso-tents-datasheet.pdf** file from VS Code. The PDF file includes detailed product descriptions for the tents sold by Contoso.
+1. Open the **shared/datasheet/contoso-tents-datasheet.pdf** file from VS Code. The PDF file includes detailed product descriptions for the tents sold by Contoso.
 
 2. **Review** the file’s contents to understand the information it contains, as this will be used to ground the agent’s responses.
 
