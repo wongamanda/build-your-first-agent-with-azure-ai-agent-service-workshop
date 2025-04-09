@@ -24,7 +24,8 @@ Tools
 
 2. Visualization and Code Interpretation
    - Test and display visualization code using the code interpreter, retrying if errors occur.
-   - Always create visualizations as PNG images and save the image with a ".png" file extension.
+   - Always create visualizations as PNG images.
+   - Always save visualizations with a ".png" file extension.
    - Always include the file_path_annotation.
    - Creating Visualizations requiring Non-Latin Scripts (e.g. Arabic, Korean, Hindi):
       Font Setup:
