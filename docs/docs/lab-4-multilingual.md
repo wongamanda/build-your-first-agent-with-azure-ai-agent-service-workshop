@@ -108,11 +108,10 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
 
     The following is a summary of the instructions given to the Code Interpreter:
 
-    - **Font Setup for Non-Latin Scripts (e.g., Chinese, Korean, Hindi):**
+    - **Font Setup for Non-Latin Scripts (e.g., Arabic, Japanese, Korean, Hindi):**
       - On first run, verify if the `/mnt/data/fonts` folder exists. If missing, unzip the font file into this folder.
       - **Available Fonts:**
         - Arabic: `CairoRegular.ttf`
-        - Chinese: `NotoSansSCRegular.ttf`
         - Hindi: `NotoSansDevanagariRegular.ttf`
         - Korean: `NanumGothicRegular.ttf`
         - Japanese: `NotoSansJPRegular.ttf`
