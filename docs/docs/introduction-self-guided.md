@@ -20,7 +20,7 @@ Each lab in this workshop includes:
 
 ### Programming Language Choice
 
-The workshop is available for both Python and C#. Use the language selector tabs to choose your preferred language wherever applicable. Note, don't switch languages mid-lab.
+The workshop is available in both Python and C#. Use the language selector tabs to choose your preferred language wherever applicable. Note, don't switch languages mid-lab.
 
 ![The image shows the language selector](./media/language-selector.png)
 
