@@ -66,24 +66,30 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
 
 Follow these steps to open the workshop in Visual Studio Code:
 
-1. From the terminal window, execute the following commands to clone the workshop repository, navigate to the relevant folder, set up a virtual environment, activate it, and install the required packages:
+=== "Python"
 
-    ```powershell
-    git clone https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop.git `
-    ; cd build-your-first-agent-with-azure-ai-agent-service-workshop/src/workshop `
-    ; python -m venv .venv `
-    ; .\.venv\Scripts\activate `
-    ; pip install -r requirements.txt `
-    ; code --install-extension tomoki1207.pdf
-    ```
+      1. From the terminal window, execute the following commands to clone the workshop repository, navigate to the relevant folder, set up a virtual environment, activate it, and install the required packages:
 
-2. Open in VS Code. From the terminal window, run the following command:
+          ```powershell
+          git clone https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop.git `
+          ; cd build-your-first-agent-with-azure-ai-agent-service-workshop/src/workshop `
+          ; python -m venv src/python/workshop/.venv `
+          ; src\python\workshop\.venv\Scripts\activate `
+          ; pip install -r requirements.txt `
+          ; code --install-extension tomoki1207.pdf
+          ```
 
-    ```powershell
-    code .
-    ```
+      2. Open in VS Code. From the terminal window, run the following command:
 
-    !!! warning "When the project opens in VS Code, two notifications appear in the bottom right corner. Click ✖ to close both notifications."
+          ```powershell
+          code .\.vscode\python-workspace.code-workspace
+          ```
+
+        !!! warning "When the project opens in VS Code, two notifications appear in the bottom right corner. Click ✖ to close both notifications."
+
+=== "C#"
+
+    tbc.
 
 ## Project Connection String
 
@@ -108,28 +114,34 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
 
 ## Configure the Workshop
 
-1. Switch back to workshop you opened in VS Code.
-2. **Rename** the `.env.sample` file to `.env`.
+=== "Python"
 
-    - Select the **.env.sample** file in the VS Code **Explorer** panel.
-    - Right-click the file and select **Rename**, or press <kbd>F2</kbd>.
-    - Change the file name to `.env` and press <kbd>Enter</kbd>.
+    1. Switch back to the workshop you opened in VS Code.
+    2. **Rename** the `.env.sample` file to `.env`.
 
-3. Paste the **Project connection string** you copied from Azure AI Foundry into the `.env` file.
+        - Select the **.env.sample** file in the VS Code **Explorer** panel.
+        - Right-click the file and select **Rename**, or press <kbd>F2</kbd>.
+        - Change the file name to `.env` and press <kbd>Enter</kbd>.
 
-    ```python
-    PROJECT_CONNECTION_STRING="<your_project_connection_string>"
-    ```
+    3. Paste the **Project connection string** you copied from Azure AI Foundry into the `.env` file.
 
-    Your `.env` file should look similar to this but with your project connection string.
+        ```python
+        PROJECT_CONNECTION_STRING="<your_project_connection_string>"
+        ```
 
-    ```python
-    MODEL_DEPLOYMENT_NAME="gpt-4o"
-    BING_CONNECTION_NAME="Grounding-with-Bing-Search"
-    PROJECT_CONNECTION_STRING="<your_project_connection_string>"
-    ```
+        Your `.env` file should look similar to this but with your project connection string.
 
-4. Save the `.env` file.
+        ```python
+        MODEL_DEPLOYMENT_NAME="gpt-4o"
+        BING_CONNECTION_NAME="Grounding-with-Bing-Search"
+        PROJECT_CONNECTION_STRING="<your_project_connection_string>"
+        ```
+
+    4. Save the `.env` file.
+
+=== "C#"
+
+    tbc.
 
 ## Pro Tips
 
