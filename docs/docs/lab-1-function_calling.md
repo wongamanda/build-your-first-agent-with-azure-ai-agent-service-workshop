@@ -203,7 +203,7 @@ Start asking questions about Contoso sales data. For example:
     !!! warning
         The agent may refuse to respond to this query with a message like "I'm unable to provide individual transaction details". This is because the instructions direct it to "provide aggregated results by default". If this happens, try again, or reword your query.
 
-        Large Language models have random behavior, and may give different responses even if you repeat the same query.
+        Large Language models have non-deterministic behavior, and may give different responses even if you repeat the same query.
 
 3. **What are the sales by region?**
 
