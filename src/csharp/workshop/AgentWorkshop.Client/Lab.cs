@@ -24,6 +24,8 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
     const float temperature = 0.1f;
     const float topP = 0.1f;
 
+    private bool disposeAgent = true;
+
     public virtual IEnumerable<ToolDefinition> IntialiseLabTools() => [];
 
     private IEnumerable<ToolDefinition> InitialiseTools() => [
@@ -75,7 +77,7 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
         while (true)
         {
             await Console.Out.WriteLineAsync();
-            Utils.LogGreen("Enter your query (type 'exit' to quit):");
+            Utils.LogGreen("Enter your query (type 'exit' or 'save' to quit):");
             string? prompt = await Console.In.ReadLineAsync();
 
             if (prompt is null)
@@ -86,6 +88,13 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
             if (prompt.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
             {
                 break;
+            }
+
+            if (prompt.Equals("save", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Utils.LogGreen($"Saving thread with ID: {thread.Id} for agent ID: {agent.Id}. You can view this in AI Foundry at https://ai.azure.com.");
+                disposeAgent = false;
+                continue;
             }
 
             _ = await agentClient.CreateMessageAsync(
@@ -112,7 +121,7 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
 
     protected virtual ToolResources? InitialiseToolResources() => null;
 
-    private async Task<string> CreateInstructionsAsync()
+    protected virtual async Task<string> CreateInstructionsAsync()
     {
         string instructionsFile = Path.Combine(SharedPath, "instructions", InstructionsFileName);
 
@@ -239,6 +248,13 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
 
     public async ValueTask DisposeAsync()
     {
+        SalesData.Dispose();
+
+        if (!disposeAgent)
+        {
+            return;
+        }
+
         if (agentClient is not null)
         {
             if (thread is not null)
@@ -251,8 +267,6 @@ public abstract class Lab(AIProjectClient client, string modelName) : IAsyncDisp
                 await agentClient.DeleteAgentAsync(agent.Id);
             }
         }
-
-        SalesData.Dispose();
     }
 
     record FetchSalesDataArgs(string Query);
