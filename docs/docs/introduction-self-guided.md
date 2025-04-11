@@ -25,9 +25,9 @@ The workshop is available in both Python and C#. Use the language selector tabs 
 **Select the tab for your preferred language:**
 
 === "Python"
-    Select the **Python** tab to view the Python version of the lab.
+    The default language for the workshop is set to **Python**.
 === "C#"
-    Select the **C#** tab to view the C# version of the lab.
+    The default language for the workshop is set to **C#**.
 
 ## Open the Workshop
 

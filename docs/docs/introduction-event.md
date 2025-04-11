@@ -19,12 +19,12 @@ Each lab in this workshop includes:
 
 The workshop is available in both Python and C#. Please make sure to select the language that fits the lab room you are in, by using the language selector tabs. Note, don't switch languages mid-lab.
 
-**Select the appropriate tab for your lab room:**
+**Select the language tab that matches your lab room:**
 
 === "Python"
-    Select the **Python** tab to view the Python version of the lab.
+    The default language for the workshop is set to **Python**.
 === "C#"
-    Select the **C#** tab to view the C# version of the lab.
+    The default language for the workshop is set to **C#**.
 
 ## Authenticate with Azure
 
