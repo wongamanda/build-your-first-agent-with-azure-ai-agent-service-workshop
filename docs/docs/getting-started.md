@@ -1,3 +1,5 @@
+# Getting Started
+
 Select your workshop experience:
 
 === "@Build"
@@ -7,4 +9,3 @@ Select your workshop experience:
 === "Self-Guided Learners"
 
     {% include-markdown "includes/introduction-self-guided.md" %}
-    

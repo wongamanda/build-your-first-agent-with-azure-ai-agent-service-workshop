@@ -1,4 +1,4 @@
-# Microsoft Build Attendees
+## Microsoft Build Attendees
 
 The instructions on this page assume you are attending [Microsoft Build 2025](https://build.microsoft.com/){:target="_blank"} and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop.
 

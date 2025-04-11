@@ -1,4 +1,4 @@
-# Self-Guided Learners
+## Self-Guided Learners
 
 These instructions are for self-guided learners who do not have access to a pre-configured lab environment. Follow these steps to set up your environment and begin the workshop.
 
