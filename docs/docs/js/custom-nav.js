@@ -4,7 +4,7 @@ function updateNextNavLink() {
 
     console.log('Current Page:', currentPage); // Check current page
 
-    if (currentPage === 'introduction-ai-tour') {
+    if (currentPage === 'introduction-event') {
         const nextLink = document.querySelector('a.md-footer__link--next'); // More specific selector
         if (nextLink) {
             const basePath = window.location.pathname.split('/').slice(0, -2).join('/');
