@@ -2,7 +2,7 @@
 
 The instructions on this page assume you are attending [Microsoft Build 2025](https://build.microsoft.com/){:target="_blank"} and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop.
 
-If you are **not** a Microsoft Build 2025 attendee, you can run this workshop using your own Azure subscription. In that case, refer to the [Self-guided Learners Introduction](./introduction-self-guided.md) to set up your environment and begin the workshop.
+If you are **not** a Microsoft Build 2025 attendee, you can run this workshop using your own Azure subscription. In that case, refer to the [Self-guided Learners Introduction](../#__tabbed_1_2) to set up your environment and begin the workshop.
 
 ## Introduction
 
