@@ -8,14 +8,7 @@ If you are **not** a Microsoft Build 2025 attendee, you can run this workshop us
 
 This workshop is designed to teach you about the Azure AI Agents Service and the associated [Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
 
-## Lab Structure
-
-Each lab in this workshop includes:
-
-- An **Introduction**: Explains the relevant concepts.
-- An **Exercise**: Guides you through the process of implementing the feature.
-
-## Programming Language Choice
+## Select Workshop Programming Language
 
 The workshop is available in both Python and C#. Please make sure to select the language that fits the lab room you are in, by using the language selector tabs. Note, don't switch languages mid-lab.
 
