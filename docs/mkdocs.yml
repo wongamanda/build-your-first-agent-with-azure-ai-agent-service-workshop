@@ -4,9 +4,10 @@ nav:
   - Introduction: index.md
   - Solution Architecture: architecture.md
   - Security Considerations: security.md
-  - Workshop Setup:
-    - BUILD Attendees: introduction-event.md
-    - Self-Guided Learners: introduction-self-guided.md
+  - Getting Started: getting-started.md
+  # - Workshop Setup:
+  #   - BUILD Attendees: introduction-event.md
+  #   - Self-Guided Learners: introduction-self-guided.md
   - Lab 1 Function Calling Power: lab-1-function_calling.md
   - Lab 2 Grounding with Documents: lab-2-file_search.md
   - Lab 3 Intro to the Code Interpreter: lab-3-code_interpreter.md
@@ -24,6 +25,7 @@ nav:
 
 plugins:
   - glightbox
+  - include-markdown
 
 theme:
   name: material
