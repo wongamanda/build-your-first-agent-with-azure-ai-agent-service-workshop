@@ -19,21 +19,10 @@ Each lab in this workshop includes:
 
 The workshop is available in both Python and C#. Please make sure to select the language that fits the lab room you are in, by using the language selector tabs. Note, don't switch languages mid-lab.
 
-![The image shows the language selector](./media/language-selector.png)
-
-## Project Structure
-
 === "Python"
-
-The workshop’s source code is located in the **src/python/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
-
-1. The **main.py** file: The entry point for the app, containing its main logic.
-2. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
-3. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
-4. The **shared/files** folder: Contains the files created by the agent app.
-5. The **shared/instructions** folder: Contains the instructions passed to the LLM.
-
-![Lab folder structure](./media/project-structure-self-guided-python.png)
+    Select the **Python** tab to view the Python version of the lab.
+=== "C#"
+    Select the **C#** tab to view the C# version of the lab.
 
 ## Authenticate with Azure
 
@@ -120,9 +109,9 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
 
     ![Copy connection string](./media/project-connection-string.png){:width="500"}
 
-## Configure the Workshop
-
 === "Python"
+
+    ## Configure the Workshop
 
     1. Switch back to the workshop you opened in VS Code.
     2. **Rename** the `.env.sample` file to `.env`.
@@ -147,9 +136,37 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
 
     4. Save the `.env` file.
 
+    ## Project Structure
+
+    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+
+    5. The **main.py** file: The entry point for the app, containing its main logic.
+    6. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
+    7. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
+    8. The **shared/files** folder: Contains the files created by the agent app.
+    9. The **shared/instructions** folder: Contains the instructions passed to the LLM.
+
+    ![Lab folder structure](./media/project-structure-self-guided-python.png)
+
 === "C#"
 
-    tbc.
+    ## Project Structure
+
+    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+
+    ### The workshop folder
+
+    - The **Lab1.cs, Lab2.cs, Lab3.cs** files: The entry point for each lab, containing its agent logic.
+    - The **Program.cs** file: The entry point for the app, containing its main logic.
+    - The **SalesData.cs** file: The function logic to execute dynamic SQL queries against the SQLite database.
+
+    ### The shared folder
+
+    - The **files** folder: Contains the files created by the agent app.
+    - The **fonts** folder: Contains the multilingual fonts used by Code Interpreter.
+    - The **instructions** folder: Contains the instructions passed to the LLM.
+
+    ![Lab folder structure](./media/project-structure-self-guided-csharp.png)
 
 ## Pro Tips
 

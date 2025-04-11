@@ -22,7 +22,10 @@ Each lab in this workshop includes:
 
 The workshop is available in both Python and C#. Use the language selector tabs to choose your preferred language wherever applicable. Note, don't switch languages mid-lab.
 
-![The image shows the language selector](./media/language-selector.png)
+=== "Python"
+    Select the **Python** tab to view the Python version of the lab.
+=== "C#"
+    Select the **C#** tab to view the C# version of the lab.
 
 ## Open the Workshop
 
