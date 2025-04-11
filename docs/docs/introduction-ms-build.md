@@ -1,8 +1,8 @@
-# Setup: AI Tour Attendees
+# Setup: Microsoft Build Attendees
 
-The instructions on this page assume you are participating in the [Microsoft AI Tour](https://aitour.microsoft.com){:target="_blank"} and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop.
+The instructions on this page assume you are attending [Microsoft Build 2025](https://build.microsoft.com/){:target="_blank"} and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop.
 
-If you are **not** part of the AI Tour, you can run this workshop using your own Azure subscription. In that case, refer to the [Self-guided Learners Introduction](./introduction-self-guided.md) to set up your environment and begin the workshop.
+If you are **not** a Microsoft Build 2025 attendee, you can run this workshop using your own Azure subscription. In that case, refer to the [Self-guided Learners Introduction](./introduction-self-guided.md) to set up your environment and begin the workshop.
 
 ## Introduction
 
@@ -15,7 +15,15 @@ Each lab in this workshop includes:
 - An **Introduction**: Explains the relevant concepts.
 - An **Exercise**: Guides you through the process of implementing the feature.
 
+### Programming Language Choice
+
+The workshop is available in both Python and C#. Please make sure to select the language that fits the lab room you are in, by using the language selector tabs. Note, don't switch languages mid-lab.
+
+![The image shows the language selector](./media/language-selector.png)
+
 ## Project Structure
+
+=== "Python"
 
 The workshop’s source code is located in the **src/python/workshop** folder. Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
 
@@ -72,7 +80,7 @@ Follow these steps to open the workshop in Visual Studio Code:
 
           ```powershell
           git clone https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop.git `
-          ; cd build-your-first-agent-with-azure-ai-agent-service-workshop/src/workshop `
+          ; cd build-your-first-agent-with-azure-ai-agent-service-workshop/src/python/workshop `
           ; python -m venv src/python/workshop/.venv `
           ; src\python\workshop\.venv\Scripts\activate `
           ; pip install -r requirements.txt `
@@ -82,7 +90,7 @@ Follow these steps to open the workshop in Visual Studio Code:
       2. Open in VS Code. From the terminal window, run the following command:
 
           ```powershell
-          code .\.vscode\python-workspace.code-workspace
+          code ..\..\..\.vscode\python-workspace.code-workspace
           ```
 
         !!! warning "When the project opens in VS Code, two notifications appear in the bottom right corner. Click ✖ to close both notifications."
