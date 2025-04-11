@@ -18,9 +18,11 @@ Each lab in this workshop includes:
 - An **Introduction**: Explains the relevant concepts.
 - An **Exercise**: Guides you through the process of implementing the feature.
 
-### Programming Language Choice
+## Programming Language Choice
 
 The workshop is available in both Python and C#. Use the language selector tabs to choose your preferred language wherever applicable. Note, don't switch languages mid-lab.
+
+**Select the tab for your preferred language:**
 
 === "Python"
     Select the **Python** tab to view the Python version of the lab.
