@@ -2,8 +2,6 @@
 
 The instructions on this page assume you are attending [Microsoft Build 2025](https://build.microsoft.com/){:target="_blank"} and have access to a pre-configured lab environment. This environment provides an Azure subscription with all the tools and resources needed to complete the workshop.
 
-If you are **not** a Microsoft Build 2025 attendee, you can run this workshop using your own Azure subscription. In that case, refer to the [Self-guided Learners Introduction](../#__tabbed_1_2) to set up your environment and begin the workshop.
-
 ## Introduction
 
 This workshop is designed to teach you about the Azure AI Agents Service and the associated [Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
