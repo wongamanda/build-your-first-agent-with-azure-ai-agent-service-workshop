@@ -62,17 +62,17 @@ Follow these steps to open the workshop in Visual Studio Code:
 
           ```powershell
           git clone https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop.git `
-          ; cd build-your-first-agent-with-azure-ai-agent-service-workshop/src/python/workshop `
+          ; cd build-your-first-agent-with-azure-ai-agent-service-workshop `
           ; python -m venv src/python/workshop/.venv `
           ; src\python\workshop\.venv\Scripts\activate `
-          ; pip install -r requirements.txt `
+          ; pip install -r src/python/workshop/requirements.txt `
           ; code --install-extension tomoki1207.pdf
           ```
 
       2. Open in VS Code. From the terminal window, run the following command:
 
           ```powershell
-          code ..\..\..\.vscode\python-workspace.code-workspace
+          code .vscode\python-workspace.code-workspace
           ```
 
         !!! warning "When the project opens in VS Code, two notifications appear in the bottom right corner. Click ✖ to close both notifications."
