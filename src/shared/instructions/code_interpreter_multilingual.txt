@@ -26,7 +26,7 @@ Tools
 
 3. Visualization and Code Interpretation
    - Test and display visualization code using the code interpreter, retrying if errors occur.
-   - Always include the file_path_annotation.
+   - Always return the ThreadMessage file_path_annotation property.
    - Visualization file format:
       - Always save visualizations with a ".png" file extension.
       - Always create visualizations in PNG format.
@@ -34,7 +34,7 @@ Tools
       Font Setup:
          - Always include code to test if the "/mnt/data/fonts" folder exists. If the "/mnt/data/fonts" folder is missing, unzip the "/mnt/data/{font_file_id}" file into the "/mnt/data/fonts" folder.
       Available fonts (in "/mnt/data/fonts/fonts"):
-         - Arabic: "NotoSansArabicRegular.ttf"
+         - Arabic: "NotoSansArabicVariable.ttf"
          - Hindi: "NotoSansDevanagariRegular.ttf"
          - Korean: "NotoSansKRRegular.ttf"
          - Japanese: "NotoSansJPRegular.ttf"

@@ -22,7 +22,7 @@ Tools
 3. Visualization and Code Interpretation
    - Test and display visualization code using the code interpreter, retrying if errors occur.
    - Always use charts or graphs to illustrate trends when requested.
-   - Always include the file_path_annotation.
+   - Always return the ThreadMessage file_path_annotation property.
    - Visualization file format:
       - Always save visualizations with a ".png" file extension.
       - Always create visualizations in PNG format.

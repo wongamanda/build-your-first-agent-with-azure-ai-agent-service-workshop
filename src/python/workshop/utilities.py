@@ -58,7 +58,7 @@ class Utilities:
         if message.image_contents:
             for index, image in enumerate(message.image_contents, start=0):
                 attachment_name = (
-                    "unknown" if not message.file_path_annotations else message.file_path_annotations[index].text
+                    "unknown" if not message.file_path_annotations else message.file_path_annotations[index].text + ".png"
                 )
                 await self.get_file(project_client, image.image_file.file_id, attachment_name)
         elif message.attachments:
