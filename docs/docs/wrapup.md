@@ -1,5 +1,3 @@
-# Wrapping Up
-
 That's all for the lab portion of this workshop. Read on for key takeaways and additional resources, but first let's tidy up.
 
 ## Star the GitHub Repository

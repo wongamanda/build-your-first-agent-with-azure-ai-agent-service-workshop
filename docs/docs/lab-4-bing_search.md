@@ -79,8 +79,9 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
     INSTRUCTIONS_FILE = "instructions/function_calling.txt"
     INSTRUCTIONS_FILE = "instructions/file_search.txt"
     INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
-    INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
     INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
+    # INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
+    
 
 
     async def add_agent_tools() -> None:
@@ -104,8 +105,8 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
         toolset.add(file_search_tool)
 
         # Add multilingual support to the code interpreter
-        font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
-        code_interpreter.add_file(file_id=font_file_info.id)
+        # font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
+        # code_interpreter.add_file(file_id=font_file_info.id)
 
         # Add the Bing grounding tool
         bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
