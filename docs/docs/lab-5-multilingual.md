@@ -56,8 +56,8 @@ Once the task is complete, the pie chart image will be saved in the **shared/fil
         INSTRUCTIONS_FILE = "instructions/function_calling.txt"
         INSTRUCTIONS_FILE = "instructions/file_search.txt"
         INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
+        INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
         INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
-        # INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
 
 
         async def add_agent_tools() -> None:
@@ -85,9 +85,9 @@ Once the task is complete, the pie chart image will be saved in the **shared/fil
             code_interpreter.add_file(file_id=font_file_info.id)
 
             # Add the Bing grounding tool
-            # bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
-            # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
-            # toolset.add(bing_grounding)
+            bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
+            bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
+            toolset.add(bing_grounding)
 
             return font_file_info
         ```
@@ -99,7 +99,7 @@ Once the task is complete, the pie chart image will be saved in the **shared/fil
     2. **Update** the creation of the lab to use the `Lab2` class.
 
         ``` csharp
-        await using Lab lab = new Lab4(projectClient, apiDeploymentName);
+        await using Lab lab = new Lab5(projectClient, apiDeploymentName);
         ```
 
     3. Review the `Lab4.cs` class to see how the Code Interpreter is added to the Tools list.
