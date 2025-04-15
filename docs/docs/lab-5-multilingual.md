@@ -96,7 +96,7 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
     2. **Update** the creation of the lab to use the `Lab2` class.
 
         ``` csharp
-        await using Lab lab = new Lab4(projectClient, apiDeploymentName);
+        await using Lab lab = new Lab5(projectClient, apiDeploymentName);
         ```
 
     3. Review the `Lab4.cs` class to see how the Code Interpreter is added to the Tools list.
