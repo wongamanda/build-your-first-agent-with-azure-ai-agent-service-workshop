@@ -13,10 +13,7 @@ nav:
   - Lab 3 Intro to the Code Interpreter: lab-3-code_interpreter.md
   - Lab 4 Grounding with Bing Search: lab-4-bing_search.md
   - Lab 5 Multilingual Visualizations: lab-5-multilingual.md
-  # - Lab 6 Instrumentation: lab-6-instrumentation.md
-
-
-  - Lab 6 Finishing Up: wrapup.md
+  - Lab 6 Finishing Up: finishing-up.md
   - Summary: summary.md
   - Resources: resources.md
   # - Deployment: deployment.md
