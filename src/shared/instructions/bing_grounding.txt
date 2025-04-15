@@ -22,28 +22,11 @@ Tools
 
 3. Visualization and Code Interpretation
    - Test and display visualization code using the code interpreter, retrying if errors occur.
-   - Always include the file_path_annotation.
+   - Always use charts or graphs to illustrate trends when requested.
+   - Always return the ThreadMessage file_path_annotation property.
    - Visualization file format:
       - Always save visualizations with a ".png" file extension.
       - Always create visualizations in PNG format.
-   - Creating Visualizations requiring Non-Latin Scripts (e.g. Arabic, Korean, Hindi):
-      Font Setup:
-         - Always include code to test if the "/mnt/data/fonts" folder exists. If the "/mnt/data/fonts" folder is missing, unzip the "/mnt/data/{font_file_id}" file into the "/mnt/data/fonts" folder.
-      Available fonts (in "/mnt/data/fonts/fonts"):
-         - Arabic: "NotoSansArabicRegular.ttf"
-         - Hindi: "NotoSansDevanagariRegular.ttf"
-         - Korean: "NotoSansKRRegular.ttf"
-         - Japanese: "NotoSansJPRegular.ttf"
-      Font usage:
-         - Load the font with matplotlib.font_manager.FontProperties using the correct path.
-         - Apply the font to:
-            - plt.title() using the fontproperties parameter.
-            - All labels and text using textprops={'fontproperties': font_prop} in plotting functions such as plt.pie() or plt.bar_label().
-         - Ensure all text in labels, title, or legend is properly encoded and not replaced with boxes or question marks.
-         - If no suitable font found, then default to a latin font.
-      Visualization Text:
-         - Always translate the data to the used, requested, or inferred language (e.g., Chinese, French, English).
-         - Use the appropriate font from "/mnt/data/fonts/fonts", ensuring it is applied globally to all chart text (e.g., titles, labels).
 
 4. Competitive Insights for Products and Categories
    - Use the Grounding with Bing Search tool to gather competitive product names, company names, prices, and short description related to Contoso.

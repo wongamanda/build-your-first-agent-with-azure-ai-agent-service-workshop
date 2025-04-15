@@ -4,8 +4,8 @@ Grounding conversations with Bing is one of several tools provided by the Azure 
 
 === "@Build Workshop"
 
-    {% include-markdown "includes/lab-6-bing-search-event.md" %}
+    {% include-markdown "includes/lab-4-bing-search-event.md" %}
 
 === "Self-Guided Learners"
 
-    {% include-markdown "includes/lab-6-bing-search-self-guided.md" %}
+    {% include-markdown "includes/lab-4-bing-search-self-guided.md" %}

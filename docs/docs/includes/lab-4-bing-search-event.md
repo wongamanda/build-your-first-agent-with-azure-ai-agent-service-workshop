@@ -1,7 +1,6 @@
-
 ## Grounding with Bing Search
 
-This lab requires the Grounding with Bing Search service, which may not be available in your Azure subscription. To check if you have access, follow the lab instructions to create the resource, if you don’t have access, an error message will appear. Even if you’re unable to use the service, be sure to read through the lab to understand how Grounding with Bing Search works.
+This lab requires the Grounding with Bing Search service. Follow the lab instructions to create the resource and connect it to the given Azure AI project. , 
 
 ## Lab Exercise
 
@@ -9,14 +8,12 @@ In this lab, you'll enable Bing Grounding to provide competitive sales analysis 
 
 ## Create a Grounding with Bing Search resource
 
-You'll need to create a **Grounding with Bing Search Service** resource in the Azure portal and connect it to the Azure AI Foundry portal.
-
 Follow these steps to create a Grounding with Bing Search Resource:
 
 1. [Click to create a Grounding with Bing Search Resource](https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/Microsoft.BingGroundingSearch){:target="_blank"}.
 
     !!! Warning
-        You may need to sign in to your Azure account and or clear the welcome screen to access the Azure portal.
+        You may need to sign in to Azure and/or clear the welcome screen to access the Azure portal. Always use the Azure credentials provided in the **Resources** tab of the lab instructions.
 
 1. Select **Create**.
 1. Select the **rg-agent-workshop** resource group from the drop-down list.
@@ -76,8 +73,8 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
     INSTRUCTIONS_FILE = "instructions/function_calling.txt"
     INSTRUCTIONS_FILE = "instructions/file_search.txt"
     INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
-    INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
     INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
+    # INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
 
 
     async def add_agent_tools() -> None:
@@ -101,8 +98,8 @@ For more information, visit the [Grounding with Bing Search](https://learn.micro
         toolset.add(file_search_tool)
 
         # Add multilingual support to the code interpreter
-        font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
-        code_interpreter.add_file(file_id=font_file_info.id)
+        # font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
+        # code_interpreter.add_file(file_id=font_file_info.id)
 
         # Add the Bing grounding tool
         bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
