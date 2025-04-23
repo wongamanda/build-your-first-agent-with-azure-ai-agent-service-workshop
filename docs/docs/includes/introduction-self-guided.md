@@ -174,7 +174,7 @@ We have provided a bash script to automate the deployment of the resources requi
         cp src/python/workshop/.env.sample src/python/workshop/.env
         ```
 
-        Then edit the file `src/workshop/.env` to provide the Project Connection String.
+        Then edit the file `src/python/workshop/.env` to provide the Project Connection String.
 
     === "C#"
 
