@@ -171,7 +171,7 @@ We have provided a bash script to automate the deployment of the resources requi
         Create the workshop configuration file with the following command:
 
         ```bash
-        cp src/workshop/.env.sample src/workshop/.env
+        cp src/python/workshop/.env.sample src/python/workshop/.env
         ```
 
         Then edit the file `src/workshop/.env` to provide the Project Connection String.
