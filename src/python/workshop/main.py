@@ -178,34 +178,35 @@ async def main() -> None:
     """
     Example questions: Sales by region, top-selling products, total shipping costs by region, show as a pie chart.
     """
-    agent, thread = await initialize()
-    if not agent or not thread:
-        print(f"{tc.BG_BRIGHT_RED}Initialization failed. Ensure you have uncommented the instructions file for the lab.{tc.RESET}")
-        print("Exiting...")
-        return
+    async with project_client:
+        agent, thread = await initialize()
+        if not agent or not thread:
+            print(f"{tc.BG_BRIGHT_RED}Initialization failed. Ensure you have uncommented the instructions file for the lab.{tc.RESET}")
+            print("Exiting...")
+            return
 
-    cmd = None
+        cmd = None
 
-    while True:
-        prompt = input(
-            f"\n\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
-        if not prompt:
-            continue
+        while True:
+            prompt = input(
+                f"\n\n{tc.GREEN}Enter your query (type exit or save to finish): {tc.RESET}").strip()
+            if not prompt:
+                continue
 
-        cmd = prompt.lower()
-        if cmd in {"exit", "save"}:
-            break
+            cmd = prompt.lower()
+            if cmd in {"exit", "save"}:
+                break
 
-        await post_message(agent=agent, thread_id=thread.id, content=prompt, thread=thread)
+            await post_message(agent=agent, thread_id=thread.id, content=prompt, thread=thread)
 
-    if cmd == "save":
-        print("The agent has not been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
-        print(
-            f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}"
-        )
-    else:
-        await cleanup(agent, thread)
-        print("The agent resources have been cleaned up.")
+        if cmd == "save":
+            print("The agent has not been deleted, so you can continue experimenting with it in the Azure AI Foundry.")
+            print(
+                f"Navigate to https://ai.azure.com, select your project, then playgrounds, agents playgound, then select agent id: {agent.id}"
+            )
+        else:
+            await cleanup(agent, thread)
+            print("The agent resources have been cleaned up.")
 
 
 if __name__ == "__main__":

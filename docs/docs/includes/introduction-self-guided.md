@@ -204,12 +204,18 @@ There are two workspaces in the workshop, one for Python and one for C#. The wor
 
 === "Python"
 
-    1. From the **VS Code menu**, select **File** > **Open Workspace from File**.
-    2. Select the **.vscode/python-workspace.code-workspace** file.
+    1. In Visual Studio Code, go to **File** > **Open Workspace from File**.
+    2. Replace the default path with the following:
+    
+        ```text
+        /workspaces/build-your-first-agent-with-azure-ai-agent-service-workshop/.vscode/
+        ```
+
+	3. Choose the file named **python-workspace.code-workspace** to open the workspace.
 
     ## Project Structure
 
-    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+    Be sure to familiarize yourself with the key **folders** and **files** you’ll be working with throughout the workshop.
 
     ### The workshop folder
 
@@ -227,12 +233,18 @@ There are two workspaces in the workshop, one for Python and one for C#. The wor
 
 === "C#"
 
-    1. From the **VS Code menu**, select **File** > **Open Workspace from File**.
-    2. Select the **.vscode/csharp-workspace.code-workspace** file.
+    1. In Visual Studio Code, go to **File** > **Open Workspace from File**.
+    2. Replace the default path with the following:
+    
+        ```text
+        /workspaces/build-your-first-agent-with-azure-ai-agent-service-workshop/.vscode/
+        ```
+
+	3. Choose the file named **csharp-workspace.code-workspace** to open the workspace.
 
     ## Project Structure
 
-    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+    Be sure to familiarize yourself with the key **folders** and **files** you’ll be working with throughout the workshop.
 
     ### The workshop folder
 
