@@ -4,7 +4,7 @@ The instructions on this page assume you are attending [Microsoft Build 2025](ht
 
 ## Introduction
 
-This workshop is designed to teach you about the Azure AI Agents Service and the associated [Python SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext&view=azure-python-preview){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
+This workshop is designed to teach you about the Azure AI Agents Service and the associated [SDK](https://learn.microsoft.com/python/api/overview/azure/ai-projects-readme?context=%2Fazure%2Fai-services%2Fagents%2Fcontext%2Fcontext){:target="_blank"}. It consists of multiple labs, each highlighting a specific feature of the Azure AI Agents Service. The labs are meant to be completed in order, as each one builds on the knowledge and work from the previous lab.
 
 ## Select Workshop Programming Language
 
@@ -40,7 +40,7 @@ You need to authenticate with Azure so the agent app can access the Azure AI Age
 
         2. Select **OK**, then **Done**.
 
-3. Then select the **Default** subscription from the command line.
+3. Then select the **Default** subscription from the command line, by clicking on **Enter**.
 
 4. Once you've logged in, run the following command to assign the **user** role to the resource group:
 

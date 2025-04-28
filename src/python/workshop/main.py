@@ -59,8 +59,8 @@ functions = AsyncFunctionTool(
 # INSTRUCTIONS_FILE = "instructions/function_calling.txt"
 # INSTRUCTIONS_FILE = "instructions/file_search.txt"
 # INSTRUCTIONS_FILE = "instructions/code_interpreter.txt"
-# INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
 # INSTRUCTIONS_FILE = "instructions/bing_grounding.txt"
+# INSTRUCTIONS_FILE = "instructions/code_interpreter_multilingual.txt"
 
 
 async def add_agent_tools() -> None:
@@ -83,14 +83,14 @@ async def add_agent_tools() -> None:
     # code_interpreter = CodeInterpreterTool()
     # toolset.add(code_interpreter)
 
-    # Add multilingual support to the code interpreter
-    # font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
-    # code_interpreter.add_file(file_id=font_file_info.id)
-
     # Add the Bing grounding tool
     # bing_connection = await project_client.connections.get(connection_name=BING_CONNECTION_NAME)
     # bing_grounding = BingGroundingTool(connection_id=bing_connection.id)
     # toolset.add(bing_grounding)
+
+    # Add multilingual support to the code interpreter
+    # font_file_info = await utilities.upload_file(project_client, utilities.shared_files_path / FONTS_ZIP)
+    # code_interpreter.add_file(file_id=font_file_info.id)
 
     return font_file_info
 
