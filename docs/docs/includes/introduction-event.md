@@ -167,6 +167,21 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
 
 === "C#"
 
+    ## Configure the Workshop
+
+    1. Open a terminal and navigate to the **src/csharp/workshop/AgentWorkshop.Client** folder.
+
+        ```powershell
+        cd build-your-first-agent-with-azure-ai-agent-service-workshop\src\csharp\workshop\AgentWorkshop.Client
+        ```
+
+        2. Add the **Project connection string** you copied from Azure AI Foundry to the user secrets, along with the model name.
+
+        ```powershell
+        dotnet user-secrets set "ConnectionStrings:AiAgentService" "<your_project_connection_string>"
+        dotnet user-secrets set "Azure:ModelName" "gpt-4o"
+        ```
+
     ## Project Structure
 
     Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
