@@ -79,7 +79,31 @@ Follow these steps to open the workshop in Visual Studio Code:
 
 === "C#"
 
-    tbc.
+    1. From a terminal window, execute the following commands to clone the workshop repository:
+    
+        ```powershell
+        git clone https://github.com/microsoft/build-your-first-agent-with-azure-ai-agent-service-workshop.git
+        ```
+
+    === "VS Code"
+
+        1. Open the workshop in Visual Studio Code. From the terminal window, run the following command:
+
+            ```powershell
+            code build-your-first-agent-with-azure-ai-agent-service-workshop\.vscode\csharp-workspace.code-workspace
+            ```
+
+        !!! warning "When the project opens in VS Code, two notifications appear in the bottom right corner. Click ✖ to close both notifications."
+
+    === "Visual Studio 2022"
+
+        1. Open the workshop in Visual Studio 2022. From the terminal window, run the following command:
+
+            ```powershell
+            start build-your-first-agent-with-azure-ai-agent-service-workshop\src\csharp\workshop\AgentWorkshop.sln
+            ```
+
+            !!! note "You may be asked what program to open the solution with. Select **Visual Studio 2022**."
 
 ## Project Connection String
 
