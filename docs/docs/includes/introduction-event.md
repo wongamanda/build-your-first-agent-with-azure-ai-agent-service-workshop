@@ -175,7 +175,7 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
         cd build-your-first-agent-with-azure-ai-agent-service-workshop\src\csharp\workshop\AgentWorkshop.Client
         ```
 
-        2. Add the **Project connection string** you copied from Azure AI Foundry to the user secrets, along with the model name.
+    2. Add the **Project connection string** you copied from Azure AI Foundry to the user secrets, along with the model name.
 
         ```powershell
         dotnet user-secrets set "ConnectionStrings:AiAgentService" "<your_project_connection_string>"
