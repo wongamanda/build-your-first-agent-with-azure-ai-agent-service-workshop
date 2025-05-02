@@ -21,9 +21,6 @@ First, we're going to rerun the previous lab so we can see how the Code Interpre
       2. **In Korean**
       3. **Show as a pie chart**
 
-      !!! info
-        If the generated pie chart still has English labels, try specifying again in your next prompt. E.g., enter: **Use Korean labels in the pie chart**
-
 Once the task is complete, the pie chart image will be saved in the **shared/files** subfolder. Review the visualization, and you'll see that the text is not rendered correctly. This is because the Code Interpreter doesn't have the necessary fonts to render non-Latin characters.
 
 ![The image shows korean pie chart without Korean text](media/sales_by_region_2022_pie_chart_korean.png){width=75%}
