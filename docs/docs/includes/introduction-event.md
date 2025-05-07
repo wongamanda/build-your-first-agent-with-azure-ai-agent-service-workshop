@@ -93,7 +93,7 @@ Follow these steps to open the workshop in Visual Studio Code:
             code build-your-first-agent-with-azure-ai-agent-service-workshop\.vscode\csharp-workspace.code-workspace
             ```
 
-        !!! warning "When the project opens in VS Code, two notifications appear in the bottom right corner. Click ✖ to close both notifications."
+        !!! note "When the project opens in VS Code, a notification will appear in the bottom right corner to install the C# extension. Click **Install** to install the C# extension, as this will provide the necessary features for C# development."
 
     === "Visual Studio 2022"
 
@@ -175,10 +175,15 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
         cd build-your-first-agent-with-azure-ai-agent-service-workshop\src\csharp\workshop\AgentWorkshop.Client
         ```
 
-    2. Add the **Project connection string** you copied from Azure AI Foundry to the user secrets, along with the model name.
+    2. Add the **Project connection string** you copied from Azure AI Foundry to the user secrets.
 
         ```powershell
         dotnet user-secrets set "ConnectionStrings:AiAgentService" "<your_project_connection_string>"
+        ```
+    
+    3. Add the **Model deployment name** to the user secrets.
+
+        ```powershell
         dotnet user-secrets set "Azure:ModelName" "gpt-4o"
         ```
 
