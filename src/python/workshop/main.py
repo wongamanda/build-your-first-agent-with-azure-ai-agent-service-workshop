@@ -128,6 +128,9 @@ async def initialize() -> tuple[Agent, AgentThread]:
         )
         print(f"Created agent, ID: {agent.id}")
 
+        project_client.agents.enable_auto_function_calls(toolset=toolset)
+        print("Enabled auto function calls.")
+
         print("Creating thread...")
         thread = await project_client.agents.create_thread()
         print(f"Created thread, ID: {thread.id}")
