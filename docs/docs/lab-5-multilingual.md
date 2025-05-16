@@ -93,13 +93,13 @@ Once the task is complete, the pie chart image will be saved in the **shared/fil
 
     1. Open the `Program.cs` file.
 
-    2. **Update** the creation of the lab to use the `Lab2` class.
+    2. **Update** the creation of the lab to use the `Lab5` class.
 
         ``` csharp
         await using Lab lab = new Lab5(projectClient, apiDeploymentName);
         ```
 
-    3. Review the `Lab4.cs` class to see how the Code Interpreter is added to the Tools list.
+    3. Review the `Lab5.cs` class to see how the Code Interpreter is added to the Tools list.
 
 ## Review the Instructions
 
