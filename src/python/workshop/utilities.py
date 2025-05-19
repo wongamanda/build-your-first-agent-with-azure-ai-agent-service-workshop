@@ -52,8 +52,6 @@ class Utilities:
                 file.write(chunk)
 
         self.log_msg_green(f"File saved to {file_path}")
-        # Cleanup the remote file
-        await project_client.agents.delete_file(file_id)
 
     async def get_files(self, message: ThreadMessage, project_client: AIProjectClient) -> None:
         """Get the image files from the message and kickoff download."""
