@@ -124,7 +124,7 @@ async def initialize() -> tuple[Agent, AgentThread]:
             instructions=instructions,
             toolset=toolset,
             temperature=TEMPERATURE,
-            headers={"x-ms-enable-preview": "true"},
+            # headers={"x-ms-enable-preview": "true"},
         )
         print(f"Created agent, ID: {agent.id}")
 
