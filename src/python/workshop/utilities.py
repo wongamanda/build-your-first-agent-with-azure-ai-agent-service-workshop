@@ -38,6 +38,8 @@ class Utilities:
         attachment_part = attachment_name.split(":")[-1]
         file_name = Path(attachment_part).stem
         file_extension = Path(attachment_part).suffix
+        if not file_extension:
+            file_extension = ".png"
         file_name = f"{file_name}.{file_id}{file_extension}"
 
         folder_path = Path(self.shared_files_path) / "files"
@@ -56,7 +58,7 @@ class Utilities:
         if message.image_contents:
             for index, image in enumerate(message.image_contents, start=0):
                 attachment_name = (
-                    "unknown" if not message.file_path_annotations else message.file_path_annotations[index].text
+                    "unknown" if not message.file_path_annotations else message.file_path_annotations[index].text + ".png"
                 )
                 await self.get_file(project_client, image.image_file.file_id, attachment_name)
         elif message.attachments:
