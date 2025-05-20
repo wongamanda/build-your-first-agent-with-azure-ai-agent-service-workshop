@@ -16,7 +16,7 @@ Unlike traditional applications, where developers define the logic and workflows
 
 ## Introduction to the Azure AI Foundry
 
-[Azure AI Foundry](https://ai.azure.com/){:target="_blank"} is Microsoft’s secure, flexible platform for designing, customizing, and managing AI apps and agents. Everything—models, agents, tools, and observability—lives behind a single portal, SDK, and REST endpoint, so you can ship to cloud or edge with governance and cost controls in place from day one.
+[Azure AI Foundry](https://azure.microsoft.com/products/ai-foundry/){:target="_blank"} is Microsoft’s secure, flexible platform for designing, customizing, and managing AI apps and agents. Everything—models, agents, tools, and observability—lives behind a single portal, SDK, and REST endpoint, so you can ship to cloud or edge with governance and cost controls in place from day one.
 
 ![Azure AI Foundrt Architecture](media/azure-ai-foundry.png)
 
