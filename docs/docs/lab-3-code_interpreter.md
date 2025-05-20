@@ -125,7 +125,7 @@ Try these questions:
 
 3. Continue asking questions about Contoso sales data to see the Code Interpreter in action. Few examples:
     - **What would be the impact of a shock event (e.g., 20% sales drop in one region) on global sales distribution? Show as a Grouped Bar Chart.**
-      - Follow up with **What if the shock event was 50%?**
+        - Follow up with **What if the shock event was 50%?**
     - **Which regions have sales above or below the average? Show as a Bar Chart with Deviation from Average.**
     - **Which regions have discounts above or below the average? Show as a Bar Chart with Deviation from Average.**
     - **Simulate future sales by region using a Monte Carlo simulation to estimate confidence intervals. Show as a Line with Confidence Bands using vivid colors.**
