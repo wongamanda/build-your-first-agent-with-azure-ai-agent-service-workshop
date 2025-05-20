@@ -113,7 +113,7 @@ Next, we log in to Azure AI Foundry to retrieve the project connection string, w
 2. Select **Sign in** and use the **Username** and **Password** found in the **top section** of the **Resources** tab in the lab environment. Click on the **Username** and **Password** fields to automatically fill in the login details.
     ![Azure credentials](../media/azure-credentials.png){:width="500"}
 3. Read the introduction to the Azure AI Foundry and click **Got it**.
-4. Navigate to +++https://ai.azure.com/AllResources+++ to get the list of AI resources pre-provisioned for you.
+4. Navigate to [All Resources](https://ai.azure.com/AllResources){:target="_blank"} to view the list of AI resources that have been pre-provisioned for you.
 5. Select the resource name that starts with **aip-** of type **Project**.
 
     ![Select project](../media/ai-foundry-project.png){:width="500"}
