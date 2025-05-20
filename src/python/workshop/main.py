@@ -153,7 +153,7 @@ async def cleanup(agent: Agent, thread: AgentThread) -> None:
 
 
 async def post_message(thread_id: str, content: str, agent: Agent, thread: AgentThread) -> None:
-    """Post a message to the Azure AI Agent Service."""
+    """Post a message to the Foundry Agent Service."""
     try:
         await project_client.agents.create_message(
             thread_id=thread_id,

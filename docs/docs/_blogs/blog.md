@@ -1,14 +1,14 @@
-# Build Your First Agent with Azure AI Agent Service: Self-Guided Workshop
+# Build Your First Agent with the Azure AI Foundry Agent Service: Self-Guided Workshop
 
 ![Contoso Sales Analysis Agent](../media/persona.png)
 
 Agentic AI is changing how we build intelligent apps—enabling software to reason, plan, and act for us. Learning to build AI agents is quickly becoming a must-have skill for anyone working with AI.
 
-Try our self-guided workshop to get hands-on with Azure AI Agent Service. You'll learn to build, deploy, and interact with agents using Azure's powerful tools.
+Try our self-guided workshop to get hands-on with Foundry Agent Service. You'll learn to build, deploy, and interact with agents using Azure's powerful tools.
 
-## What is Azure AI Agent Service?
+## What is Foundry Agent Service?
 
-Azure AI Agent Service lets you create, orchestrate, and manage AI-powered agents that can handle complex tasks, integrate with tools, and deploy securely.
+Foundry Agent Service lets you create, orchestrate, and manage AI-powered agents that can handle complex tasks, integrate with tools, and deploy securely.
 
 ## What Will You Learn?
 
@@ -20,7 +20,7 @@ Azure AI Agent Service lets you create, orchestrate, and manage AI-powered agent
 
 ## Who Is This For?
 
-Anyone interested in building intelligent, goal-oriented agents—developers, data scientists, and AI enthusiasts. No prior experience with Azure AI Agent Service required.
+Anyone interested in building intelligent, goal-oriented agents—developers, data scientists, and AI enthusiasts. No prior experience with Foundry Agent Service required.
 
 ## How Does the Workshop Work?
 
@@ -40,4 +40,4 @@ Questions or feedback? Visit the [issues page](https://github.com/microsoft/buil
 
 ---
 
-Happy learning and building with Azure AI Agent Service!
+Happy learning and building with Foundry Agent Service!
