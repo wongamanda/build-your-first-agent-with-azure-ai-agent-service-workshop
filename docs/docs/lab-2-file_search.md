@@ -142,9 +142,9 @@ The following conversation uses data from both the Contoso sales database and th
         The agent interprets this as a request to find all sales of tents in the "CAMPING & HIKING' category, since it
         now has access to information that Alpine Gear is a brand of backpacking tent.
 
-1. **Show sales by region as a pie chart**
+1. **Download the sales by region data**
 
-    Our agent can't create charts ... yet. We'll fix that in the next lab.
+    Our agent can't download files ... yet. We'll fix that in the next lab.
 
 ## Stop the Agent App
 
