@@ -126,9 +126,9 @@ Try these questions:
         didn't explicitly specify it.
 
 4. Continue asking questions about Contoso sales data to see the Code Interpreter in action. Few examples:
-    - What would be the impact of a shock event (e.g., 20% sales drop in one region) on global sales distribution? Show as a table.
-    - Which regions have sales above or below the average? Show as a table.Which regions have sales above or below the average? Show as a table.
-    - Simulate future sales by region using a Monte Carlo simulation to estimate confidence intervals? Show as a table.v
+    - **What would be the impact of a shock event (e.g., 20% sales drop in one region) on global sales distribution? Show as a table.**
+    - **Which regions have sales above or below the average? Show as a table.Which regions have sales above or below the average? Show as a table.**
+    - **Simulate future sales by region using a Monte Carlo simulation to estimate confidence intervals? Show as a table.**
 
 ## Debugging the Code Interpreter
 
