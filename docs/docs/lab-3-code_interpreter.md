@@ -96,7 +96,7 @@ In this lab, you'll enable the Code Interpreter to execute Python code generated
 
 Try these questions:
 
-1. **Download the sales by region data**
+1. **Show sales by region as a pie chart**
 
     Once the task is complete, the file will be saved in the **shared/files** subfolder. Note that this subfolder is created the first time this task is run, and is never checked into source control.
 
@@ -112,8 +112,8 @@ Try these questions:
             **SELECT region, SUM(revenue) AS total_revenue FROM sales_data GROUP BY region;**
 
         2. The LLM asks the agent app to call the **async_fetch_sales_data_using_sqlite_query** function. The SQL command is executed, and the resulting data is returned to the LLM.
-        3. Using the returned data, the LLM writes Python code to write the results to a file.
-        4. Finally, the Code Interpreter executes the Python code to generate the file.
+        3. Using the returned data, the LLM writes Python code to create a Pie Chart.
+        4. Finally, the Code Interpreter executes the Python code to generate the chart.
 
         By default, the instructions specify that data downloads in CSV format. You can request other formats, such as JSON or Excel, by including the desired format in your query (e.g., ‘Download as JSON’).
 
@@ -126,9 +126,11 @@ Try these questions:
         didn't explicitly specify it.
 
 4. Continue asking questions about Contoso sales data to see the Code Interpreter in action. Few examples:
-    - **What would be the impact of a shock event (e.g., 20% sales drop in one region) on global sales distribution? Show as a table.**
-    - **Which regions have sales above or below the average? Show as a table.Which regions have sales above or below the average? Show as a table.**
-    - **Simulate future sales by region using a Monte Carlo simulation to estimate confidence intervals? Show as a table.**
+    - **What would be the impact of a shock event (e.g., 20% sales drop in one region) on global sales distribution? Show as a Grouped Bar Chart.**
+      - Follow up with **What if the shock event was 50%?**
+    - **Which regions have sales above or below the average? Show as a Bar Chart with Deviation from Average.**
+    - **Which regions have discounts above or below the average? Show as a Bar Chart with Deviation from Average.**
+    - **Simulate future sales by region using a Monte Carlo simulation to estimate confidence intervals. Show as a Line with Confidence Bands using vivid colors.**
 
 ## Debugging the Code Interpreter
 
