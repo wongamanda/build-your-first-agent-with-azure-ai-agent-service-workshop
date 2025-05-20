@@ -12,7 +12,7 @@ If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsof
 
 === "Python"
 
-    With the Azure AI Agent Service and its Python SDK, you can define the function schema directly within the Python function’s docstring. This approach keeps the definition and implementation together, simplifying maintenance and enhancing readability.
+    With the Foundry Agent Service and its Python SDK, you can define the function schema directly within the Python function’s docstring. This approach keeps the definition and implementation together, simplifying maintenance and enhancing readability.
 
     For example, in the **sales_data.py** file, the **async_fetch_sales_data_using_sqlite_query** function uses a docstring to specify its signature, inputs, and outputs. The SDK parses this docstring to generate the callable function for the LLM:
 
@@ -30,7 +30,7 @@ If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsof
 
 === "C#"
 
-    With the Azure AI Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent.
+    With the Foundry Agent Service and its .NET SDK, you define the function schema as part of the C# code when adding the function to the agent.
 
     For example, in the **Lab.cs** file, the `InitialiseTools` method defines the function schema for the `FetchSalesDataAsync` function:
 
@@ -54,7 +54,7 @@ If you’re familiar with [Azure OpenAI Function Calling](https://learn.microsof
 
 ### Dynamic SQL Generation
 
-When the app starts, it incorporates the database schema and key data into the instructions for the Azure AI Agent Service. Using this input, the LLM generates SQLite-compatible SQL queries to respond to user requests expressed in natural language.
+When the app starts, it incorporates the database schema and key data into the instructions for the Foundry Agent Service. Using this input, the LLM generates SQLite-compatible SQL queries to respond to user requests expressed in natural language.
 
 ## Lab Exercise
 

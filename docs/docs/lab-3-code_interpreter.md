@@ -1,6 +1,6 @@
 ## Introduction
 
-The Azure AI Agent Service Code Interpreter enables the LLM to safely execute Python code for tasks such as creating charts or performing complex data analyses based on user queries. It makes use of natural language processing (NLP), sales data from an SQLite database, and user prompts to automate code generation. The LLM-generated Python code executes within a secure sandbox environment, running on a restricted subset of Python to ensure safe and controlled execution.
+The Foundry Agent Service Code Interpreter enables the LLM to safely execute Python code for tasks such as creating charts or performing complex data analyses based on user queries. It makes use of natural language processing (NLP), sales data from an SQLite database, and user prompts to automate code generation. The LLM-generated Python code executes within a secure sandbox environment, running on a restricted subset of Python to ensure safe and controlled execution.
 
 ## Lab Exercise - Python
 
@@ -105,7 +105,7 @@ Try these questions:
     !!! info
         This might feel like magic, so what’s happening behind the scenes to make it all work?
 
-        Azure AI Agent Service orchestrates the following steps:
+        Foundry Agent Service orchestrates the following steps:
 
         1. The LLM generates a SQL query to answer the user's question. In this example, the query is:
 
